@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin');
 });
+
+Route::prefix('student')->group( function (){
+    Route::view('/registration','Client.InscriptionForms')->name('inscription');
+    Route::view('/registration_complet','Client.InscriptionForms')->name('registration_complet');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

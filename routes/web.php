@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin');
+return view('Client.accueil');
 });
 
 Route::prefix('student')->group( function (){
@@ -23,10 +23,12 @@ Route::prefix('student')->group( function (){
     Route::view('/registration_complet','Client.InscriptionForms')->name('registration_complet');
 });
 
-route::prefix('adminstration')->middleware(['auth'])->group( function(){
-    route::view('/dashboard','Admin.dashboard')->name('Admin.dashboard');
+route::prefix('adminUsakin')->group( function(){
+    Auth::routes();
+    route::view('/dashboard','Admin.dashboard')->name('Admin.dashboard')->middleware('auth');
+    Route::get('/users', \App\Http\Livewire\Users::class)->name('users.admin')->middleware('auth');;
 });
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

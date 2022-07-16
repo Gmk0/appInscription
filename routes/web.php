@@ -25,6 +25,7 @@ Route::prefix('student')->group( function (){
 
 route::prefix('adminUsakin')->group( function(){
     Auth::routes();
+
     route::view('/dashboard','Admin.dashboard')->name('Admin.dashboard')->middleware('auth');
     Route::get('/users', \App\Http\Livewire\Users::class)->name('users.admin')->middleware('auth');;
 });

@@ -4,4 +4,4 @@ import "admin-lte/plugins/jquery/jquery";
 
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle";
 
-window.swal = require("sweetalert2");
+window.Swal = require("sweetalert2");

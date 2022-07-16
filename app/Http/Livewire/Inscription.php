@@ -208,11 +208,11 @@ class Inscription extends Component
                     );
 
                     if (!empty($admis_inscription) && !empty($valueEtudiant) && !empty($valueDossier)) {
-                        etudiant::insert($valueEtudiant);
-                        dossierEtudiant::insert($valueDossier);
-                        tuteuretudiant::insert($valuesTuteur);
-                        etudeRealiser::insert($etudesRealise);
-                        etudiantInscrit::insert($admis_inscription);
+                        etudiant::create($valueEtudiant);
+                        dossierEtudiant::create($valueDossier);
+                        tuteuretudiant::create($valuesTuteur);
+                        etudeRealiser::create($etudesRealise);
+                        etudiantInscrit::create($admis_inscription);
                     } else {
                         return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
                     }
@@ -229,7 +229,7 @@ class Inscription extends Component
 
     public function render()
     {
-        return view('livewire.inscription',[
+        return view('livewire.etudiant.inscription',[
             'facultes' => Faculte::all(),
             'anneeAcademique' => anneeAcademique::OrderBy('id_annee', 'desc')->get(),
             'promotions' => Promotion::where('id_faculte', $this->faculte)->get(),

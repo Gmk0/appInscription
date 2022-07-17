@@ -3,12 +3,13 @@ require('./bootstrap');
 import "admin-lte/plugins/jquery/jquery";
 
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle";
-import "admin-lte/dist/js/demo";
+//import "admin-lte/dist/js/demo";
 
 window.Swal = require("sweetalert2");
 window.$ =require("jquery");
 
-    import "admin-lte/plugins/datatables/jquery.dataTables";
+
+    /*import "admin-lte/plugins/datatables/jquery.dataTables";
     import "admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4";
     import "admin-lte/plugins/datatables-responsive/js/dataTables.responsive";
     import "admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4";
@@ -21,7 +22,10 @@ window.$ =require("jquery");
     import "admin-lte/plugins/datatables-buttons/js/buttons.print";
     import "admin-lte/plugins/datatables-buttons/js/buttons.colVis";
 
+*/
 
+
+/*
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -37,5 +41,5 @@ window.$ =require("jquery");
       "responsive": true,
     });
   });
-
+*/
 

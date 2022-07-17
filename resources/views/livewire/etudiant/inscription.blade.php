@@ -35,8 +35,8 @@
                                             <div class="form-group">
                                                 <label for="name" class="form-label">POST-NOM<span>*</span></label>
                                                 <input type="text" class="form-control form-control-sm" placeholder=""
-                                                       wire:model="Postnom">
-                                                <span class="text-danger">@error('Postnom') {{$message}}@enderror</span>
+                                                       wire:model="postnom">
+                                                <span class="text-danger">@error('postnom') {{$message}}@enderror</span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

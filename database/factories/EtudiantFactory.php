@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Helpers\helper;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\etudiant;
 
 class EtudiantFactory extends Factory
 {
@@ -14,7 +15,7 @@ class EtudiantFactory extends Factory
      */
     public function matricule()
     {
-        return Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, FACULTE);
+        return Helper::IDgenaratorStudent(New etudiant, 'matricule_etudiant', 4, FACULTE);
     }
 
     public function definition()

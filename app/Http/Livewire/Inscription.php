@@ -22,7 +22,7 @@ class Inscription extends Component
     //etudiant_element
 
     public $nom;
-    public $Postnom;
+    public $postnom;
     public $prenom;
     public $genre;
     public $etat_civil;
@@ -76,7 +76,7 @@ class Inscription extends Component
     {
 
         $this->resetErrorBag();
-
+        $this->validateData();
         $this->currentStep++;
         if ($this->currentStep > $this->totalStep) {
             $this->currentStep = $this->totalStep;
@@ -160,7 +160,7 @@ class Inscription extends Component
             $upload_image = $this->photo->storeAs('public/students_images', $imageName);
             if ($upload_image) {
                 $valueEtudiant = array(
-                    "matricule_etudiant" => $matricule, "Nom" => $this->nom, 'PostNom' => $this->Postnom, 'Prenom' => $this->prenom,
+                    "matricule_etudiant" => $matricule, "Nom" => $this->nom, 'PostNom' => $this->postnom, 'Prenom' => $this->prenom,
                     'Genre' => $this->genre, 'email' => $this->email, 'etat_civil' => $this->etat_civil, 'nationalite' => $this->nationalite,
                     'lieu_naiss' => $this->lieu_naiss,
                     'date_naiss' => $this->date_naiss,
@@ -222,7 +222,7 @@ class Inscription extends Component
             return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
         }
 
-        $data = ['name' => $this->nom . '-' . $this->Postnom, 'email' => $this->email, 'matricule' => $matricule];
+        $data = ['name' => $this->nom . '-' . $this->postnom, 'email' => $this->email, 'matricule' => $matricule];
         return redirect()->route('registration_complet', $data);
     }
 

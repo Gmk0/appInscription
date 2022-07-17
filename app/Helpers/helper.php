@@ -29,7 +29,7 @@ class helper
     }
     public static function valideData()
     {
-        $data = [
+        return [
             'nom' => 'required|string',
             'Postnom' => 'required|string',
             'prenom' => 'required|string',
@@ -70,6 +70,5 @@ class helper
             'terms' => 'accepted'
 
         ];
-        return $data;
     }
 }

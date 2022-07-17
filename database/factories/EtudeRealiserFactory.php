@@ -15,6 +15,19 @@ class EtudeRealiserFactory extends Factory
     {
         return [
             //
+            'matricule_etudiant' => matricule(),
+            'Diplome_access' => [
+                'Diplome' => "Diplome d'etat",
+                'Numero' => $this->faker->numberBetween(),
+                'Mention' => $this->faker->numberBetween(55, 83),
+                'Section' => $this->faker->randomElement(array('Scientifique', 'Litteraire', 'Pedagogie')),
+                'DelivreA' => "KINSHASA",
+                'DateDu' => $this->faker->dateTimeBetween('01-01-2020', '31-01-2021')->format('d-m-y'),
+
+
+            ],
+
+
         ];
     }
 }

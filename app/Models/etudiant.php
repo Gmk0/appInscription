@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\etudeRealiser;
+use App\Models\tuteurEtudiant;
+use App\Models\dossierEtudiant;
+use App\Models\etudiantInscrit;
 
 class etudiant extends Model
 {

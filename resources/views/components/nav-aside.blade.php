@@ -24,13 +24,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
+                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link ">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Promotion</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Faculte</p>
                         </a>
@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('users.etudiant')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Etudiant Inscris</p>
                         </a>

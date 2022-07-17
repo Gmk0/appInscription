@@ -54,6 +54,7 @@
 <x-footer-Admin/>
 
 @livewireScripts
+
 <script src="{{mix('js/app.js')}}"></script>
 </body>
 

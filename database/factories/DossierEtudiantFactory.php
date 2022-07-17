@@ -11,10 +11,14 @@ class DossierEtudiantFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+   public function definition()
     {
         return [
-            //
+            'matricule_etudiant' => matricule(),
+            'Aptitude_physique' => matricule()."Aptitute.pdf",
+            'Certificat_naiss' =>matricule()."Certificat.docx",
+            'Diplome_etat' =>matricule()."Diplome.docx",
+            'Bulletin' => matricule()."bulletin.docx"
         ];
     }
 }

@@ -15,6 +15,12 @@ class EtudiantInscritFactory extends Factory
     {
         return [
             //
+            'matricule_etudiant' => matricule(),
+
+            'id_promotion' => PROMOTION,
+
+            'id_annee' => '1',
+
         ];
     }
 }

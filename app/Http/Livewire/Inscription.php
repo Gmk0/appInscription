@@ -20,9 +20,8 @@ class Inscription extends Component
     use WithFileUploads;
 
     //etudiant_element
-
     public $nom;
-    public $postnom;
+    public $Postnom;
     public $prenom;
     public $genre;
     public $etat_civil;
@@ -74,9 +73,9 @@ class Inscription extends Component
 
     public function increaseStep()
     {
-
-        $this->resetErrorBag();
         $this->validateData();
+        $this->resetErrorBag();
+
         $this->currentStep++;
         if ($this->currentStep > $this->totalStep) {
             $this->currentStep = $this->totalStep;
@@ -90,12 +89,13 @@ class Inscription extends Component
             $this->currentStep = 1;
         }
     }
+
     public function validateData()
     {
         if ($this->currentStep == 1) {
             $this->validate([
                 'nom' => 'required|string',
-                'postnom' => 'required|string',
+                'Postnom' => 'required|string',
                 'prenom' => 'required|string',
                 'genre' => 'required|string',
                 'etat_civil' => 'required|string',
@@ -141,13 +141,22 @@ class Inscription extends Component
             ]);
         }
     }
+
     public function register()
     {
         $this->resetErrorBag();
+        $this->validate([
+            'aptitude_physique' => 'required|mimes:doc,docx,pdf|max:1024',
+            'diplome_etat_doc' => 'required|mimes:doc,docx,pdf|max:1024',
+            'bulletin' => 'required|mimes:doc,docx,pdf|max:1024',
+            'certificat_naiss' => 'required|mimes:doc,docx,pdf|max:1024',
+            'photo' => 'required|mimes:jpeg,png,svg,jpg,gif|max:5000',
+            'terms' => 'accepted'
+        ]);
 
-        if ($this->faculte == 2) {
+        if ($this->faculte == 1) {
             $matricule = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'PH');
-        } elseif ($this->faculte == 1) {
+        } elseif ($this->faculte == 2) {
             $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'TH');
         } elseif ($this->faculte == 4) {
             $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'SE');
@@ -156,14 +165,15 @@ class Inscription extends Component
         }
 
         if (!empty($matricule)) {
-            $imageName = $matricule . $this->photo->getClientOriginalName();
+            $imageName = 'image'.time().$this->photo->getClientOriginalName();
             $upload_image = $this->photo->storeAs('public/students_images', $imageName);
             if ($upload_image) {
                 $valueEtudiant = array(
-                    "matricule_etudiant" => $matricule, "Nom" => $this->nom, 'PostNom' => $this->postnom, 'Prenom' => $this->prenom,
+                    "matricule_etudiant" => $matricule, "Nom" => $this->nom, 'PostNom' => $this->Postnom, 'Prenom' => $this->prenom,
                     'Genre' => $this->genre, 'email' => $this->email, 'etat_civil' => $this->etat_civil, 'nationalite' => $this->nationalite,
                     'lieu_naiss' => $this->lieu_naiss,
                     'date_naiss' => $this->date_naiss,
+                    'email' => $this->email,
                     'telephone' => $this->telephone,
                     'adresse_etudiant' => json_encode($this->adresse),
                     'Nom_pere' => $this->nom_pere,
@@ -175,13 +185,13 @@ class Inscription extends Component
                     'created_at' => Carbon::now(),
                 );
                 if ($valueEtudiant) {
-                    $aptitude_physique = $matricule . 'aptPh' . $this->aptitude_physique->getClientOriginalName();
+                    $aptitude_physique ='aptPh'.time().$this->aptitude_physique->getClientOriginalName();
                     $this->upload_aptPh = $this->aptitude_physique->storeAs('public/students_doc', $aptitude_physique);
-                    $certificat_naiss = $matricule . 'cert_Naiss' . $this->certificat_naiss->getClientOriginalName();
+                    $certificat_naiss = 'cert_Naiss'.time(). $this->certificat_naiss->getClientOriginalName();
                     $this->upload_certificat = $this->certificat_naiss->storeAs('public/students_doc', $certificat_naiss);
-                    $diplome_etat = $matricule . 'diplome' . $this->diplome_etat_doc->getClientOriginalName();
+                    $diplome_etat ='diplome'.time(). $this->diplome_etat_doc->getClientOriginalName();
                     $this->upload_diplome = $this->diplome_etat_doc->storeAs('public/students_doc', $diplome_etat);
-                    $bulletin = $matricule . 'bulletin' . $this->bulletin->getClientOriginalName();
+                    $bulletin = 'bulletin'.time(). $this->bulletin->getClientOriginalName();
                     $this->upload_bulletin = $this->bulletin->storeAs('public/students_doc', $bulletin);
 
                     $valuesTuteur = array(
@@ -208,10 +218,10 @@ class Inscription extends Component
                     );
 
                     if (!empty($admis_inscription) && !empty($valueEtudiant) && !empty($valueDossier)) {
-                        etudiant::create($valueEtudiant);
-                        dossierEtudiant::create($valueDossier);
-                        tuteuretudiant::create($valuesTuteur);
-                        etudeRealiser::create($etudesRealise);
+                        etudiant::insert($valueEtudiant);
+                        dossierEtudiant::insert($valueDossier);
+                        tuteuretudiant::insert($valuesTuteur);
+                        etudeRealiser::insert($etudesRealise);
                         etudiantInscrit::create($admis_inscription);
                     } else {
                         return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
@@ -222,17 +232,25 @@ class Inscription extends Component
             return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
         }
 
-        $data = ['name' => $this->nom . '-' . $this->postnom, 'email' => $this->email, 'matricule' => $matricule];
+        $data = ['name' => $this->nom . '-' . $this->Postnom, 'email' => $this->email, 'matricule' => $matricule];
         return redirect()->route('registration_complet', $data);
     }
 
-
     public function render()
     {
-        return view('livewire.etudiant.inscription',[
+        return view('livewire.etudiant.inscription', [
             'facultes' => Faculte::all(),
-            'anneeAcademique' => anneeAcademique::OrderBy('id_annee', 'desc')->get(),
+            'anneeAcademique' => anneeAcademique::orderBy('id_annee', 'desc')->get(),
             'promotions' => Promotion::where('id_faculte', $this->faculte)->get(),
         ]);
+    }
+    public function updated($propertyName)
+    {
+        $data = Helper::valideData();
+
+        $this->validateOnly(
+            $propertyName,
+            $data
+        );
     }
 }

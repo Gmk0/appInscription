@@ -1,0 +1,148 @@
+body {
+    /* width: 794px;
+     /*height: 1000px;*/
+    margin: 10px;
+
+
+}
+
+
+header {
+    position: relative;
+    width: 100%;
+    display: flex;
+    display: -webkit-box;
+    flex-direction: row;
+    justify-content: space-between;
+    -webkit-box-pack: justify !important;
+    align-items: center;
+    padding: 20px;
+
+}
+
+.entete{
+    display: flex;
+    display: -webkit-box;
+    padding: 10px 0 10px 0;
+    -webkit-box-pack: justify !important;
+}
+.entete > .info
+{
+    padding-left: 10px;
+}
+
+
+
+
+.row{
+    display:-webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content:center;
+}
+.row>div{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+.row>div:last-child{
+    margin-right: 0;
+}
+
+
+.titre {
+    top: 150px;
+    margin-left: 50px;
+    text-align: center;
+}
+
+.cards{
+    margin-left: 80%;
+}
+
+
+.FICHE {
+    margin: 30px;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: space-between;
+    justify-items: flex-end;
+
+
+}
+
+.footer {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+
+
+    padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+li h6 h5 h4 {
+
+    font-weight: bold;
+}
+
+li {
+    font-size: 20px;
+}
+h5{
+    font-size: 26px;
+}
+
+
+h6{
+    font-size:24px;
+}
+span {
+
+    color: rgb(37, 25, 25);
+    font-size: 18px;
+
+}
+
+.tables {
+    width: 95%;
+    /*margin-bottom: 1rem;*/
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+
+}
+
+input.span4 {
+    width: 100%;
+    font-size: 13px;
+    border-width: 2px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: #dee2e6;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    padding: 1px 1px;
+    outline: none;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.page{
+    overflow: hidden;
+    page-break-after: always;
+    border: 1px solid black;
+
+}

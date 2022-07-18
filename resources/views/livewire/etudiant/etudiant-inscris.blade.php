@@ -28,20 +28,21 @@
   </style>
   <div class="card">
           <div class="card-header bg-secondary text-white d-flex align-items-center">
-                <h3 class="card-title flex-grow-1"">LISTE NOUVEAU INSCRIT</h3>
+                <h3 class="card-title flex-grow-1">LISTE NOUVEAU INSCRIT</h3>
+
 
                 <div class="card-tools  d-flex align-items-center">
 
                         <label class="form-label">FACULTE</label>
                           <div class="col">
-                            <select class="form-control  @error('promotion.id_faculte') is-invalid @enderror" wire:model="promotion">
+                            <select class="form-control  @error('promotionId') is-invalid @enderror" wire:model="promotionId">
                             <option selected>---Faculte-----</option>
                             @foreach($facultes as $row)
                             <option value="{{$row->id_faculte}}">{{$row->designation_faculte}}</option>
 
                             @endforeach
                             </select>
-                           @error('promotion.designation_promotion')
+                           @error('promotionId')
                            <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -102,7 +103,7 @@
                     <th>Telephone</th>
                     <th>Faculte</th>
                     <th>promotion</th>
-                    
+
                     <th>Statut</th>
                   </tr>
                   </tfoot>

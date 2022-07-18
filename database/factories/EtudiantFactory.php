@@ -48,7 +48,7 @@ class EtudiantFactory extends Factory
                 "district" => $this->faker->city,
                 "commune" => $this->faker->city
             ],
-            "Photo" => $this->matricule()."noImage.jpg",
+            "Photo" => "noImage.jpg",
 
         ];
     }

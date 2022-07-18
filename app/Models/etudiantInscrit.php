@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class etudiantInscrit extends Model
 {
      use HasFactory;
+     protected $fillable=[
+         'matricule_etudiant',
+         'id_promotion',
+         'id_annee',
+         'statut_etudiant'
+
+
+     ];
     public function promotion()
     {
         return $this->belongsTo(promotion::class, 'id_promotion', 'id_promotion');

@@ -2,18 +2,24 @@
 @extends('layouts.client')
 
 @section('content')
-    <div id="box-reinscription" class="row">
-        <div class="card">
+
+        <div class="card m-4">
             <div class="card-header bg-success text-white"> INSCRIPTION REUSSI </div>
             <div class="card-body">
-                <p>Bonjour <b>{{request()->name}}</b></p>
-                <p>Votre inscription a reussie vous allew recevoir le directive dans cette adresse email
-                    <b>{{request()->email}}</b>
-                </p>
-                <p>Votre MATRICULE <b>{{request()->matricule}}</b></p>
+                <div class="card-body">
+                    Salut <b>{{request()->name}}</b> </b>,<br/>
+                    Merci de nous rejoindre , soon we will aprouve registration
+                    when your accout approuved you will receive your credentials
+                    <b>{{request()->email}}</b>  <br/>
+                    your matricule <b>{{request()->matricule}}</b>
+                    download your formulaire  <a href="{{route('formulaire',[request()->matricule])}}" class="btn btn-primary">download</a>
 
+                </div>
             </div>
         </div>
-    </div>
+
+
+
+
 
 @endsection

@@ -11,7 +11,7 @@
 
         @endif
         <form wire:submit.prevent="register" action="" enctype="multipart/form-data"
-              onsubmit="if(document.getElementById('file').value ==='')return false">
+              onsubmit="if(document.getElementById('file').value==='')return false">
             <div id="box-inscription" class="row">
                 <div id="box-step" class="col-md-12">
                     <h2 class="text-center">INSCRIPTION</h2>
@@ -35,8 +35,8 @@
                                             <div class="form-group">
                                                 <label for="name" class="form-label">POST-NOM<span>*</span></label>
                                                 <input type="text" class="form-control form-control-sm" placeholder=""
-                                                       wire:model="postnom">
-                                                <span class="text-danger">@error('postnom') {{$message}}@enderror</span>
+                                                       wire:model="Postnom">
+                                                <span class="text-danger">@error('Postnom') {{$message}}@enderror</span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

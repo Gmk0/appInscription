@@ -11,31 +11,44 @@ use log;
 
 class EtudiantInscris extends Component
 {
-	public	$promotionId;
-    public $etudiants;
-	public  $facultes;
 
 
-    public function mount(){
-	    $this->facultes = faculte::all();
-	    if($this->promotionId !=''){
-            $this->etudiants= etudiantInscrit::where('id_promotion',$this->promotionId)->get();
-        }else{
-            $this->etudiants= etudiantInscrit::all();
-        }
+	public $currentPage = PAGELIST;
 
 
-    }
-    public function updatedPromotionId($value){
 
-          dd($value);
+    public function statusChange($id){
+        etudiantInscrit::where('id_inscrit',$id)->update([
+           'statut_etudiant'=>1
+       ]);
+
+        return back();
 
     }
+    public function GotoEdit($id){
+        $data = etudiantInscrit::where('id_inscrit',$id)->get();
+
+        return redirect()->route('FindEtudiant')->with('data',$data);
+
+    }
+
+
+
+
+    public function PageEtudiant()
+    {
+        $this->currentPage=PAGELIST;
+    }
+
 
     public function render(){
+      //  $this->dispatchBrowserEvent('PreventMessage',["message"=>"La promotion a ete  creer avec success"]);
 
 
-    		return view('livewire.etudiant.etudiant-inscris')->extends('layouts.admin')
+
+    		return view('livewire.etudiant.etudiant-inscris',[
+    		    'etudiants'=>etudiantInscrit::all()
+            ])->extends('layouts.admin')
             ->section('content');
 
     }

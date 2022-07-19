@@ -40,6 +40,7 @@
     <!-- /.modal-dialog -->
 </div>
 
+
 <div wire:ignore.self class="modal fade" id="modal-promotion" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
@@ -99,3 +100,46 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+
+<div wire:ignore.self class="modal fade" id="modal-annee" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">ANNEE</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form wire:submit.prevent="registerAnnee">
+                <div class="row mb-3">
+                    <label for="name" class="col-md-12 col-form-label ">{{ __('ANNEE') }}</label>
+
+                    <div class="col-md-12">
+                        <input id="name" type="text" class="form-control @error('annee') is-invalid @enderror"
+                               name="name" value="{{ old('annee') }}"  autocomplete="name" autofocus wire:model="annee">
+
+                        @error('annee')
+                        <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"  wire:click="cleanModal()">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>

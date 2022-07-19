@@ -28,7 +28,7 @@ class EtudiantFactory extends Factory
             "Prenom" => $this->faker->firstName,
             "Genre" => $this->faker->randomElement(array('M', 'F')),
             "Etat_civil" => $this->faker->randomElement(array('Celibataire', 'Marier')),
-            "Nationalite" => $this->faker->randomElement(array('Congolaise', 'Camerounais')),
+            "Nationalite" => $this->faker->randomElement(array('Congolaise', 'Camerounais','ANGOLAIS','IVORIEN')),
             "Lieu_naiss" => $this->faker->city,
             "Date_naiss" => $this->faker->dateTimeBetween('1990-01-01', '2005-12-31')->format('d/m/Y'),
             "Telephone" => $this->faker->phoneNumber,
@@ -37,16 +37,16 @@ class EtudiantFactory extends Factory
             "Email" => $this->faker->freeEmail,
             'Adresse_etudiant' => [
                 'Numero' => $this->faker->numberBetween(1, 100),
-                'avenue' => $this->faker->streetName(),
-                'Quartier' => $this->faker->randomElement(array('Lodja', 'Pende', 'Mont', 'Matonge')),
-                'commune' => $this->faker->randomElement(array('KINSHASA', 'LIMETE', 'GOMBE', 'KALAMU')),
+                'Avenue' => $this->faker->streetName(),
+                'Quartier' => $this->faker->randomElement(array('Lodja', 'Pende', 'isiro', 'Matonge')),
+                'Commune' => $this->faker->randomElement(array('KINSHASA', 'LIMETE', 'GOMBE', 'KALAMU')),
             ],
             "Nom_Pere" => $this->faker->name('male'),
             "Nom_mere" => $this->faker->name('female'),
             "Localisation_parent" => [
-                "province" => $this->faker->city,
-                "district" => $this->faker->city,
-                "commune" => $this->faker->city
+                "Province" => $this->faker->city,
+                "District" => $this->faker->city,
+                "Commune" => $this->faker->city
             ],
             "Photo" => "noImage.jpg",
 

@@ -15,10 +15,10 @@ class DossierEtudiantFactory extends Factory
     {
         return [
             'matricule_etudiant' => matricule(),
-            'Aptitude_physique' => matricule()."Aptitute.pdf",
-            'Certificat_naiss' =>matricule()."Certificat.docx",
-            'Diplome_etat' =>matricule()."Diplome.docx",
-            'Bulletin' => matricule()."bulletin.docx"
+            'Aptitude_physique' => "Aptitute.pdf",
+            'Certificat_naiss' =>"Certificat.pdf",
+            'Diplome_etat' =>"Diplome.pdf",
+            'Bulletin' => "bulletin.pdf"
         ];
     }
 }

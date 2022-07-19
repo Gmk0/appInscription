@@ -21,15 +21,18 @@ class CreateEtudiantInscritsTable extends Migration
                 ->on('etudiants')
                 ->onDelete('cascade')
                 ->cascadeOnUpdate();
-            $table->foreignId('id_promotion');
+            $table->unsignedBigInteger('id_promotion');
+           // $table->integer('id_annee');
+            $table->foreign('id_promotion')->references('id_promotion')->on('promotions');
 
-            $table->foreignId('id_annee');
+            $table->foreignId('id_annee')->references('id_annee')->on('annee_academiques');
 
             $table->string('statut_etudiant')->nullable()->default('0');
 
             $table->timestamps();
             $table->engine = "InnoDB";
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>Document</title>
     <link rel="stylesheet" href="{{public_path('pdf/formulaire.css')}}">
-    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+    <link rel="stylesheet" href="{{public_path('css/bootstrap.min.css')}}">
 
 </head>
 <body>
@@ -40,21 +40,21 @@
         </div>
         <div class="FICHE">
             <div class="cards">
-                <img src="{{public_path('/storage/students_images/'.$student->image)}}" alt="" width="100" height="100" alt="">
+                <img src="{{public_path('/storage/students_images/'.$student->Photo)}}" alt="" width="100" height="100" alt="">
             </div>
             <div class="Identite">
                 <h6>IDENTITE</h6>
                 <Ol>
                     <li>Nom, Post-Nom, Prenom:  <span>{{$student->Nom}}</span>&emsp; <span>{{$student->Postnom}}</span>  &emsp; <span>{{$student->Prenom}}</span></li>
-                    <li>Lieu et Date de naissance : <span>{{$student->lieu_naiss}}</span>&emsp; <span>{{$student->date_naiss}}</span></li>
-                    <li>sexe : <span>{{$student->Genre}}</span> &emsp;Etat-civil: <span>{{$student->etat_civil}}</span>       &emsp;  nationalite :   <span>{{$student->nationalite}}</span> </li>
+                    <li>Lieu et Date de naissance : <span>{{$student->Lieu_naiss}}</span>&emsp; <span>{{$student->Date_naiss}}</span></li>
+                    <li>sexe : <span>{{$student->Genre}}</span> &emsp;Etat-civil: <span>{{$student->Etat_civil}}</span>       &emsp;  nationalite :   <span>{{$student->Nationalite}}</span> </li>
                     <li>Nom du Pere  : <span>{{$student->Nom_pere}}</span></li>
                     <li>Nom de la mere : <span>{{$student->Nom_mere}}</span></li>
-                    <li>Province d'origine:  <span>{{$student->localisation_parent['province']}}</span> &emsp; district: <span>{{$student->localisation_parent['district']}}</span> &emsp;  territoire/commune <span>{{$student->localisation_parent['commune']}}</span></li>
-                    <li>Adresse (residence): <span> AV:{{ $student->Adresse_etudiant['avenue']}} Q:{{ $student->Adresse_etudiant['Quartier']}} C/{{ $student->Adresse_etudiant['commune']}}</span></li>
-                    <li>Telephone: <span> {{ $student->telephone}}  &emsp; Email:  <span>{{ $student->email}}</span> </li>
-                    <li>Identite, adresse et N telephonque de la personne a contacter en cas d'urgnece: <span>{{$student->tuteurEtudiant->Nom_tuteur}}</span> ;&ensp; <span>Av:{{$student->tuteurEtudiant->localisation_tuteur['avenue']}} &ensp;Q/{{$student->tuteurEtudiant->localisation_tuteur['Q']}} &ensp; C/{{$student->tuteurEtudiant->localisation_tuteur['C']}}</span></li>
-                    <li> religieux: <span>{{$student->institut_rel}}</span> &emsp;sigle: <span>{{$student->sigle}}</span></li>
+                    <li>Province d'origine:  <span>{{$student->Localisation_parent['Province']}}</span> &emsp; district: <span>{{$student->Localisation_parent['District']}}</span> &emsp;  territoire/commune <span>{{$student->localisation_parent['commune']}}</span></li>
+                    <li>Adresse (residence): <span> AV:{{ $student->Adresse_etudiant['Avenue']}} Q:{{ $student->Adresse_etudiant['Quartier']}} C/{{ $student->Adresse_etudiant['Commune']}}</span></li>
+                    <li>Telephone: <span> {{ $student->Telephone}}  &emsp; Email:  <span>{{ $student->Email}}</span> </li>
+                    <li>Identite, adresse et N telephonque de la personne a contacter en cas d'urgnece: <span>{{$student->uteurEtudiant->Nom_tuteur}}</span> ;&ensp; <span>Av:{{$student->tuteurEtudiant->localisation_tuteur['Avenue']}} &ensp;Q/{{$student->tuteurEtudiant->localisation_tuteur['Quartier']}} &ensp; C/{{$student->tuteurEtudiant->localisation_tuteur['Commune']}}</span></li>
+                    <li> religieux: <span>{{$student->Institut_rel}}</span> &emsp;sigle: <span>{{$student->Sigle}}</span></li>
                 </Ol>
             </div>
 
@@ -64,7 +64,7 @@
                     <li>Diplome d'acces a l'enseignement superieur et universitaire: <span>{{$student->etudesRealiser->Diplome_access['Diplome']}}</span></li>
                     <li>Numero : <span>{{$student->etudesRealiser->Diplome_access['Numero']}}</span>&emsp; Section : <span>{{$student->etudesRealiser->Diplome_access['Section']}}</span>  &emsp; Option: <span>{{$student->etudesRealiser->Diplome_access['Option']}}</span>&emsp; Mention :<span>{{$student->etudesRealiser->Diplome_access['Mention']}}</span></li>
                     <li>Delivre a : <span>{{$student->etudesRealiser->Diplome_access['DelivreA']}}</span> &emsp; en date du :<span>{{$student->etudesRealiser->Diplome_access['DateDu']}}</span></li>
-                    <li>Ecole: <span>{{$student->etudesRealiser->Diplome_access['ecole']}}</span> &emsp; code: <span>{{$student->etudesRealiser->Diplome_access['Code']}}</span> &emsp; province <span>{{$student->etudesRealiser->Diplome_access['Province']}}</span> </li>
+                    <li>Ecole: <span>{{$student->etudesRealiser->Diplome_access['Ecole']}}</span> &emsp; code: <span>{{$student->etudesRealiser->Diplome_access['Code']}}</span> &emsp; province <span>{{$student->etudesRealiser->Diplome_access['Province']}}</span> </li>
 
                 </ul>
             </div>
@@ -358,7 +358,42 @@
         <tr>
             <td scope="row">N1</td>
             <td>Aptitute Physique</td>
-            @if (!empty($student->dossierEtudiant->aptitude_physique))
+            @if (!empty($student->dossierEtudiant->Aptitude_physique))
+                <td>ok</td>
+            @else
+                <td>no</td>
+            @endif
+
+
+        </tr>
+        <tr>
+            <td scope="row">N2</td>
+            <td>Certificat Naissance</td>
+            @if (!empty($student->dossierEtudiant->Certificat_naiss))
+                <td>Disponible</td>
+            @else
+                <td>No Disponile</td>
+            @endif
+
+
+
+
+        </tr>
+        <tr>
+            <td scope="row">N3</td>
+            <td>Diplome etat</td>
+            @if (!empty($student->dossierEtudiant->Diplome_etat))
+                <td>disponible</td>
+            @else
+                <td>no Disponible</td>
+            @endif
+
+
+        </tr>
+        <tr>
+            <td scope="row">N4</td>
+            <td>  Bulletin</td>
+            @if (!empty($student->dossierEtudiant->Bulletin))
                 <td>ok</td>
             @else
                 <td>no</td>

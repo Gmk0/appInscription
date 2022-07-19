@@ -53,7 +53,7 @@
                     <li>Province d'origine:  <span>{{$student->Localisation_parent['Province']}}</span> &emsp; district: <span>{{$student->Localisation_parent['District']}}</span> &emsp;  territoire/commune <span>{{$student->localisation_parent['commune']}}</span></li>
                     <li>Adresse (residence): <span> AV:{{ $student->Adresse_etudiant['Avenue']}} Q:{{ $student->Adresse_etudiant['Quartier']}} C/{{ $student->Adresse_etudiant['Commune']}}</span></li>
                     <li>Telephone: <span> {{ $student->Telephone}}  &emsp; Email:  <span>{{ $student->Email}}</span> </li>
-                    <li>Identite, adresse et N telephonque de la personne a contacter en cas d'urgnece: <span>{{$student->uteurEtudiant->Nom_tuteur}}</span> ;&ensp; <span>Av:{{$student->tuteurEtudiant->localisation_tuteur['Avenue']}} &ensp;Q/{{$student->tuteurEtudiant->localisation_tuteur['Quartier']}} &ensp; C/{{$student->tuteurEtudiant->localisation_tuteur['Commune']}}</span></li>
+                    <li>Identite, adresse et N telephonque de la personne a contacter en cas d'urgnece: <span>{{$student->tuteurEtudiant->Nom_tuteur}}</span> ;&ensp; <span>Av:{{$student->tuteurEtudiant->localisation_tuteur['Avenue']}} &ensp;Q/{{$student->tuteurEtudiant->localisation_tuteur['Quartier']}} &ensp; C/{{$student->tuteurEtudiant->localisation_tuteur['Commune']}}</span></li>
                     <li> religieux: <span>{{$student->Institut_rel}}</span> &emsp;sigle: <span>{{$student->Sigle}}</span></li>
                 </Ol>
             </div>

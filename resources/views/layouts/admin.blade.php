@@ -14,14 +14,14 @@
     @livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="layout-fixed sidebar-mini" style="height: auto;">
 <div class="wrapper">
 
     <x-navabar-Admin />
 
     <x-asidebar-Admin />
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="min-height: 550px;">
 
         <div class="content-header">
             <div class="container-fluid">

@@ -127,15 +127,15 @@
                                                 <input type="text" class="form-control form-control-sm" placeholder="N"
                                                        wire:model="adresse.Numero">
                                                 <input type="text" class="form-control form-control-sm" placeholder="Avenue"
-                                                       wire:model="adresse.avenue">
+                                                       wire:model="adresse.Avenue">
                                                 <input type="text" class="form-control form-control-sm"
                                                        placeholder="Quartier" wire:model="adresse.Quartier">
                                                 <input type="text" class=" form-control form-control-sm"
-                                                       placeholder="Commune" wire:model="adresse.commune">
+                                                       placeholder="Commune" wire:model="adresse.Commune">
 
                                             </div>
                                             <span class="text-danger">@error('adresse') {{$message}}@enderror</span>
-                                            <span class="text-danger">@error('adresse.commune') {{$message}}@enderror</span>
+                                            <span class="text-danger">@error('adresse.Commune') {{$message}}@enderror</span>
 
 
                                         </div>
@@ -208,8 +208,8 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Province D'origine des Parens</label>
                                                 <input type="text" class="form-control form-control-sm" placeholder=""
-                                                       wire:model="localisation_parent.province">
-                                                <span class="text-danger">@error('localisation_parent.province')
+                                                       wire:model="localisation_parent.Province">
+                                                <span class="text-danger">@error('localisation_parent.Province')
                                                     {{$message}}@enderror</span>
                                             </div>
                                         </div>
@@ -217,8 +217,8 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">District</label>
                                                 <input type="text" class="form-control form-control-sm" placeholder=""
-                                                       wire:model="localisation_parent.district">
-                                                <span class="text-danger">@error('localisation_parent.district')
+                                                       wire:model="localisation_parent.District">
+                                                D<span class="text-danger">@error('localisation_parent.District')
                                                     {{$message}}@enderror</span>
                                             </div>
                                         </div>
@@ -226,8 +226,8 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Territoire/Commune</label>
                                                 <input type="text" class="form-control form-control-sm" placeholder=""
-                                                       wire:model="localisation_parent.commune">
-                                                <span class="text-danger">@error('localisation_parent.commune')
+                                                       wire:model="localisation_parent.Commune">
+                                                <span class="text-danger">@error('localisation_parent.Commune')
                                                     {{$message}}@enderror</span>
                                             </div>
                                         </div>
@@ -315,7 +315,7 @@
                                                 <label for="" class="form-label">Option</label>
                                                 <input type="text" class="form-control form-control-sm" placeholder=""
                                                        wire:model="diplomeEtat.option">
-                                                <span class="text-danger">@error('diplomeEtat.option')
+                                                <span class="text-danger">@error('diplomeEtat.Option')
                                                     {{$message}}@enderror</span>
                                             </div>
                                             <span class="text-danger">@error('diplomeEtat.option')
@@ -362,7 +362,7 @@
                                                 <label for="" class="form-label">Ecole</label>
                                                 <input type="tel" class="form-control form-control-sm" placeholder=""
                                                        wire:model="diplomeEtat.ecole">
-                                                <span class="text-danger">@error('diplomeEtat.ecole')
+                                                <span class="text-danger">@error('diplomeEtat.Ecole')
                                                     {{$message}}@enderror</span>
                                             </div>
                                         </div>

@@ -18,11 +18,9 @@ class EtudiantInscris extends Component
 
 
     public function statusChange($id){
-        etudiantInscrit::where('id_inscrit',$id)->update([
-           'statut_etudiant'=>1
-       ]);
+     
 
-        return back();
+       
 
     }
     public function GotoEdit($id){

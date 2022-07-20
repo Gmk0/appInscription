@@ -7,11 +7,12 @@ use Livewire\Component;
 
 class FindEtudiantAdmin extends Component
 {
-    public $etudiants;
+    public $etudiants =[];
 
     public function  mount($id)
     {
         $this->etudiants = etudiantInscrit::where('id_inscrit',$id)->get();
+        
 
     }
     public function render()

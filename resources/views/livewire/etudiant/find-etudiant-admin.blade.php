@@ -4,8 +4,6 @@
 <div>
     @foreach ($etudiants as $etudiant)
         
-   
-
     <div class="col-12 col-sm-12">
         <div class="card card-primary card-outline card-outline-tabs">
             <div class="card-header p-0 border-bottom-0">
@@ -24,12 +22,14 @@
                     </li>
                 </ul>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="min-height: 500px;">
                 <div class="tab-content" id="custom-tabs-four-tabContent">
                     <div class="tab-pane fade active show" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                        <div class="row">
+
+                            <div class="row">
                             <div class="col-md-3 border-right">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{asset('/storage/students_images/'.$etudiant->etudiant->Photo)}}"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                    
                             </div>
                             <div class="col-md-5 border-right">
                                 <div class="p-3 py-5">
@@ -37,42 +37,56 @@
                                         <h4 class="text-right">Profile Settings</h4>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value="{{$etudiant->etudiant->Nom}}"></div>
-                                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                                        <div class="col-md-6"><label class="labels">Matricule</label><input type="text" class="form-control form-control-sm" placeholder="first name" value="{{$etudiant->etudiant->matricule_etudiant}}"></div>
+                                        <div class="col-md-6"><label class="labels">Nom</label><input type="text" class="form-control form-control-sm"  placeholder="surname"value="{{$etudiant->etudiant->Nom}}"></div>
+                                        <div class="col-md-6"><label class="labels">Postnom</label><input type="text" class="form-control form-control-sm"  placeholder="surname" value="{{$etudiant->etudiant->Postnom}}"></div>
+                                        <div class="col-md-6"><label class="labels">Prenom</label><input type="text" class="form-control form-control-sm" placeholder="first name" value="{{$etudiant->etudiant->Prenom}}"></div>
+                                        
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                                        <div class="col-md-6"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                                        <div class="col-md-6"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                        <div class="col-md-6"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                        <div class="col-md-6"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                        <div class="col-md-6"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                                        <div class="col-md-6"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                                        <div class="col-md-6"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-6"><label class="labels">Genre</label><input type="text" class="form-control form-control-sm" placeholder="enter phone number" value="{{$etudiant->etudiant->Genre}}"></div>
+                                        <div class="col-md-6"><label class="labels">Nationalite</label><input type="text" class="form-control form-control-sm" placeholder="enter address line 1" value="{{$etudiant->etudiant->Nationalite}}"></div>
+                                        <div class="col-md-6"><label class="labels">Etat-civil</label><input type="text" class="form-control form-control-sm" placeholder="enter address line 2" value="{{$etudiant->etudiant->Etat_civil}}"></div>
+                                    
+                                       
+                                        <div class="col-md-6"><label class="labels">Telephone</label><input type="text" class="form-control form-control-sm" placeholder="enter address line 2" value="{{$etudiant->etudiant->Telephone}}"></div>
+                        
+                                        <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control form-control-sm" placeholder="education" value="{{$etudiant->etudiant->Email}}"></div>
+                                        <div class="col-md-12"><label class="labels">Adresse Etudiant</label><input type="text" class="form-control form-control-sm" placeholder="enter address line 2" value="{{$etudiant->etudiant->Adresse_etudiant['Avenue']}},{{$etudiant->etudiant->Adresse_etudiant['Commune']}}"></div>
                                     </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-12"><label class="labels">Lieu Naissance</label><input type="text" class="form-control form-control-sm" placeholder="country" value="{{$etudiant->etudiant->Lieu_naiss}}" ></div>
+                                        <div class="col-md-12"><label class="labels">Date Naissance</label><input type="text" class="form-control form-control-sm" value="{{$etudiant->etudiant->Date_naiss}}" placeholder="state"></div>
                                     </div>
-                                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                                    <div class="mt-2 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="p-3 py-5">
-                                    <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                                    <div class="d-flex justify-content-between align-items-center experience"><span class="labels">PARENT ETUDIANT</span></div>
+                                    <div class="col-md-12"><label class="labels">Nom Pere</label><input type="text" class="form-control form-control-sm" placeholder="experience" value="{{$etudiant->etudiant->Nom_Pere}}"></div> 
+                                    <div class="col-md-12"><label class="labels">Nom Mere</label><input type="text" class="form-control form-control-sm" placeholder="additional details" value="{{$etudiant->etudiant->Nom_mere}}"></div>
+                                    <div class="col-md-12"><label class="labels">Localisation</label><input type="text" class="form-control form-control-sm" placeholder="additional details" value="{{$etudiant->etudiant->Localisation_parent['Province']}}{{$etudiant->etudiant->Localisation_parent['District']}}{{$etudiant->etudiant->Localisation_parent['Commune']}}"></div>
+                                    
+                                
                                 </div>
-                            </div>
-                        </div>
+                                <div class="row p-2 py-3">
+                                    <div class="d-flex justify-content-between align-items-center experience"><span class="labels">TUTEUR ETUDIANT</span></div>
+                                    <div class="col-md-6"><label class="labels">Nom Tuteur</label><input type="text" class="form-control form-control-sm" placeholder="experience" value="{{$etudiant->etudiant->tuteurEtudiant->Nom_tuteur}}"></div> 
+                                    <div class="col-md-6"><label class="labels">Telephone</label><input type="text" class="form-control form-control-sm" placeholder="additional details" value="{{$etudiant->etudiant->tuteurEtudiant->Telephone_tuteur}}"></div>
+                                    <div class="col-md-12"><label class="labels">Adresse</label><input type="text" class="form-control form-control-sm" placeholder="additional details" value="{{$etudiant->etudiant->tuteurEtudiant->Adresse_tuteur['Avenue']}} Q/{{$etudiant->etudiant->tuteurEtudiant->Adresse_tuteur['Quartier']}} C/{{$etudiant->etudiant->tuteurEtudiant->Adresse_tuteur['Commune']}}"></div>
+                                  
+                                </div>
+                        </div></div>
     
-                      </div>
+                    </div>    
+
                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                        
+                        dddddddddd
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
                       
-                           
+                       dddddddddddddddd    
                             <!-- /.card-body -->
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
@@ -81,8 +95,14 @@
                 </div>
             </div>
             <div class="card-footer">
+                <div class=" d-flex justify-content-between">
+                    <a name="" id="" class="btn btn-primary" href="#" role="button">TELECHARGE</a>
+                    <a name="" id="" class="btn btn-success" href="#" wire:click="statusChange('{{$etudiant->id_inscrit}}')" role="button">CONFIRMER L'ADMISSION</a>
+                    <a name="" id="" class="btn btn-warning" href="{{route('users.etudiant')}}" role="button">RETOUR</a>
 
-                <a name="" id="" class="btn btn-primary" href="#" role="button">TELECHARGE</a>
+
+                </div>
+               
 
             </div>
             <!-- /.card -->

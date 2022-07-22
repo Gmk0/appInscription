@@ -31,7 +31,7 @@
 
 <div>
     @if($currentPage == PAGELIST)
-        <div class="card">
+       {{--<div class="card">
             <div class="card-header bg-secondary text-white d-flex align-items-center">
                 <h3 class="card-title flex-grow-1">LISTE NOUVEAU INSCRIT</h3>
 
@@ -43,12 +43,13 @@
                 </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-3" style="height: 500px;">
+            <div class="card-body table-responsive p-3" style="height: 500px;">--}}
 
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
+                        <th>action</th>
                         <th>N°</th>
                         <th>Matricule</th>
                         <th>Nom</th>
@@ -58,13 +59,17 @@
                         <th>Faculte</th>
                         <th>promotion</th>
                         <th>Statut</th>
-                        <th>action</th>
+                        
                     </tr>
                     </thead>
                     <tbody>
                     {{Form::hidden('',$increment =1)}}
                     @foreach ($etudiants as $etudiant )
                         <tr>
+                            <td class="text-center">
+                                <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                            </td>
                             <td>{{$etudiant->id_inscrit}}</td>
                             <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
                             <td>{{$etudiant->etudiant->Nom}}</td>
@@ -80,10 +85,7 @@
                                         <div wire:loading wire:target="statusChange('{{$etudiant->id_inscrit}}')">Update</div>
                                     </a></td>
                             @endif
-                            <td class="text-center">
-                                <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-
-                            </td>
+                           
                         </tr>
                         {{Form::hidden('',$increment =$increment+1)}}
                     @endforeach
@@ -91,6 +93,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
+                        <th>action</th>
                         <th>N°</th>
                         <th>Matricule</th>
                         <th>Nom</th>
@@ -100,13 +103,13 @@
                         <th>Faculte</th>
                         <th>promotion</th>
                         <th>Statut</th>
-                        <th>action</th>
+                        
                     </tr>
                     </tfoot>
                 </table>
-            </div>
+           {{-- </div>
             <!-- /.card-body -->
-        </div>
+        </div>--}}
     @endif
 
 
@@ -127,10 +130,9 @@
 
   <script>
 
-      window.addEventListener('showSuccessMessage', event=> {
+      window.addEventListener('userAdmis', event=> {
 
-          $("#example1").table().ajax.reload();
-
+      
           Swal.fire({
               position: 'top-end',
               icon:'success',
@@ -143,6 +145,8 @@
           })
 
       });
+
+
       window.addEventListener('PreventMessage', event=> {
 
           $("#modal-promotion").modal('hide');
@@ -162,21 +166,52 @@
       $(function () {
           $("#example1").DataTable({
               "paging": true,
-              "responsive":false ,
-              "lengthChange": false,
+              "responsive":true,
+              "lengthChange": true,
               "autoWidth": false,
-              "buttons": [ "csv", "excel", "pdf", "print", "colvis"]
-          }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
-          $('#example2').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": false,
-              "ordering": true,
-              "info": true,
-              "autoWidth": false,
-              "responsive": true,
+              "buttons": [
+                {
+                  extend:'excel',
+                  title:'USAKIN',
+                  messageTop:'usakin'
+                },
+                {
+                  extend:'pdf',
+                   messageTop:'usakin',
+                   donwload:true,
 
-          });
+                },
+                {
+                 text:'imprimer', 
+                  extend:'print',
+                  customize: function (win) {
+                      $(win.document.body)
+                        .css('font-size','10t')
+                        .prepend(
+                            '<img src="{{asset('images/logo2.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" style="position:relative; top:0;left:0" width="70" >'
+                        );
+                        $(win.document.body).find('table').addClass('compact').css('font-size','inherit');
+                  },
+                  exportOptions:{
+                      columns:[1,2,3,4,6,9],
+                      format: {
+                         body: function ( data, row, column, node ) {
+                            return column === 0 ?
+                            data.charAt(0).toUpperCase() + data.slice(1) :
+                                data;
+                                            }
+                             }
+                  }
+                },
+                 {
+                  text:'Visible',   
+                  extend:'colvis',
+                  messageTop:'usakin'
+                }
+                 
+                ]
+          }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
+         
       });
 
   /*$(function () {

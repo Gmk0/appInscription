@@ -12,10 +12,10 @@
                         <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true"> Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Facultes</a>
+                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">DOCUMENT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">Annee Academique</a>
+                        <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">PROMOTION</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">Settings</a>
@@ -82,7 +82,84 @@
                     </div>    
 
                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                        dddddddddd
+                        
+                            <div class="card">
+                                <div class="card-header bg-primary text-white d-flex align-items-center">
+                                    <h3 class="card-title flex-grow-1"><i class="fa fa-users" aria-hidden="true"></i> Liste Utilisateur
+                                    </h3>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0" style="height: 300px;">
+                                <table class="table table-head-fixed text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:5%">N</th>
+                                        <th class="text-center" style="width:25%">Document</th>
+                                        <th class="text-center" style="width:20%">Name</th>
+                                        <th class="text-center" style="width:20%">Path</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>                                
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td class="text-center">Aptitude physique</td>
+                                            @if (!empty($etudiant->etudiant->dossierEtudiant->Aptitude_physique))
+                                            <td class="text-center">{{$etudiant->etudiant->dossierEtudiant->Aptitude_physique}}</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="{{asset('/storage/students_doc/'.$etudiant->etudiant->dossierEtudiant->Aptitude_physique)}}">VOIR</a></td>
+                                            @else
+                                            <td class="text-center text-danger">Non disponible</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td class="text-center">Certificat Naissance</td>
+                                            @if (!empty($etudiant->etudiant->dossierEtudiant->Certificat_naiss))
+                                            <td class="text-center">{{$etudiant->etudiant->dossierEtudiant->Certificat_naiss}}</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="{{asset('/storage/students_doc/'.$etudiant->etudiant->dossierEtudiant->Certificat_naiss)}}">VOIR</a></td>
+                                            @else
+                                            <td class="text-center text-danger">Non disponible</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td class="text-center">Diplome d'etat</td>
+                                            @if (!empty($etudiant->etudiant->dossierEtudiant->Diplome_etat))
+                                            <td class="text-center">{{$etudiant->etudiant->dossierEtudiant->Diplome_etat}}</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="{{asset('/storage/students_doc/'.$etudiant->etudiant->dossierEtudiant->Diplome_etat)}}">VOIR</a></td>
+                                            @else
+                                            <td class="text-center text-danger">Non disponible</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4</td>
+                                            <td class="text-center">Bulletin</td>
+                                            <td class="text-center">{{$etudiant->etudiant->dossierEtudiant->Bulletin}}</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="{{asset('/storage/students_doc/'.$etudiant->etudiant->dossierEtudiant->Diplome_etat)}}">VOIR</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td class="text-center">Recommandation</td>
+                                            @if (!empty($etudiant->etudiant->dossierEtudiant->recommandation))
+                                            <td class="text-center">{{$etudiant->etudiant->dossierEtudiant->recommandation}}</td>
+                                            <td class="text-center"><a class="btn btn-primary" href="{{asset('/storage/students_doc/'.$etudiant->etudiant->dossierEtudiant->recommandation)}}">VOIR</a></td>
+                                                
+                                            @else
+                                            <td class="text-center text-danger">Non disponible</td>
+                                            @endif
+                                           
+                                        </tr>
+                    
+                    
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                l
+                            </div>
+                        </div>
+                     
                     </div>
                     <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
                       
@@ -97,9 +174,16 @@
             <div class="card-footer">
                 <div class=" d-flex justify-content-between">
                     <a name="" id="" class="btn btn-primary" href="#" role="button">TELECHARGE</a>
-                    <a name="" id="" class="btn btn-success" href="#" wire:click="statusChange('{{$etudiant->id_inscrit}}')" role="button">CONFIRMER L'ADMISSION</a>
+                    @if($etudiant->statut_etudiant == 0)
+                    <button wire:click="changeStatut({{$etudiant->id_inscrit}})" class="btn btn-success" role="button">CONFIRMER L'ADMISSION
+                       
+                    </button> 
+                    @else
+                    <a name="" id="" class="btn btn-success" href="#"role="button">DEJA ADMIS</a> 
+                   
+                    @endif
+                   
                     <a name="" id="" class="btn btn-warning" href="{{route('users.etudiant')}}" role="button">RETOUR</a>
-
 
                 </div>
                

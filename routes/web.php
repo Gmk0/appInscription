@@ -20,8 +20,10 @@ return view('Client.accueil');
 Route::prefix('student')->group( function (){
     Route::view('/','Client.accueil')->name('accueil.student');
     Route::view('/registration','Client.InscriptionForms')->name('inscription');
+    Route::view('/about','Client.about')->name('about');
     Route::view('/registration_complet','Client.registrationComplet')->name('registration_complet');
     Route::get('/formulaire/{matricule}', [\App\Http\Controllers\reporting::class, 'formulaire'])->where('matricule', '(.*)')->name('formulaire');
+    Route::get('/profil', \App\Http\Livewire\ProfilEtudiantUpdate::class)->name('profilEtudiant');
 });
 
 route::prefix('adminUsakin')->group( function(){

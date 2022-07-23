@@ -238,7 +238,7 @@ class Inscription extends Component
 
     public function render()
     {
-        return view('livewire.etudiant.inscription', [
+        return view('livewire.inscription.inscription', [
             'facultes' => Faculte::all(),
             'anneeAcademique' => anneeAcademique::orderBy('id_annee', 'desc')->get(),
             'promotions' => Promotion::where('id_faculte', $this->faculte)->get(),

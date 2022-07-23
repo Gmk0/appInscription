@@ -2,28 +2,8 @@
 @section('css')
  <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
  <style>
-     .dt-button{
-         display: inline-block;
-         font-weight: 400;
-         color: #212529;
-         text-align: center;
-         vertical-align: middle;
-         -webkit-user-select: none;
-         -moz-user-select: none;
-         -ms-user-select: none;
-         user-select: none;
-         background-color: transparent;
-         border: 1px solid transparent;
-         padding: 0.375rem 0.75rem;
-         font-size: 1rem;
-         line-height: 1.5;
-         border-radius: 0.25rem;
-         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-         color: #fff;
-         background-color: #6c757d;
-         border-color: #6c757d;
-         box-shadow: none;
-     }
+    
+  
 
  </style>
 @endsection
@@ -54,10 +34,12 @@
                         <th>Matricule</th>
                         <th>Nom</th>
                         <th>Prenom</th>
-                        <th>Email</th>
+                      
                         <th>Telephone</th>
                         <th>Faculte</th>
                         <th>promotion</th>
+                        <th>date</th>
+                        <th>Document</th>
                         <th>Statut</th>
                         
                     </tr>
@@ -74,16 +56,24 @@
                             <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
                             <td>{{$etudiant->etudiant->Nom}}</td>
                             <td>{{$etudiant->etudiant->Prenom}}</td>
-                            <td>{{$etudiant->etudiant->Email}}</td>
+                           
                             <td>{{$etudiant->etudiant->Telephone}}</td>
                             <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
                             <td>{{$etudiant->promotion->designation_promotion}}</td>
+                            <td>{{$etudiant->created_at}}</td>
+                            @if(countDocument($etudiant->etudiant->matricule_etudiant))
+                            <td><span class="badge badge-pill badge-success">Complet</span></td>
+                            @else
+                            <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>
+                                  
+                            </button></td>
+                             @endif
                             @if($etudiant->statut_etudiant==1)
                                 <td><span class="badge badge-pill badge-success">Admis</span></td>
                             @else
-                                <td><a class="btn btn-link" href="#" wire:click="statusChange('{{$etudiant->id_inscrit}}')"> <span class="badge badge-pill badge-warning">No Admis</span>
+                                <td><button class="btn btn-link" id="" type="button" wire:click="statusChange('{{$etudiant->id_inscrit}}')"> <span class="badge badge-pill badge-warning">No Admis</span>
                                         <div wire:loading wire:target="statusChange('{{$etudiant->id_inscrit}}')">Update</div>
-                                    </a></td>
+                                    </button></td>
                             @endif
                            
                         </tr>
@@ -98,18 +88,21 @@
                         <th>Matricule</th>
                         <th>Nom</th>
                         <th>Prenom</th>
-                        <th>Email</th>
+                    
                         <th>Telephone</th>
                         <th>Faculte</th>
                         <th>promotion</th>
+                        <th>Date</th>
+                        <th>Document</th>
                         <th>Statut</th>
+                        <p>USAKIN</p>
                         
                     </tr>
                     </tfoot>
                 </table>
-           {{-- </div>
+           </div>
             <!-- /.card-body -->
-        </div>--}}
+        </div>
     @endif
 
 
@@ -120,7 +113,7 @@
 </div>
 
 
-  @section('script')
+  @push('custom-script')
   <script src="{{asset('js/responsive.bootstrap4.min.js')}}" type=""></script>
   <script src="{{asset('js/DataTable.responsive.min.js')}}" type=""></script>
   <script src="{{asset('js/pdfMake.js')}}" type=""></script>
@@ -149,14 +142,13 @@
 
       window.addEventListener('PreventMessage', event=> {
 
-          $("#modal-promotion").modal('hide');
           Swal.fire({
 
               icon:'warning',
 
-              title:"operation reussie",
+              title:"Statut dossier",
               text:event.detail.message,
-              showConfirmButton: false,
+              showConfirmButton: true,
               timer:3000
 
           })
@@ -164,8 +156,9 @@
       });
 
       $(function () {
-          $("#example1").DataTable({
+         const table= $("#example1").DataTable({
               "paging": true,
+              "select":true,
               "responsive":true,
               "lengthChange": true,
               "autoWidth": false,
@@ -183,25 +176,26 @@
                 },
                 {
                  text:'imprimer', 
+                 title:'Nouveau inscrit',
                   extend:'print',
+                  autoPrint:false,
                   customize: function (win) {
                       $(win.document.body)
-                        .css('font-size','10t')
-                        .prepend(
-                            '<img src="{{asset('images/logo2.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" style="position:relative; top:0;left:0" width="70" >'
-                        );
+                        .css('font-size','10t').prepend(
+                            '<img src="{{asset('images/logo2.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" style="position:relative; top:0;left:0" width="70" >');
                         $(win.document.body).find('table').addClass('compact').css('font-size','inherit');
+                      $(win.document.body).find('h1').addClass('text-center').css('text-align','center');
+                      
                   },
                   exportOptions:{
-                      columns:[1,2,3,4,6,9],
+                      columns:[1,2,3,4,6],
                       format: {
                          body: function ( data, row, column, node ) {
                             return column === 0 ?
                             data.charAt(0).toUpperCase() + data.slice(1) :
-                                data;
-                                            }
+                                data;}
                              }
-                  }
+                        }
                 },
                  {
                   text:'Visible',   
@@ -211,8 +205,11 @@
                  
                 ]
           }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
-         
+  
       });
+ 
+
+   
 
   /*$(function () {
       $('#example1').append('<caption style="caption-side:top">USAKIN</caption>');
@@ -295,7 +292,7 @@
 
 </script>
 
-@endsection
+@endpush
             <!-- /.ca
 
 

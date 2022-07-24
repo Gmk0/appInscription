@@ -16,22 +16,17 @@
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
+                    <i class="nav-icon fas fa-school"></i>
                     <p>
                         GESTION
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Promotion</p>
-                        </a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="fa fa-graduation-cap nav-icon"></i>
                             <p>Faculte</p>
                         </a>
                     </li>
@@ -40,8 +35,8 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
+                <a href="" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
                     <p>
                         Etudiant
                         <i class="right fas fa-angle-left"></i>
@@ -50,25 +45,35 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link ">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Nouvea Etudiant</p>
+                        <a href="{{route('users.allEtdiant')}}" class="nav-link ">
+                            <i class="fa fa-user-check nav-icon"></i>
+                            <p>Etudiant</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{route('users.etudiant')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Etudiant Inscris</p>
+                            <i class="fas fa-user-plus nav-icon"></i>
+                            <p>Nouveau Etudiant</p>
                         </a>
                     </li>
 
                 </ul>
             </li>
+            <li class="nav-header">TRAVAILS</li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-calendar"></i>
+                    <p>
+                       Evenement
+                       
+                    </p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
                     <p>
-                        Habilitaions
+                        Management
                         <i class="right fas fa-angle-left"></i>
 
                     </p>
@@ -89,12 +94,60 @@
 
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>
+                        Resources Humains
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                   
+                    <li class="nav-item">
+                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
+                            <i class="fa fa-graduation-cap nav-icon"></i>
+                            <p>Faculte</p>
+                        </a>
+                    </li>
 
+                </ul>
+            </li>
+            <li class="nav-header">Settings</li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>
+                       DATABASE BACKUP
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                   
+                    <li class="nav-item">
+                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
+                            <i class="fa fa-graduation-cap nav-icon"></i>
+                            <p>Faculte</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-settings"></i>
+                    <p>
+                    SETTINGS
+                        <span class="right badge badge-danger">New</span>
+                    </p>
+                </a>
+            </li>
         <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-settings"></i>
                 <p>
-                    Simple Link
+                   User
                     <span class="right badge badge-danger">New</span>
                 </p>
             </a>

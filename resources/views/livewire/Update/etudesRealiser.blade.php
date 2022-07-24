@@ -39,216 +39,68 @@
                 <th colspan=""> %</th>
             </tr>
             </thead>
-            <tbody>
-            <tr style="width:50px;">
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="10%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <option></option>
-                        </select>
-                    </div>
-                </td>
-                <td width="7%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="%">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <option></option>
-                        </select>
-                    </div>
-                </td>
-                <td width="7%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="%">
-                    </div>
-                </td>
-            </tr>
-            <tr style="width:50px;">
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="10%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <option></option>
-
-                        </select>
-                    </div>
-                </td>
-                <td width="7%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="%">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <option></option>
-                            <option></option>
-                        </select>
-                    </div>
-                </td>
-                <td width="7%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="%">
-                    </div>
-                </td>
-            </tr>
-            <tr style="width:50px;">
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="10%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <option></option>
-                            <option></option>
-                        </select>
-                    </div>
-                </td>
-                <td width="7%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="%">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <option></option>
-                        </select>
-                    </div>
-                </td>
-                <td width="7%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="%">
-                    </div>
-                </td>
-            </tr>
-            <tr style="width:50px;">
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="10%">
-                    <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="">
-                    </div>
-                </td>
-                <td width="5%">
-                    <div class="input-pretend">
-                        <select name="" id="">
-                            <>D</>
-                        <>S</>
-                    </select>
-    </div>
-    </td>
-    <td width="7%">
-        <div class="input-pretend">
-            <input class="span4" type="text" placeholder="%">
-        </div>
-    </td>
-    <td width="5%">
-        <div class="input-pretend">
-            <select name="" id="">
-                <option></option>
-            </select>
-        </div>
-    </td>
-    <td width="7%">
-        <div class="input-pretend">
-            <input class="span4" type="text" placeholder="%">
-        </div>
-    </td>
-    </tr>
-    </tbody>
+            @for($i =0; $i<4;$i++) 
+             <tbody>
+                <tr style="width:30px;">
+                    <td>
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder=""
+                                   value="{{$etudiants->etudesRealiser->Cursus_univeristaire['anneeAc0']}}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="Institut"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["institut0"]}}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="Faculte"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["faculte0"]}}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="option"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["option0"]}}">
+                        </div>
+                    </td>
+                    <td width="10%">
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="2010-2011"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["anneeEtudes0"]}}">
+                        </div>
+                    </td>
+                    <td width="5%">
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="%"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["mention10"]}}">
+                               
+                        </div>
+                    </td>
+                    <td width="7%">
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="%"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["percent10"]}}">
+                        </div>
+                    </td>
+                    <td width="5%">
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="%" value="{{$etudiants->etudesRealiser->Cursus_univeristaire["mention20"]}}">
+                             
+                        </div>
+                    </td>
+                    <td width="7%">
+                        <div class="input-pretend">
+                            <input class="span4" type="text" placeholder="%"
+                            value="{{$etudiants->etudesRealiser->Cursus_univeristaire["percent20"]}}">
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+             @endfor
+        
     </table>
 
 </div>

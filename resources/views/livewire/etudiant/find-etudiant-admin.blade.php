@@ -174,6 +174,10 @@
                     <button wire:click="changeStatut({{$etudiant->id_inscrit}})" class="btn btn-success" role="button">CONFIRMER L'ADMISSION
                        
                     </button> 
+
+                    <button wire:click="confirmDelete({{$etudiant->etudiant->id}},'{{$etudiant->etudiant->Nom}}')" class="btn btn-danger" role="button">Delete
+                       
+                    </button> 
                     @else
                     <a name="" id="" class="btn btn-success" href="#"role="button">DEJA ADMIS</a> 
                    
@@ -191,3 +195,37 @@
     @endforeach
 
 </div>
+
+<script>
+    window.addEventListener('showSuccessMessage', event=> {
+    Swal.fire({
+        
+        icon:'success',
+       
+        title:"operation reussie",
+        text:event.detail.message,
+        showConfirmButton: false,
+        timer:5000
+
+    })
+
+});
+window.addEventListener('showWarningMessage', event=> {
+    Swal.fire({
+        title: event.detail.message.title,
+        text: event.detail.message.text,
+        icon: event.detail.message.type,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Continuer'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            @this.deleteEtudiant(event.detail.message.data.id)
+        }
+    })
+});
+
+</script>  
+
+

@@ -20,7 +20,9 @@ class etudeRealiser extends Model
      */
 
     protected $casts = [
-        'Diplome_access' => 'array',
-        'Cursus_univeristaire' => 'array',
+        "Cursus_univeristaire"=>"array",
+        "Diplome_access" => "array",
+        
     ];
+   
 }

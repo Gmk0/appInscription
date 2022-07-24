@@ -6,8 +6,8 @@ use App\Models\dossierEtudiant;
 define("PAGELIST","Liste");
 define("PAGECREATE","create");
 define("PAGEEDIT","edit");
-define("PROMOTION",2);
-define("FACULTE","TH");
+define("PROMOTION",3);
+define("FACULTE","CS");
 
 
  function matricule()

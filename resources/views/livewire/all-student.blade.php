@@ -1,11 +1,14 @@
 <div>
     <div class="row">
-
-        <div class="col-md-4">
-            <button class="btn btn-outline-primary" wire:click="goToPhilo()">PHILO</button>
-            <button class="btn btn-outline-primary" wire:click="goToAll()">ALL</button>
-        </div>
-
+<form >
+    <div class="col-md-4">
+        <input type="date" class="form-control-sm" id="start_date">
+        <input type="date" class="form-control-sm" id="end-date">
+        <button type="submit" id="generate" class="btn btn-outline-primary">Generate</button>
+    </div>
+</form>
+      
+  
         <div>
             @if($currentPage=="all")
             <table id="example2" class="table table-bordered table-responsive table-striped">
@@ -261,11 +264,17 @@
               ]
         }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
 
-        const table= $("#example2").DataTable({
+        
+
+    });
+
+  $("#example2").DataTable({
             "paging": true,
             "select":true,
             "responsive":true,
             "lengthChange": true,
+            
+            
             "autoWidth": false,
             "buttons": [
               {
@@ -311,7 +320,20 @@
               ]
         }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
 
+    const table = $("#example2");
+    table.on('preXhr.dt',function(e,setting,data){
+            data.start_date =$('#start_date').val();
+            data.end_date =$('#end-date').val();
+            console.log(data.start_date, data.end_date)
+
+             
     });
+    $('#generate').on('click', function(){
+        table.DataTable().ajax.reload();
+        return false;
+        
+    } )
+  
 
 
  

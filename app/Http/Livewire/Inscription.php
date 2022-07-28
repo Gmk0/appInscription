@@ -31,7 +31,7 @@ class Inscription extends Component
     public $date_naiss;
     public $adresse = [];
     public $institut_rel;
-    public $sigle = "Laic";
+    public $sigle ;
     public $etat_eclesial;
     public $email;
     public $nom_pere;
@@ -103,17 +103,16 @@ class Inscription extends Component
                 'lieu_naiss' => 'required',
                 'date_naiss' => 'required',
                 'email' => 'required|email|unique:etudiants',
-                'telephone' => 'required',
-                'adresse' => 'required|',
-                'adresse.commune' => 'required|string',
+                'telephone' => 'required|numeric',
+                'adresse.Commune' => 'required|string',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
                 'nom_pere' => 'required',
                 'nom_mere' => 'required',
-                'localisation_parent.province' => 'required',
-                'localisation_parent.district' => 'required',
-                'localisation_parent.commune' => 'required',
+                'localisation_parent.Province' => 'required',
+                'localisation_parent.District' => 'required',
+                'localisation_parent.Commune' => 'required',
                 'nom_tuteur' => 'required',
                 'tel_tuteur' => 'required|min:10',
                 'addresse_tuteur.Numero' => 'required',
@@ -132,6 +131,7 @@ class Inscription extends Component
                 'diplomeEtat.DateDu' => 'required',
 
             ]);
+          
         } elseif ($this->currentStep == 4) {
 
             $this->validate([
@@ -208,7 +208,7 @@ class Inscription extends Component
                     $etudesRealise = array(
                         "matricule_etudiant" => $matricule,
                         "Diplome_access" => json_encode($this->diplomeEtat),
-                        "Cursus_univeristaire" => json_encode($this->cursus_universitaire)
+                        "Cursus_univeristaire" => json_encode($this->cursus_universitaire) 
                     );
                     $admis_inscription = array(
                         "matricule_etudiant" => $matricule,
@@ -238,7 +238,7 @@ class Inscription extends Component
 
     public function render()
     {
-        return view('livewire.etudiant.inscription', [
+        return view('livewire.inscription.inscription', [
             'facultes' => Faculte::all(),
             'anneeAcademique' => anneeAcademique::orderBy('id_annee', 'desc')->get(),
             'promotions' => Promotion::where('id_faculte', $this->faculte)->get(),

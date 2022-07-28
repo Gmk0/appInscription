@@ -17,6 +17,8 @@ class etudiantInscrit extends Model
 
 
      ];
+     protected $primaryKey = 'id_inscrit';
+     
     public function promotion()
     {
         return $this->belongsTo(promotion::class, 'id_promotion', 'id_promotion');

@@ -12,9 +12,9 @@
         <div class="collapse navbar-collapse" id="navbarID">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="{{route('accueil.student')}}">HOME</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{URL('/profil')}}">PROFIL</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('profilEtudiant')}}">PROFIL</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{URL('/profil')}}">HELP</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{URL('/profil')}}">APROPOS</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{route('about')}}">APROPOS</a></li>
             </ul>
         </div>
     </div>

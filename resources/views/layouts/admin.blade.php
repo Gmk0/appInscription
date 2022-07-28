@@ -10,18 +10,30 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/load.scss')}}">
+    <style>
+        #content{
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function(){
+            document.getElementById("loader_wrapper").style.display ="none";
+            document.getElementById("content").style.visibility ="visible";
+        })
+    </script>
     @yield('css')
     @livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="layout-fixed sidebar-mini" style="height: auto;">
 <div class="wrapper">
 
     <x-navabar-Admin />
 
     <x-asidebar-Admin />
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="min-height: 550px;">
 
         <div class="content-header">
             <div class="container-fluid">
@@ -40,8 +52,12 @@
         </div>
         <br>
 
-
-        <div class="content">
+        <div id="loader_wrapper">
+            <div id="loader" class="loader">
+        </div>
+          
+        </div>
+        <div class="content" id="content">
             @yield('content')
         </div>
 
@@ -58,6 +74,7 @@
 
 @livewireScripts
 <script src="{{mix('js/app.js')}}"></script>
+@stack('custom-script')
 @yield('script')
 </body>
 

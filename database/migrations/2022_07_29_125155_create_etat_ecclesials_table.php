@@ -24,8 +24,6 @@ class CreateEtatEcclesialsTable extends Migration
             $table->string('institut');
             $table->string('sigle');
             $table->string('etat');
-            
-  
             $table->timestamps();
             
 

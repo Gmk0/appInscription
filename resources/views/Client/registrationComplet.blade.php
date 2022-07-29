@@ -13,7 +13,11 @@
                     <b>{{request()->email}}</b>  <br/>
                     your matricule <b>{{request()->matricule}}</b>
                     download your formulaire  <a href="{{route('formulaire',[request()->matricule])}}" class="btn btn-primary">download</a>
+                    <br>
+                    <br>
 
+                    proceder aux frais d'inscription <a href="{{route('checkout',[request()->matricule])}}" class="btn btn-primary">checkout</a>
+                    ou passer dans le bureau d'administration pour  proceder au paiement dans le 3 jour aui vient
                 </div>
             </div>
         </div>

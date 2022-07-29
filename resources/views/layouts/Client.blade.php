@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('frontend/bootstrap/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/clientStyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style2.css')}}">
     <script src="frontend/script/script.js" defer></script>
 
     @livewireStyles
@@ -18,6 +19,7 @@
 <body class="d-flex flex-column min-vh-100">
 
 <x-navabar-Client />
+
 @yield('content')
 
 

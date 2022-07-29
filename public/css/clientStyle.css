@@ -260,3 +260,18 @@ article {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
 
 }
+
+
+
+.main-container {
+    background-color: #edf1f3;
+}
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.list-group a:hover{
+   color: red;
+}

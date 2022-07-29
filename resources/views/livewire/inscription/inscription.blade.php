@@ -1,6 +1,14 @@
 <div>
-    @if(date('m') < 10 && date('m')>= 6 )
-        @if(Session::has('status'))
+    @if($currentPage == PAGEEDIT)
+    
+    @include('livewire.inscription.pageAccueil')
+
+    @endif
+
+    @if($currentPage ==PAGELIST)
+
+        @if(date('m') < 10 && date('m')>= 6 )
+          @if(Session::has('status'))
             <div class="alert alert-danger" role="alert">
                 <button type="button" class="close primary" data-dismiss="alert" aria-label="close">
                     <span aria-label="true">&times;</span>
@@ -231,13 +239,13 @@
                     @endif
 
                     @if($currentStep == 5)
-                        <button type="submit" id="submitId" class="btn btn btn-primary">SOUMETTRE</button>
+                        <button type="submit" id="submitId" class="btn btn btn-primary" wire:loading.attr="disabled">SOUMETTRE</button>
                     @endif
                 </div>
 
             </div>
         </form>
-    @else
+        @else
         <div id="box-inscription" class="row">
             <div id="box-step" class="col-md-12">
                 <h2 class="text-center">INSCRIPTION</h2>
@@ -245,6 +253,7 @@
                 <h5>Les inscription ne sont pas encore disponible</h5>
             </div>
         </div>
+        @endif
     @endif
 
 </div>

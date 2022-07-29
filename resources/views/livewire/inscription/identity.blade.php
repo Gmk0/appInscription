@@ -121,7 +121,13 @@
                 </div>
             </div>
             <hr>
-            <h6>Pour les ecclésiastiques</h6>
+            <h4>Pour les ecclésiastiques </h4>
+            @if($ecclesiaste)
+            <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" wire:click="DesactiverEclesiaste()">Desactiver</button>
+            @else
+            <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" wire:click="voirEclesiaste()">ACTIVER</button>
+            @endif
+            @if($ecclesiaste)
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -146,8 +152,9 @@
                         <select class="form-control form-control-sm" name="" id=""
                                 wire:model="etat_eclesial">
                             <option Selected>--Etat eclesial--</option>
-                            <option>pretre</option>
-                            <option>religieuse</option>
+                            <option value="pretre">pretre</option>
+                            <option value="religieux">religieuse</option>
+                            <option value="soeur">Soeur</option>
                         </select>
 
 
@@ -155,7 +162,7 @@
                 </div>
 
             </div>
-
+                @endif
 
         </div>
     </div>

@@ -7,10 +7,11 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="" class="form-label">Photo Passport Recent</label>
-                        <input type="file" class="form-control" wire:model="photo">
+                        <input type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg" class="form-control" wire:model="photo">
                     </div>
+                    <div class="spinner-border spinner-border-sm float-right" role="status" wire:loading wire:target="photo">  <span class="sr-only">loading</span></div>
                     @if($photo)
-                        <img src="{{$photo->temporaryUrl()}}" alt="" width="30" height="30">
+                        <img src="{{$photo->temporaryUrl()}}" alt="" width="50" height="50">
                     @endif
                     <span class="text-danger">@error('photo') {{$message}}@enderror</span>
                 </div>

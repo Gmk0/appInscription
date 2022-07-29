@@ -8,6 +8,7 @@ use App\Models\etudeRealiser;
 use App\Models\tuteurEtudiant;
 use App\Models\dossierEtudiant;
 use App\Models\etudiantInscrit;
+use App\Models\etatEcclesial;
 
 class etudiant extends Model
 {
@@ -25,6 +26,10 @@ class etudiant extends Model
     public function dossierEtudiant()
     {
         return $this->hasOne(dossierEtudiant::class, 'matricule_etudiant', 'matricule_etudiant');
+    }
+    public function ecclesiaste()
+    {
+        return $this->hasOne(etatEcclesial::class, 'matricule_etudiant', 'matricule_etudiant');
     }
 
     public function inscription()

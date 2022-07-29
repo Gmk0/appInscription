@@ -38,7 +38,8 @@
                         <th>Telephone</th>
                         <th>Faculte</th>
                         <th>promotion</th>
-                        <th>date</th>
+                        <th>Institut Religieux</th>
+                       
                         <th>Document</th>
                         <th>Statut</th>
                         
@@ -60,7 +61,12 @@
                             <td>{{$etudiant->etudiant->Telephone}}</td>
                             <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
                             <td>{{$etudiant->promotion->designation_promotion}}</td>
-                            <td>{{$etudiant->created_at}}</td>
+                            @if(!empty($etudiant->etudiant->ecclesiaste->institut))
+                            <td>{{$etudiant->etudiant->ecclesiaste->institut}}</td>
+                            @else
+                            <td>---</td>
+                            @endif
+                            
                             @if(countDocument($etudiant->etudiant->matricule_etudiant))
                             <td><span class="badge badge-pill badge-success">Complet</span></td>
                             @else
@@ -92,7 +98,8 @@
                         <th>Telephone</th>
                         <th>Faculte</th>
                         <th>promotion</th>
-                        <th>Date</th>
+                        <th>Statut Religieux</th>
+                        
                         <th>Document</th>
                         <th>Statut</th>
                         <p>USAKIN</p>

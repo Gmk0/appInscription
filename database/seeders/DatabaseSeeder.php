@@ -9,6 +9,7 @@ use App\Models\etudeRealiser;
 use App\Models\etudiant;
 use App\Models\etudiantInscrit;
 use App\Models\tuteurEtudiant;
+use App\Models\etatEcclesial;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,13 +21,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             # code...
             etudiant::factory(1)->create();
             tuteurEtudiant::factory(1)->create();
             DossierEtudiant::factory(1)->create();
             etudeRealiser::factory(1)->create();
             etudiantInscrit::factory(1)->create();
+            etatEcclesial::factory(1)->create();
         }
     }
 }

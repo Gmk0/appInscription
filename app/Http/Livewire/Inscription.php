@@ -11,9 +11,11 @@ use App\Models\etudiantInscrit;
 use App\Models\faculte;
 use App\Models\promotion;
 use App\Models\tuteurEtudiant;
+use App\Models\etatEcclesial;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 
 class Inscription extends Component
 {
@@ -31,7 +33,7 @@ class Inscription extends Component
     public $date_naiss;
     public $adresse = [];
     public $institut_rel;
-    public $sigle ;
+    public $sigle;
     public $etat_eclesial;
     public $email;
     public $nom_pere;
@@ -65,10 +67,21 @@ class Inscription extends Component
     public $upload_certificat;
     public $upload_diplome;
     public $upload_bulletin;
+    public $currentPage = PAGELIST;
+    public $ecclesiaste = false;
 
     public function mount()
     {
         $this->currentStep = 1;
+    }
+    public function voirEclesiaste()
+    {
+        
+        $this->ecclesiaste  =true;
+    }
+    public function DesactiverEclesiaste()
+    {
+        $this->ecclesiaste =false;
     }
 
     public function increaseStep()
@@ -180,8 +193,6 @@ class Inscription extends Component
                     'Nom_mere' => $this->nom_mere,
                     'localisation_parent' => json_encode($this->localisation_parent),
                     'Photo' => $imageName,
-                    'institut_religieux' => $this->institut_rel,
-                    'sigle_rel' => $this->sigle,
                     'created_at' => Carbon::now(),
                 );
                 if ($valueEtudiant) {
@@ -216,13 +227,23 @@ class Inscription extends Component
                         "statut_etudiant" => $this->sigle,
                         "id_annee" =>  $this->annee_academique,
                     );
+                    $etatReligieux = array(
+                        "matricule_etudiant" => $matricule,
+                        "institut"=> $this->institut_rel,
+                        "sigle"=> $this->sigle,
+                        "etat"=> $this->etat_eclesial,
+                    );
 
                     if (!empty($admis_inscription) && !empty($valueEtudiant) && !empty($valueDossier)) {
                         etudiant::insert($valueEtudiant);
                         dossierEtudiant::insert($valueDossier);
                         tuteuretudiant::insert($valuesTuteur);
                         etudeRealiser::insert($etudesRealise);
+                        if(!empty($this->institut_rel) && !empty($this->sigle)){
+                            etatEcclesial::insert($etatReligieux);
+                        };
                         etudiantInscrit::create($admis_inscription);
+
                     } else {
                         return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
                     }

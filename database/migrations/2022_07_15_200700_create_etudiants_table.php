@@ -25,15 +25,12 @@ class CreateEtudiantsTable extends Migration
             $table->string('Lieu_naiss');
             $table->string('Date_naiss');
             $table->string('Telephone');
-            $table->string('Institut_religieux')->nullable();
-            $table->string('Sigle_rel')->nullable();
             $table->string('Email')->unique();
             $table->string('Adresse_etudiant');
             $table->string('Nom_Pere');
             $table->string('Nom_mere');
             $table->string('Localisation_parent');
             $table->string('Photo')->nullable();
-            $table->engine = "InnoDB";
             $table->timestamps();
         });
     }

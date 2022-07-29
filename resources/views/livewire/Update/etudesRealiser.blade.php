@@ -39,6 +39,7 @@
                 <th colspan=""> %</th>
             </tr>
             </thead>
+            @if(!empty($etudiants->etudesRealiser->Cursus_univeristaire['anneeAc0']))
             @for($i =0; $i<4;$i++) 
              <tbody>
                 <tr style="width:30px;">
@@ -100,7 +101,7 @@
                 </tr>
                 </tbody>
              @endfor
-        
+        @endif
     </table>
 
 </div>

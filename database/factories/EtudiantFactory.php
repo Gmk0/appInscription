@@ -32,7 +32,7 @@ class EtudiantFactory extends Factory
             "Lieu_naiss" => $this->faker->city,
             "Date_naiss" => $this->faker->dateTimeBetween('1990-01-01', '2005-12-31')->format('d/m/Y'),
             "Telephone" => $this->faker->phoneNumber,
-            "Institut_religieux" => $this->faker->randomElement(array('LAIC', 'RELIGIEUX')),
+          
 
             "Email" => $this->faker->freeEmail,
             'Adresse_etudiant' => [
@@ -48,7 +48,7 @@ class EtudiantFactory extends Factory
                 "District" => $this->faker->city,
                 "Commune" => $this->faker->city
             ],
-            "Photo" => "noImage.jpg",
+            "Photo" =>  $this->faker->randomElement(array('noImage.jpg', 'avatar2.png', 'avatar3.png', 'avatar5.png')),
 
         ];
     }

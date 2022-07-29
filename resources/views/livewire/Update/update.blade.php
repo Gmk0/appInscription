@@ -13,6 +13,10 @@
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">ETUDES REALISER</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-four-eglise-tab" data-toggle="pill" href="#custom-tabs-four-eglise" role="tab" aria-controls="custom-tabs-four-eglise" aria-selected="false">Etat Religieux</a>
+                    </li>
+                    
                     
                 </ul>
             </div>
@@ -233,6 +237,20 @@
                          @include('livewire.Update.etudesRealiser')
     
                     </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-four-eglise" role="tabpanel" aria-labelledby="custom-tabs-four-eglise-tab">
+                      
+                        <div>
+                         <div class="row mt-2">
+                             @if(!empty($etudiants->ecclesiaste->institut))
+                             <div class="col-md-6"><label class="labels">Institut</label><input type="text" class="form-control form-control-sm wide-font" placeholder="first name" value="{{$etudiants->ecclesiaste->institut}}"></div>
+                             <div class="col-md-6"><label class="labels">SIGLE</label><input type="text" class="form-control form-control-sm wide-font"  placeholder="surname"value="{{$etudiants->ecclesiaste->sigle}}"></div>
+                             <div class="col-md-6"><label class="labels">ETAT</label><input type="text" class="form-control form-control-sm wide-font"  placeholder="surname" value="{{$etudiants->ecclesiaste->etat}}"></div>
+                             @endif
+                         </div>
+                        </div>
+     
+                  </div>
                    
                 </div>
             </div>

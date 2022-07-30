@@ -7,8 +7,8 @@ import "admin-lte/plugins/bootstrap/js/bootstrap.bundle";
 
 window.Swal = require("sweetalert2");
 window.$ =require("jquery");
-import "admin-lte/plugins/moment/moment.min.js";
-import "admin-lte/plugins/daterangepicker/daterangepicker.js";
+//import "admin-lte/plugins/moment/moment.min.js";
+//import "admin-lte/plugins/daterangepicker/daterangepicker.js";
 
     /*import "admin-lte/plugins/datatables/jquery.dataTables";
     import "admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4";

@@ -25,6 +25,7 @@ Route::prefix('student')->group( function (){
     Route::get('/formulaire/{matricule}', [\App\Http\Controllers\reporting::class, 'formulaire'])->where('matricule', '(.*)')->name('formulaire');
     Route::get('/profil', \App\Http\Livewire\ProfilEtudiantUpdate::class)->name('profilEtudiant');
     Route::get('/checkout/{matricule}', \App\Http\Livewire\CheckoutInscription::class)->where('matricule', '(.*)')->name('checkout');
+    Route::post('/checkout/{matricule}', \App\Http\Livewire\CheckoutInscription::class)->where('matricule', '(.*)')->name('checkout');
 });
 
 route::prefix('adminUsakin')->group( function(){

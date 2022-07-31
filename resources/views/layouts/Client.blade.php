@@ -24,9 +24,9 @@
 
 
 <x-footer-Client />
-@yield('script')
-@stack('script')
 <script src="{{mix('js/app.js')}}"></script>
+@yield('script')
+@stack('checkout')
 @livewireScripts
 
 </body>

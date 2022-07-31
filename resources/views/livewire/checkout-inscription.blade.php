@@ -1,6 +1,9 @@
 <div class="container py-3">
-    <!-- For demo purpose -->
+   
 
+    @php
+        $stripe_key ='pk_test_51KxdgQB5uPnFOAdoVKnpSM8tIRiazOXyouxD2N0trLn3kIU0WHGt8Wo2y436aBgUCt9KI8LEZDHjY11or5OrNRV800EO4yIZvD';
+    @endphp
    @foreach ($etudiants as $etudiant)
        
    
@@ -30,34 +33,23 @@
                         <h5><span class="text-success">TOTAL PRICE:30$</span>  </h5>
                        </div>
                        <hr>
-                        <div id="credit-card" class="tab-pane fade show active pt-3" style="min-height:350px;">
+                        <div id="credit-card" class="tab-pane fade show active pt-3" style="min-height:250px;">
                        
-                            <form role="form" onsubmit="event.preventDefault()" id="checkout-form">
+                            <form role="form" wire:submit.prevent="test"  id="payment-form">
+                               
                                 <div class="form-group"> <label for="username">
                                         <h6>Card Owner</h6>
-                                    </label> <input type="text" name="username" placeholder="Card Owner Name" required value="{{$etudiant->etudiant->Nom}} / {{$etudiant->etudiant->matricule}} " id="card-name" class="form-control " disabled> </div>
-                                <div class="form-group"> <label for="cardNumber">
-                                        <h6>Card number</h6>
-                                    </label>
-                                    <div class="input-group"> <input type="text" name="cardNumber" id="card-number" placeholder="Valid card number" class="form-control " required>
-                                        <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <div class="form-group"> <label><span class="hidden-xs">
-                                                    <h6>Expiration Date</h6>
-                                                </span></label>
-                                            <div class="input-group"> <input type="number" id="card-expiry-month"  placeholder="MM" name="" class="form-control" required> <input type="number" id="card-expiry-year"  placeholder="YY" name="" class="form-control" required> </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group mb-4"> <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
-                                                <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
-                                            </label> <input type="text" id="card-cvc" required class="form-control"> </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer"> <button type="button" class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </button>
+                                    </label> <input type="text" name="username" placeholder="Card Owner Name" required value="{{$etudiant->etudiant->Nom}} /  " id="card-name" class="form-control" wire:model="client"> 
+                                <input type="hidden" name="matricule" id="" value="{{$etudiant->etudiant->matricule_etudiant}}">
+                            </div>
+                               
+                                <div id="card-element" class="form-control mb-4"></div>
+                                    <!-- A Stripe Element will be inserted here. -->
+                                    
+                                    <!-- Used to display form errors. -->
+                                    <div id="card-errors" role="alert"></div>
+                                   
+                                <div class="card-footer"> <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm" data-secret="{{ $intent }}" id="card-button"> Confirm Payment </button>
                             </form>
                         </div>
                     </div> <!-- End -->
@@ -115,6 +107,127 @@
 </div>
 
 @push('checkout')
-<script src="https://js.stripe.com/v2/"></script>
-<script src="{{asset('js/checkout.js')}}"></script> 
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+     var style = {
+            base: {
+                color: 'black',
+                lineHeight: '18px',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: 'black'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+    
+        const stripe = Stripe('{{ $stripe_key }}', { locale: 'fr' }); // Create a Stripe client.
+        const elements = stripe.elements(); // Create an instance of Elements.
+        const cardElement = elements.create('card', { style: style }); // Create an instance of the card Element.
+        const cardButton = document.getElementById('card-button');
+        const clientSecret = cardButton.dataset.secret;
+        const cardHoderName = document.getElementById('card-name');
+    
+        cardElement.mount('#card-element'); // Add an instance of the card Element into the `card-element` <div>.
+    
+        // Handle real-time validation errors from the card Element.
+        cardElement.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+                Swal.fire({
+                            
+                            icon:'error',
+                           
+                            title:"operation faild",
+                            text: event.error.message,
+                            showConfirmButton: true,
+                            timer:5000
+
+                        }) ;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+    
+        // Handle form submission.
+        var form = document.getElementById('payment-form');
+    
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            cardButton.disabled =true;
+
+    
+        stripe.handleCardPayment(clientSecret, cardElement, {
+                payment_method_data: {
+                    billing_details: { name: cardHoderName.value}
+                }
+            })
+            .then(function(result) {
+               if (result.error) {
+        
+                     var errorElement = document.getElementById('card-errors');
+                     errorElement.textContent = result.error.message;
+
+                            Swal.fire({
+                            
+                            icon:'error',
+                           
+                            title:"operation faild",
+                            text:result.error.message,
+                            showConfirmButton: true,
+                            timer:5000
+
+                        }) 
+
+                  } else {
+                 if (result.paymentIntent.status === 'succeeded') {
+
+                   
+                    Livewire.emit('payer');
+                    cardHoderName = @this.client;
+                      
+        
+                    }
+                     else if (result.paymentIntent.status === 'requires_payment_method') {
+          
+                      
+                        
+                        Swal.fire({
+                            
+                            icon:'error',
+                           
+                            title:"operation faild",
+                            text:result.error.message,
+                            showConfirmButton: true,
+                            timer:5000
+
+                        });
+                  }
+                  }
+                
+            });
+        });
+
+        window.addEventListener('showSuccessMessage', event=> {
+        Swal.fire({
+            position: 'top-end',
+            icon:'success',
+            toast: true,
+            title:"operation reussie",
+            text:event.detail.message,
+            showConfirmButton: false,
+            timer:5000
+
+        }) 
+    });
+
+  
+
+ </script> 
 @endpush

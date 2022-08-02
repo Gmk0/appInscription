@@ -48,7 +48,8 @@ class CheckoutInscription extends Component
             $data->matricule_etudiant=$this->matricule;
             $data->id_payement= $this->intent;
             $data->client=$this->client;
-            dd($data);
+            $data->save();
+            $this->dispatchBrowserEvent('showSuccessMessage',["message"=>"utilisateur a ete modifier avec success"]);
         
 
          

@@ -15,7 +15,7 @@
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.3",
         "livewire/livewire": "^2.10",
-        "stripe/stripe-php":"3.*"
+        "stripe/stripe-php": "^8.12"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

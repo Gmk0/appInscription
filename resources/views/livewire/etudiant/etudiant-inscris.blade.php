@@ -42,6 +42,7 @@
                        
                         <th>Document</th>
                         <th>Statut</th>
+                        <th>Paiement</th>
                         
                     </tr>
                     </thead>
@@ -70,16 +71,19 @@
                             @if(countDocument($etudiant->etudiant->matricule_etudiant))
                             <td><span class="badge badge-pill badge-success">Complet</span></td>
                             @else
-                            <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>
-                                  
+                            <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>     
                             </button></td>
                              @endif
                             @if($etudiant->statut_etudiant==1)
                                 <td><span class="badge badge-pill badge-success">Admis</span></td>
                             @else
-                                <td><button class="btn btn-link" id="" type="button" wire:click="statusChange('{{$etudiant->id_inscrit}}')"> <span class="badge badge-pill badge-warning">No Admis</span>
-                                        <div wire:loading wire:target="statusChange('{{$etudiant->id_inscrit}}')">Update</div>
-                                    </button></td>
+                                <td><span class="badge badge-pill badge-warning">No Admis</span></td>
+                            @endif
+
+                            @if($etudiant->paiement )
+                            <td><span class="badge badge-pill badge-success">Complet</span></td>
+                             @else
+                            <td><span class="badge badge-pill badge-warning">incomplet</span></td>
                             @endif
                            
                         </tr>
@@ -102,7 +106,8 @@
                         
                         <th>Document</th>
                         <th>Statut</th>
-                        <p>USAKIN</p>
+                        <th>Paiement</th>
+                        
                         
                     </tr>
                     </tfoot>

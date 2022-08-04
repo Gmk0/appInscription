@@ -31,4 +31,9 @@ class etudiantInscrit extends Model
     {
         return $this->hasOne(anneeAcademique::class, 'id_annee', 'id_annee');
     }
+    public function paiement()
+    {
+        return $this->hasOne(paiementFrais::class, 'matricule_etudiant', 'matricule_etudiant');
+    }
+
 }

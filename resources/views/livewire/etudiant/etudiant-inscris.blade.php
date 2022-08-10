@@ -2,8 +2,8 @@
 @section('css')
  <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
  <style>
-    
-  
+
+
 
  </style>
 @endsection
@@ -11,22 +11,10 @@
 
 <div>
     @if($currentPage == PAGELIST)
-       {{--<div class="card">
-            <div class="card-header bg-secondary text-white d-flex align-items-center">
-                <h3 class="card-title flex-grow-1">LISTE NOUVEAU INSCRIT</h3>
-
-
-                <div class="card-tools  d-flex align-items-center">
 
 
 
-                </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body table-responsive p-3" style="height: 500px;">--}}
-
-
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered bg-gradient-white table-striped">
                     <thead>
                     <tr>
                         <th>action</th>
@@ -34,16 +22,16 @@
                         <th>Matricule</th>
                         <th>Nom</th>
                         <th>Prenom</th>
-                      
+
                         <th>Telephone</th>
                         <th>Faculte</th>
                         <th>promotion</th>
-                        <th>Institut Religieux</th>
-                       
+
+
                         <th>Document</th>
                         <th>Statut</th>
                         <th>Paiement</th>
-                        
+
                     </tr>
                     </thead>
                     <tbody>
@@ -58,20 +46,16 @@
                             <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
                             <td>{{$etudiant->etudiant->Nom}}</td>
                             <td>{{$etudiant->etudiant->Prenom}}</td>
-                           
+
                             <td>{{$etudiant->etudiant->Telephone}}</td>
                             <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
                             <td>{{$etudiant->promotion->designation_promotion}}</td>
-                            @if(!empty($etudiant->etudiant->ecclesiaste->institut))
-                            <td>{{$etudiant->etudiant->ecclesiaste->institut}}</td>
-                            @else
-                            <td>---</td>
-                            @endif
-                            
+
+
                             @if(countDocument($etudiant->etudiant->matricule_etudiant))
                             <td><span class="badge badge-pill badge-success">Complet</span></td>
                             @else
-                            <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>     
+                            <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>
                             </button></td>
                              @endif
                             @if($etudiant->statut_etudiant==1)
@@ -85,7 +69,7 @@
                              @else
                             <td><span class="badge badge-pill badge-warning">incomplet</span></td>
                             @endif
-                           
+
                         </tr>
                         {{Form::hidden('',$increment =$increment+1)}}
                     @endforeach
@@ -98,17 +82,17 @@
                         <th>Matricule</th>
                         <th>Nom</th>
                         <th>Prenom</th>
-                    
+
                         <th>Telephone</th>
                         <th>Faculte</th>
                         <th>promotion</th>
-                        <th>Statut Religieux</th>
-                        
+
+
                         <th>Document</th>
                         <th>Statut</th>
                         <th>Paiement</th>
-                        
-                        
+
+
                     </tr>
                     </tfoot>
                 </table>
@@ -137,7 +121,7 @@
 
       window.addEventListener('userAdmis', event=> {
 
-      
+
           Swal.fire({
               position: 'top-end',
               icon:'success',
@@ -187,7 +171,7 @@
 
                 },
                 {
-                 text:'imprimer', 
+                 text:'imprimer',
                  title:'Nouveau inscrit',
                   extend:'print',
                   autoPrint:false,
@@ -197,7 +181,7 @@
                             '<img src="{{asset('images/logo2.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" style="position:relative; top:0;left:0" width="70" >');
                         $(win.document.body).find('table').addClass('compact').css('font-size','inherit');
                       $(win.document.body).find('h1').addClass('text-center').css('text-align','center');
-                      
+
                   },
                   exportOptions:{
                       columns:[1,2,3,4,6],
@@ -210,18 +194,18 @@
                         }
                 },
                  {
-                  text:'Visible',   
+                  text:'Visible',
                   extend:'colvis',
                   messageTop:'usakin'
                 }
-                 
+
                 ]
           }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
-  
-      });
- 
 
-   
+      });
+
+
+
 
   /*$(function () {
       $('#example1').append('<caption style="caption-side:top">USAKIN</caption>');

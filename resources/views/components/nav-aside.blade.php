@@ -18,12 +18,12 @@
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-school"></i>
                     <p>
-                        GESTION
+                        GESTION INSCRIPTION
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                   
+
                     <li class="nav-item">
                         <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
                             <i class="fa fa-graduation-cap nav-icon"></i>
@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a href="{{route('users.allEtdiant')}}" class="nav-link ">
                             <i class="fa fa-user-check nav-icon"></i>
-                            <p>Etudiant</p>
+                            <p>Listes Etudiant</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -59,16 +59,8 @@
 
                 </ul>
             </li>
-            <li class="nav-header">TRAVAILS</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-calendar"></i>
-                    <p>
-                       Evenement
-                       
-                    </p>
-                </a>
-            </li>
+
+
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
@@ -94,63 +86,58 @@
 
                 </ul>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-school"></i>
-                    <p>
-                        Resources Humains
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                   
-                    <li class="nav-item">
-                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
-                            <i class="fa fa-graduation-cap nav-icon"></i>
-                            <p>Faculte</p>
-                        </a>
-                    </li>
 
-                </ul>
-            </li>
-            <li class="nav-header">Settings</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-school"></i>
-                    <p>
-                       DATABASE BACKUP
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                   
-                    <li class="nav-item">
-                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
-                            <i class="fa fa-graduation-cap nav-icon"></i>
-                            <p>Faculte</p>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-settings"></i>
-                    <p>
-                    SETTINGS
-                        <span class="right badge badge-danger">New</span>
-                    </p>
-                </a>
-            </li>
         <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-settings"></i>
+                <i class="nav-icon fas fa-school"></i>
                 <p>
-                   User
-                    <span class="right badge badge-danger">New</span>
+                    Paiement
+                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
+            <ul class="nav nav-treeview">
+
+                <li class="nav-item">
+                    <a href="{{route('paiement.admin')}}" class="nav-link">
+                        <i class="fa fa-graduation-cap nav-icon"></i>
+                        <p>Paiment</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
+                        <i class="fa fa-graduation-cap nav-icon"></i>
+                        <p>Rapport</p>
+                    </a>
+                </li>
+
+            </ul>
         </li>
+
+
+
+
+
+        <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>
+                       Settings
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
+                            <i class="fa fa-graduation-cap nav-icon"></i>
+                            <p>Faculte</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+
     </ul>
 </nav>

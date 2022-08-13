@@ -26,8 +26,6 @@ Route::prefix('student')->group(function () {
     Route::get('/formulaire/{matricule}', [\App\Http\Controllers\reporting::class, 'formulaire'])->where('matricule', '(.*)')->name('formulaire');
     Route::get('/profil', \App\Http\Livewire\ProfilEtudiantUpdate::class)->name('profilEtudiant');
     Route::get('/checkout/{matricule}', \App\Http\Livewire\CheckoutInscription::class)->where('matricule', '(.*)')->name('checkout');
-
-
 });
 
 route::prefix('adminUsakin')->group(function () {
@@ -41,7 +39,7 @@ route::prefix('adminUsakin')->group(function () {
     Route::get('/gestion_faculte', \App\Http\Livewire\FacultePromotion::class)->name('gestion_faculte.admin')->middleware('auth');
     Route::get('/etudiant/{id}', \App\Http\Livewire\FindEtudiantAdmin::class)->name('FindEtudiant')->middleware('auth');
     Route::get('/PaimentFrais', \App\Http\Livewire\PaimentFrais::class)->name('paiement.admin')->middleware('auth');
-
+    route::get('/invoice', [\App\Http\Controllers\reporting::class, 'invoice'])->name('invoice');
 });
 
 

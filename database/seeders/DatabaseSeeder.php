@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             # code...
             etudiant::factory(1)->create();
             tuteurEtudiant::factory(1)->create();

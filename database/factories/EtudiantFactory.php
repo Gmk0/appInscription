@@ -6,6 +6,7 @@ use App\Helpers\helper;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\etudiant;
 
+
 class EtudiantFactory extends Factory
 {
     /**

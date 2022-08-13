@@ -23,6 +23,8 @@ class CreatePaiementFraisTable extends Migration
                 ->cascadeOnUpdate();
             $table->string('id_payement');
             $table->string('client');
+            $table->string('montant');
+            $table->string('libelle');
 
             $table->timestamps();
         });

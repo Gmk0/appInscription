@@ -9,10 +9,12 @@ class paiementFrais extends Model
 {
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'matricule_etudiant',
         'id_payement',
         'client',
+        'montant',
+        'libelle'
     ];
 
     public function inscriptionCheck()

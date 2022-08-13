@@ -53,7 +53,7 @@ Swal.fire({
 
     });
 </script>
-@endsection()
+@endsection
 
     
 

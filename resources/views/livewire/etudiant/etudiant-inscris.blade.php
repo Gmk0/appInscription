@@ -1,125 +1,146 @@
 @section('title','ETUDIANT INSCRIS')
 @section('css')
- <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
- <style>
+<link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
+<style>
 
 
 
- </style>
+</style>
 @endsection
 
 
 <div>
-    @if($currentPage == PAGELIST)
+
+  <div class="card-body bg-white pt-5">
+    <div>
+      <div class="form-group col-md-3">
+        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="search"
+          wire:model.debounce.800ms="search">
+      </div>
+
+      <div class="form-group col-md-3">
+        < <select class="form-control  @error('promotion.id_faculte') is-invalid @enderror"
+          wire:model.debounce.800ms="faculte">
+          <option selected>---Faculte-----</option>
+          @foreach($facultes as $row)
+          <option value="{{$row->id_faculte}}">{{$row->designation_faculte}}</option>
+
+          @endforeach
+          </select>
+          @error('promotion.designation_promotion')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+
+      </div>
 
 
-
-                <table id="example1" class="table table-bordered bg-gradient-white table-striped">
-                    <thead>
-                    <tr>
-                        <th>action</th>
-                        <th>N°</th>
-                        <th>Matricule</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-
-                        <th>Telephone</th>
-                        <th>Faculte</th>
-                        <th>promotion</th>
+    </div>
 
 
-                        <th>Document</th>
-                        <th>Statut</th>
-                        <th>Paiement</th>
+    <table id="" class="table table-bordered bg-gradient-white table-striped">
+      <thead>
+        <tr>
+          <th>action</th>
+          <th>N°</th>
+          <th>Matricule</th>
+          <th>Nom</th>
+          <th>Prenom</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{Form::hidden('',$increment =1)}}
-                    @foreach ($etudiants as $etudiant )
-                        <tr>
-                            <td class="text-center">
-                                <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-
-                            </td>
-                            <td>{{$etudiant->id_inscrit}}</td>
-                            <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
-                            <td>{{$etudiant->etudiant->Nom}}</td>
-                            <td>{{$etudiant->etudiant->Prenom}}</td>
-
-                            <td>{{$etudiant->etudiant->Telephone}}</td>
-                            <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
-                            <td>{{$etudiant->promotion->designation_promotion}}</td>
+          <th>Telephone</th>
+          <th>Faculte</th>
+          <th>promotion</th>
 
 
-                            @if(countDocument($etudiant->etudiant->matricule_etudiant))
-                            <td><span class="badge badge-pill badge-success">Complet</span></td>
-                            @else
-                            <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>
-                            </button></td>
-                             @endif
-                            @if($etudiant->statut_etudiant==1)
-                                <td><span class="badge badge-pill badge-success">Admis</span></td>
-                            @else
-                                <td><span class="badge badge-pill badge-warning">No Admis</span></td>
-                            @endif
+          <th>Document</th>
+          <th>Statut</th>
+          <th>Paiement</th>
 
-                            @if($etudiant->paiement )
-                            <td><span class="badge badge-pill badge-success">Complet</span></td>
-                             @else
-                            <td><span class="badge badge-pill badge-warning">incomplet</span></td>
-                            @endif
+        </tr>
+      </thead>
+      <tbody>
+        {{Form::hidden('',$increment =1)}}
+        @foreach ($etudiants as $etudiant )
+        <tr>
+          <td class="text-center">
+            <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye"
+                aria-hidden="true"></i></a>
 
-                        </tr>
-                        {{Form::hidden('',$increment =$increment+1)}}
-                    @endforeach
+          </td>
+          <td>{{$increment}}</td>
+          <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
+          <td>{{$etudiant->etudiant->Nom}}</td>
+          <td>{{$etudiant->etudiant->Prenom}}</td>
 
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th>action</th>
-                        <th>N°</th>
-                        <th>Matricule</th>
-                        <th>Nom</th>
-                        <th>Prenom</th>
-
-                        <th>Telephone</th>
-                        <th>Faculte</th>
-                        <th>promotion</th>
+          <td>{{$etudiant->etudiant->Telephone}}</td>
+          <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
+          <td>{{$etudiant->promotion->designation_promotion}}</td>
 
 
-                        <th>Document</th>
-                        <th>Statut</th>
-                        <th>Paiement</th>
+          @if(countDocument($etudiant->etudiant->matricule_etudiant))
+          <td><span class="badge badge-pill badge-success">Complet</span></td>
+          @else
+          <td><button class="btn btn-link" id="click" type="button"> <span
+                class="badge badge-pill badge-warning">Incomplet</span>
+            </button></td>
+          @endif
+          @if($etudiant->statut_etudiant==1)
+          <td><span class="badge badge-pill badge-success">Admis</span></td>
+          @else
+          <td><span class="badge badge-pill badge-warning">No Admis</span></td>
+          @endif
+
+          @if($etudiant->paiement )
+          <td><span class="badge badge-pill badge-success">Complet</span></td>
+          @else
+          <td><span class="badge badge-pill badge-warning">incomplet</span></td>
+          @endif
+
+        </tr>
+        {{Form::hidden('',$increment =$increment+1)}}
+        @endforeach
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>action</th>
+          <th>N°</th>
+          <th>Matricule</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+
+          <th>Telephone</th>
+          <th>Faculte</th>
+          <th>promotion</th>
 
 
-                    </tr>
-                    </tfoot>
-                </table>
-           </div>
-            <!-- /.card-body -->
-        </div>
-    @endif
+          <th>Document</th>
+          <th>Statut</th>
+          <th>Paiement</th>
 
 
-
-
-
-
+        </tr>
+      </tfoot>
+    </table>
+    {{$etudiants->links()}}
+  </div>
 </div>
 
+<!-- /.card-body -->
 
-  @push('custom-script')
-  <script src="{{asset('js/responsive.bootstrap4.min.js')}}" type=""></script>
-  <script src="{{asset('js/DataTable.responsive.min.js')}}" type=""></script>
-  <script src="{{asset('js/pdfMake.js')}}" type=""></script>
-  <script src="{{asset('js/vfs_fonts.js')}}" type=""></script>
-  <script src="{{asset('js/buttons.html5.js')}}" type=""></script>
-  <script src="{{asset('js/jszip.js')}}" type=""></script>
 
-  <script>
 
-      window.addEventListener('userAdmis', event=> {
+@push('custom-script')
+<script src="{{asset('js/responsive.bootstrap4.min.js')}}" type=""></script>
+<script src="{{asset('js/DataTable.responsive.min.js')}}" type=""></script>
+<script src="{{asset('js/pdfMake.js')}}" type=""></script>
+<script src="{{asset('js/vfs_fonts.js')}}" type=""></script>
+<script src="{{asset('js/buttons.html5.js')}}" type=""></script>
+<script src="{{asset('js/jszip.js')}}" type=""></script>
+
+<script>
+  window.addEventListener('userAdmis', event=> {
 
 
           Swal.fire({
@@ -289,8 +310,4 @@
 </script>
 
 @endpush
-            <!-- /.ca
-
-
-
-
+<!-- /.ca

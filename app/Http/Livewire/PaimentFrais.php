@@ -12,7 +12,7 @@ class PaimentFrais extends Component
 {
     use WithPagination;
 
-    public $matricule, $montant;
+    public $matricule, $invoices;
     public $etudiants;
     public $paiementUp = [];
     public $paiement = [];
@@ -69,15 +69,19 @@ class PaimentFrais extends Component
                 $this->clear();
             } else {
                 $data = new paiementFrais;
-                $data->matricule_etudiant = $this->etudiants->matricule_etudiant;
+                $matricule = $this->etudiants->matricule_etudiant;
+                $data->matricule_etudiant = $matricule;
                 $data->id_payement = random_int(100000, 999999);
                 $data->client = $this->paiement['libelle'];
                 $data->montant = $this->paiement['montant'];
                 $data->libelle = "frais inscription";
                 $data->save();
-
-                $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "La transaction a ete bien effecuer"]);
-                $this->clear();
+                if ($data) {
+                    $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "La transaction a ete bien effecuer"]);
+                    sleep(1);
+                    $this->clear();
+                    return $this->print($matricule);
+                }
             }
         } else {
             $this->dispatchBrowserEvent('error', ["message" => "veuillez saisir un  matricule"]);
@@ -108,10 +112,10 @@ class PaimentFrais extends Component
     }
 
 
-    public function print($id)
+    public function print(string $id)
     {
-        $this->dispatchBrowserEvent('print', ["message" => "La transaction a ete bien effecuer"]);
-        
+        $this->invoices = paiementFrais::where('matricule_etudiant', $id)->get();
+        $this->dispatchBrowserEvent('print');
     }
 
 

@@ -1,5 +1,5 @@
 * {
-    font-size: 12px;
+
     font-family: 'Times New Roman';
 }
 
@@ -52,4 +52,31 @@ img {
     .hidden-print * {
         display: none !important;
     }
+}
+
+
+.invoice {
+    margin: 50px;
+   
+    padding: 20px;
+    width: 500px;
+    max-width: 500px;
+    height: 550px;
+}
+
+.header {
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.bon h5 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.header img {
+    width: 70px;
 }

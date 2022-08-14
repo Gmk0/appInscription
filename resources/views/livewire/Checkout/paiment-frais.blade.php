@@ -81,7 +81,7 @@
                                 <span class="text-danger">@error('paiement.libelle') {{$message}}@enderror</span>
                             </div>
 
-                            <div wire:loading.remove wire:target="paiements">
+                            <div wire:loading.remove wire:target="paiement">
 
                                 <button type="submit" class="btn btn-primary" @if($etudiants==null) disabled
                                     @endif>Paiment</button>
@@ -143,7 +143,9 @@
                         <td>
                             <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modal-promotion"
                                 wire:click="editPaye({{$paiment->id}})">edit</button>
-                            <a class="btn btn-outline-primary" href="{{route('invoice')}}">Print</a>
+
+                            <button type="button" wire:click="print('{{$paiment->matricule_etudiant}}')"
+                                class="btn btn-outline-primary"><i class="fa fa-print"></i></button>
                         </td>
                     </tr>
                     @endforeach
@@ -160,13 +162,18 @@
 
     @include('livewire.Checkout.paiementModal')
 
+    <div class="modal">
+        <div id="print">
+            @include('PDF.invoice')
+        </div>
+
+    </div>
+
 </div>
 
 @section('script')
 <script>
     window.addEventListener('error', event=> {
-
-     
 Swal.fire({
    
    icon:'warning',
@@ -179,6 +186,26 @@ Swal.fire({
    })
 
    });
+//print script
+
+window.addEventListener('print', event=> {
+
+
+    var data ='<input type="button" id ="printPageButton class="" style="display:block ;width:100% ;border:none; background-color:#008B8B;color:#fff; padding:14px 28px;font-size:16px;cursor:pointer;text-align:center" value="Print Invoice" onClick="window.print()"/>';
+        data += document.getElementById('print').innerHTML;
+    myReceipt=window.open("", "myWin","left=150, top =130, width=600, height =600");
+    myReceipt.screnX =0;
+    myReceipt.screnY = 0;
+    myReceipt.document.write(data);
+    myReceipt.document.title ="Print Invoice";
+    myReceipt.focus();
+    setTimeout(()=>{
+            myReceipt.close();
+    },10000)
+
+
+});
+
 
    window.addEventListener('showSuccessMessage', event=> {
     $("#modal-promotion").modal('hide');

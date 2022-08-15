@@ -136,7 +136,7 @@
                             <small id="helpId"
                                 class="form-text text-muted">{{$paiment->inscriptionCheck->promotion->faculte->designation_faculte}}</small>
                         </td>
-                        <td>{{$paiment->inscriptionCheck->etudiant->Nom}}</td>
+                        <td>{{$paiment->        }}</td>
                         <td>{{$paiment->id_payement}}</td>
                         <td>{{$paiment->montant}}</td>
                         <td>{{$paiment->created_at->diffforhumans()}}</td>

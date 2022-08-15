@@ -2,34 +2,73 @@
     <div class="row">
 
 
+        <div class="dropdown mb-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                FILTRE
+            </button>
+            <div class="dropdown-menu p-2" aria-labelledby="triggerId">
+                <form wire:submit.prevent="filter">
+                    <div class="row mb-3">
 
-        <div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control form-control-sm" placeholder="matricule"
+                                wire:model.defer="search.matricule">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control form-control-sm" placeholder="Nom"
+                                wire:model.defer="search.nom">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control form-control-sm" placeholder="promotion"
+                                wire:model.defer="search.promotion">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-outline-primary">Recherche</button>
+                        </div>
 
-            <table id="example2" class="table table-bordered  table-striped bg-white">
+                    </div>
+                </form>
+            </div>
+        </div>
+        @if($filter)
+
+        @endif
+
+        <div class="card-body bg-white pt-5">
+
+            <table id="example2" class="table table-bordered table-responsive table-striped bg-white">
                 <thead>
-                <tr>
-                    <th>action</th>
-                    <th>N°</th>
-                    <th>Matricule</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
+                    <tr>
+                        <th>action</th>
+                        <th>N°</th>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
 
-                    <th>Telephone</th>
-                    <th>Nom tuteur</th>
-                    <th>Faculte</th>
-                    <th>promotion</th>
-                    <th>date</th>
-                    <th>Document</th>
-                    <th>Statut</th>
+                        <th>Telephone</th>
+                        <th>Nom tuteur</th>
+                        <th>Faculte</th>
+                        <th>promotion</th>
+                        <th>date</th>
+                        <th>Document</th>
+                        <th>Statut</th>
 
-                </tr>
+                    </tr>
                 </thead>
                 <tbody>
-                {{Form::hidden('',$increment =1)}}
-                @foreach ($etudiants as $etudiant )
+
+
+
+                    {{Form::hidden('',$increment =1)}}
+                    @foreach ($etudiants as $etudiant )
                     <tr>
                         <td class="text-center">
-                            <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id])}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id])}}"><i
+                                    class="fa fa-eye" aria-hidden="true"></i></a>
 
                         </td>
                         <td>{{$etudiant->id}}</td>
@@ -45,44 +84,47 @@
                         @if(countDocument($etudiant->matricule_etudiant))
                         <td><span class="badge badge-pill badge-success">Complet</span></td>
                         @else
-                        <td><button class="btn btn-link" id="click" type="button"> <span class="badge badge-pill badge-warning">Incomplet</span>
+                        <td><button class="btn btn-link" id="click" type="button"> <span
+                                    class="badge badge-pill badge-warning">Incomplet</span>
 
-                        </button></td>
-                         @endif
+                            </button></td>
+                        @endif
                         @if($etudiant->id==1)
-                            <td><span class="badge badge-pill badge-success">Admis</span></td>
+                        <td><span class="badge badge-pill badge-success">Admis</span></td>
                         @else
-                            <td><button class="btn btn-link" id="" type="button" > <span class="badge badge-pill badge-warning">No Admis</span>
+                        <td><button class="btn btn-link" id="" type="button"> <span
+                                    class="badge badge-pill badge-warning">No Admis</span>
 
-                                </button></td>
+                            </button></td>
                         @endif
 
                     </tr>
                     {{Form::hidden('',$increment =$increment+1)}}
-                @endforeach
+                    @endforeach
 
                 </tbody>
                 <tfoot>
-                <tr>
-                    <th>action</th>
-                    <th>N°</th>
-                    <th>Matricule</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
+                    <tr>
+                        <th>action</th>
+                        <th>N°</th>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
 
-                    <th>Telephone</th>
-                    <th>Promotion</th>
-                    <th>Faculte</th>
-                    <th>promotion</th>
-                    <th>date</th>
-                    <th>Document</th>
-                    <th>Statut</th>
+                        <th>Telephone</th>
+                        <th>Promotion</th>
+                        <th>Faculte</th>
+                        <th>promotion</th>
+                        <th>date</th>
+                        <th>Document</th>
+                        <th>Statut</th>
 
-                </tr>
+                    </tr>
                 </tfoot>
             </table>
 
         </div>
+
 
     </div>
 
@@ -100,7 +142,6 @@
 <script src="{{asset('js/jszip.js')}}" type=""></script>
 
 <script>
-
     window.addEventListener('userAdmis', event=> {
 
 

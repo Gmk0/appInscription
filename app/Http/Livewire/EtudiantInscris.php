@@ -59,11 +59,8 @@ class EtudiantInscris extends Component
 
 
         return view('livewire.etudiant.etudiant-inscris', [
-            'etudiants' => etudiantInscrit::whereHas('etudiant', function ($q) {
-                $q->where('Nom', 'LIKE', "%{$this->search}%");
-            })
-                ->orWhere('matricule_etudiant', 'LIKE', "%{$this->search}%")
-                ->Where('id_promotion', 'LIKE', "%{$this->faculte}%")
+            'etudiants' => etudiantInscrit::Where('matricule_etudiant', 'LIKE', "%{$this->search}%")
+                ->orWhere('id_promotion', $this->faculte)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(10),
             "facultes" => faculte::all(),

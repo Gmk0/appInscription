@@ -41,10 +41,7 @@ th.price {
     max-width: 155px;
 }
 
-img {
-    max-width: inherit;
-    width: inherit;
-}
+
 
 @media print {
 
@@ -77,6 +74,3 @@ img {
     font-size: 20px;
 }
 
-.header img {
-    width: 70px;
-}

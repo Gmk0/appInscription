@@ -17,6 +17,7 @@ class PaimentFrais extends Component
     public $paiementUp = [];
     public $paiement = [];
     public $search = "";
+    public $promotion = "";
     protected $paginationTheme = 'bootstrap';
 
     protected $queryString = [

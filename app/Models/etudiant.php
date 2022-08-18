@@ -36,7 +36,14 @@ class etudiant extends Model
     {
         return $this->hasOne(etudiantInscrit::class, 'matricule_etudiant', 'matricule_etudiant');
     }
-
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('Nom', 'like', $term)
+                ->orWhere('matricule_etudiant', 'like', $term);
+        });
+    }
     /**
      *@var array
      */

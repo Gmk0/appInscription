@@ -4,17 +4,23 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\etudiant;
-use App\Models\etudiantInscrit;
+use App\Models\paiementFrais;
 use Livewire\withPagination;
+use App\Models\faculte;
 
 class AllStudent extends Component
 {
     use withPagination;
-    public $etudiants;
-    public $search = [];
+
+    public $search;
     public $etudiantPhilo;
+    public $invoices;
     public $currentPage;
+    public $byPromotion = null;
     public $filter = false;
+    public $pageN;
+    public $faculte;
+    public $Listeetudiants;
     protected $paginationTheme = 'bootstrap';
 
 
@@ -23,40 +29,35 @@ class AllStudent extends Component
     public function mount()
     {
         $this->currentPage = "all";
-        $this->etudiants = etudiant::all();
+        $this->pageN = 10;
+        $this->Listeetudiants = etudiant::all();
     }
-    public function gotFilter()
+
+    public function print()
     {
-
-        $this->filter = false;
+        $this->dispatchBrowserEvent('print');
+        $this->Listeetudiants = etudiant::when($this->byPromotion, function ($query) {
+            $query->whereHas('inscription', function ($q) {
+                $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+            });
+        })->get();
     }
-    public function goToAll()
-    {
-        $this->currentPage = "all";
-    }
-    public function filter()
-    {
-        $etudiant = etudiant::query();
 
-        if (!empty($this->search['nom'])) {
-            $etudiant = $etudiant->where('Nom', 'LIKE', '%' . $this->search['nom'] . '%')->get();
-        }
-        if (!empty($this->search['matricule'])) {
-            $etudiant = $etudiant->where('matricule_etudiant', 'LIKE', '%' . $this->search['matricule'] . '%')->get();
-        }
-
-        if (!empty($this->search['philosophie'])) {
-            $etudiant = etudiant::whereHas(['tuteurEtudiant', function ($q) {
-                $q->where('Nom_tuteur', 'LIKE', '%' . $this->search['philosophie'] . '%')->paginate();
-            }])->get();
-        }
-
-        dd($etudiant);
-        $this->etudiants = $etudiant;
-    }
     public function render()
     {
-        return view('livewire.all-student')
+        return view('livewire.all-student', [
+            'facultes' => faculte::all(),
+            'etudiants' => etudiant::when($this->byPromotion, function ($query) {
+                $query->whereHas('inscription', function ($q) {
+                    $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+                });
+            })->search(trim($this->search))
+                ->paginate($this->pageN)
+
+
+
+
+        ])
             ->extends('layouts.admin')
             ->section('content');
     }

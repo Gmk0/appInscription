@@ -136,7 +136,7 @@
                             <small id="helpId"
                                 class="form-text text-muted">{{$paiment->inscriptionCheck->promotion->faculte->designation_faculte}}</small>
                         </td>
-                        <td>{{$paiment->        }}</td>
+                        <td>{{$paiment->libelle}}</td>
                         <td>{{$paiment->id_payement}}</td>
                         <td>{{$paiment->montant}}</td>
                         <td>{{$paiment->created_at->diffforhumans()}}</td>
@@ -191,7 +191,7 @@ Swal.fire({
 window.addEventListener('print', event=> {
 
 
-    var data ='<input type="button" id ="printPageButton class="" style="display:block ;width:100% ;border:none; background-color:#008B8B;color:#fff; padding:14px 28px;font-size:16px;cursor:pointer;text-align:center" value="Print Invoice" onClick="window.print()"/>';
+    var data ='<input type="button" id ="printPageButton" class="" style="display:block ;width:100% ;border:none; background-color:#008B8B;color:#fff; padding:14px 28px;font-size:16px;cursor:pointer;text-align:center" value="Print Invoice" onClick="window.print()"/>';
         data += document.getElementById('print').innerHTML;
     myReceipt=window.open("", "myWin","left=150, top =130, width=600, height =600");
     myReceipt.screnX =0;

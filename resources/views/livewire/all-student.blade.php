@@ -1,46 +1,59 @@
 <div>
-    <div class="row">
+    <div cla class="row">
+        <div class=" ml-2 mb-4 d-flex justify-content-between">
+            <div class="">
 
+                <button type="button" wire:click="print()" class="btn btn-outline-primary"><i
+                        class="fa fa-print"></i></button>
 
-        <div class="dropdown mb-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                FILTRE
-            </button>
-            <div class="dropdown-menu p-2" aria-labelledby="triggerId">
-                <form wire:submit.prevent="filter">
-                    <div class="row mb-3">
+                <button class="btn btn-outline-primary" type="button" onClick="printReceipt()"><i
+                        class="fa fa-print">Excel</i></button>
+            </div>
+            <div class="row">
 
-                        <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm" placeholder="matricule"
-                                wire:model.defer="search.matricule">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm" placeholder="Nom"
-                                wire:model.defer="search.nom">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm" placeholder="promotion"
-                                wire:model.defer="search.promotion">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="text" class="form-control form-control-sm">
-                        </div>
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-outline-primary">Recherche</button>
-                        </div>
+                <div class="col-md-6">
 
-                    </div>
-                </form>
+                    <input type="text" class="form-control form-control-sm" wire:model.debounce.800ms="search"
+                        placeholder=" search Name or Matricule">
+
+                </div>
+                <div class="col-md-6">
+
+                    <select class="form-control form-control-sm  @error('promotion.id_faculte') is-invalid @enderror"
+                        wire:model.debounce.800ms="byPromotion">
+                        <option value="">---Faculte-----</option>
+                        @foreach($facultes as $row)
+                        <option value="{{$row->id_faculte}}">{{$row->designation_faculte}}</option>
+                        @endforeach
+                    </select>
+                    @error('promotion.designation_promotion')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                </div>
+
             </div>
         </div>
-        @if($filter)
 
-        @endif
 
-        <div class="card-body bg-white pt-5">
 
-            <table id="example2" class="table table-bordered table-responsive table-striped bg-white">
+        <div class="card-body bg-white mb-3 pt-2">
+
+            <div class="mb-3">
+                <div class="col-md-2">
+
+                    <select class="form-control form-control-sm" title="" style="width: 80px;" wire:model="pageN">
+
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                    </select>
+
+                </div>
+            </div>
+            <table class="table table-bordered table-responsive table-striped bg-white">
                 <thead>
                     <tr>
                         <th>action</th>
@@ -71,7 +84,7 @@
                                     class="fa fa-eye" aria-hidden="true"></i></a>
 
                         </td>
-                        <td>{{$etudiant->id}}</td>
+                        <td>{{$increment}}</td>
                         <td>{{$etudiant->matricule_etudiant}}</td>
                         <td>{{$etudiant->Nom}}</td>
                         <td>{{$etudiant->Prenom}}</td>
@@ -125,246 +138,40 @@
 
         </div>
 
+        {{$etudiants->links()}}
 
     </div>
-
-
+    <div class="">
+        <div id="print">
+            @include('PDF.listeEtudiant')
+        </div>
+    </div>
 </div>
 
 
 
-@push('custom-script')
-<script src="{{asset('js/responsive.bootstrap4.min.js')}}" type=""></script>
-<script src="{{asset('js/DataTable.responsive.min.js')}}" type=""></script>
-<script src="{{asset('js/pdfMake.js')}}" type=""></script>
-<script src="{{asset('js/vfs_fonts.js')}}" type=""></script>
-<script src="{{asset('js/buttons.html5.js')}}" type=""></script>
-<script src="{{asset('js/jszip.js')}}" type=""></script>
+
+
+
+@section('script')
 
 <script>
-    window.addEventListener('userAdmis', event=> {
+    window.addEventListener('print', event=> {
 
-
-        Swal.fire({
-            position: 'top-end',
-            icon:'success',
-            toast: true,
-            title:"operation reussie",
-            text:event.detail.message,
-            showConfirmButton: false,
-            timer:3000
-
-        })
-
-    });
-
-
-    window.addEventListener('PreventMessage', event=> {
-
-        Swal.fire({
-
-            icon:'warning',
-
-            title:"Statut dossier",
-            text:event.detail.message,
-            showConfirmButton: true,
-            timer:3000
-
-        })
-
-    });
-
-    $(function () {
-        $("#example1").DataTable({
-            "paging": true,
-            "select":true,
-            "responsive":true,
-
-
-            "buttons": [
-              {
-                extend:'excel',
-                title:'USAKIN',
-                messageTop:'usakin'
-              },
-              {
-                extend:'pdf',
-                 messageTop:'usakin',
-                 donwload:true,
-
-              },
-              {
-               text:'imprimer',
-               title:'Nouveau inscrit',
-                extend:'print',
-                autoPrint:false,
-                customize: function (win) {
-                    $(win.document.body)
-                      .css('font-size','10t').prepend(
-                          '<img src="{{asset('images/logo2.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" style="position:relative; top:0;left:0" width="70" >');
-                      $(win.document.body).find('table').addClass('compact').css('font-size','inherit');
-                    $(win.document.body).find('h1').addClass('text-center').css('text-align','center');
-
-                },
-                exportOptions:{
-                    columns:[1,2,3,4,6],
-                    format: {
-                       body: function ( data, row, column, node ) {
-                          return column === 0 ?
-                          data.charAt(0).toUpperCase() + data.slice(1) :
-                              data;}
-                           }
-                      }
-              },
-               {
-                text:'Visible',
-                extend:'colvis',
-                messageTop:'usakin'
-              }
-
-              ]
-        }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
-
-
-
-    });
-
-    $(function () {
-        const table= $("#example2").DataTable({
-            "paging": true,
-            "select":true,
-            "responsive":true,
-            "lengthChange": true,
-            "autoWidth": false,
-            "buttons": [
-                {
-                    extend:'excel',
-                    title:'USAKIN',
-                    messageTop:'usakin'
-                },
-                {
-                    extend:'pdf',
-                    messageTop:'usakin',
-                    donwload:true,
-
-                },
-                {
-                    text:'imprimer',
-                    title:'Nouveau inscrit',
-                    extend:'print',
-                    autoPrint:false,
-                    customize: function (win) {
-                        $(win.document.body)
-                            .css('font-size','10t').prepend(
-                            '<img src="{{asset('images/logo2.jpg')}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" style="position:relative; top:0;left:0" width="70" >');
-                        $(win.document.body).find('table').addClass('compact').css('font-size','inherit');
-                        $(win.document.body).find('h1').addClass('text-center').css('text-align','center');
-
-                    },
-                    exportOptions:{
-                        columns:[1,2,3,4,6],
-                        format: {
-                            body: function ( data, row, column, node ) {
-                                return column === 0 ?
-                                    data.charAt(0).toUpperCase() + data.slice(1) :
-                                    data;}
-                        }
-                    }
-                },
-                {
-                    text:'Visible',
-                    extend:'colvis',
-                    messageTop:'usakin'
-                }
-
-            ]
-        }).buttons().container().appendTo('#example1_wrapper  .col-md-6:eq(0)');
-
-    });
-
-
-
-
-
-/*$(function () {
-    $('#example1').append('<caption style="caption-side:top">USAKIN</caption>');
-    $('#example1').DataTable({
-          dom:'Bfrtip',
-          buttons:[
-
-              {
-                extend:'excel',
-                title:'USAKIN',
-                messageTop:'usakin'
-              },
-              {
-                extend:'pdf',
-                 messageTop:'usakin',
-                 donwload:true,
-
-              },
-              {
-                extend:'print',
-                messageTop:'usakin'
-              },
-               {
-                extend:'colvis',
-                messageTop:'usakin'
-              }
-
-
-
-            ]
-    });
-
-     $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false,
-    "buttons": ["csv", "excel", "pdf", "print", "colvis"]
-  })
-
-}); */
- /*$(function () {
-  $('#example1').DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-          dom:'Bfrtip',
-          buttons:[
-
-              {
-                extend:'excel',
-                title:'USAKIN',
-                messageTop:'usakin'
-              },
-              {
-                extend:'pdf',
-                 messageTop:'usakin',
-                 donwload:true,
-
-              },
-              {
-                extend:'print',
-                messageTop:'usakin'
-              },
-               {
-                extend:'colvis',
-                messageTop:'usakin'
-              }
-
-
-
-            ]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  $('#example2').DataTable({
-    "paging": true,
-    "lengthChange": false,
-    "searching": false,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-  });
-}); */
-
+       
+   var data ='<input type="button" id="printPageButton" class="hidden-print" style="display:block ;width:100% ;border:none;background-color:#008B8B;color:#fff; padding:14px 28px;font-size:16px;cursor:pointer;text-align:center"value="IMPRIMER" onClick="window.print()" />';
+    data += document.getElementById('print').innerHTML;
+            myReceipt=window.open("", "myWin","left=200, top =200, width=1000, height =800");
+            myReceipt.screnX =0;
+            myReceipt.screnY = 0;
+            myReceipt.document.write(data);
+            myReceipt.document.title ="Liste";
+            myReceipt.focus();
+            setTimeout(()=>{
+            myReceipt.close();
+            },10000) 
+            
+     });
 
 </script>
-
-@endpush
+@endsection

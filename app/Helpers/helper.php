@@ -30,25 +30,25 @@ class helper
     public static function valideData()
     {
         return [
-            'nom' => 'required|string',
-            'Postnom' => 'required|string',
-            'prenom' => 'required|string',
-            'genre' => 'required|string',
-            'etat_civil' => 'required|string',
-            'nationalite' => 'required',
-            'lieu_naiss' => 'required',
-            'date_naiss' => 'required',
-            'email' => 'required|email|unique:etudiants',
-            'telephone' => 'required',
+            'etudiant.nom' => 'required|string',
+            'etudiant.postnom' => 'required|string',
+            'etudiant.prenom' => 'required|string',
+            'etudiant.genre' => 'required|string',
+            'etudiant.etat_civil' => 'required|string',
+            'etudiant.nationalite' => 'required',
+            'etudiant.lieu_naiss' => 'required',
+            'etudiant.date_naiss' => 'required',
+            'etudiant.email' => 'required|email|unique:etudiants',
+            'etudiant.telephone' => 'required|numeric',
             'adresse' => 'required|',
             'adresse.commune' => 'required|string',
-            'nom_pere' => 'required',
-            'nom_mere' => 'required',
+            'etudiant.nom_pere' => 'required',
+            'etudiant.nom_mere' => 'required',
             'localisation_parent.province' => 'required',
             'localisation_parent.district' => 'required',
             'localisation_parent.commune' => 'required',
-            'nom_tuteur' => 'required',
-            'tel_tuteur' => 'required',
+            'etudiant.nom_tuteur' => 'required',
+            'etudiant.tel_tuteur' => 'required',
             'addresse_tuteur.Numero' => 'required',
             'addresse_tuteur.Avenue' => 'required',
             'addresse_tuteur.Quartier' => 'required',
@@ -69,6 +69,25 @@ class helper
             'photo' => 'required|mimes:jpeg,png,svg,jpg,gif|max:5000',
             'terms' => 'accepted'
 
+        ];
+    }
+    public static function messages()
+    {
+        return [
+            'etudiant.nom.required' => 'le champs nom est requis',
+            'etudiant.postnom.required' => 'le champs postnom est requis',
+            'etudiant.prenom.required' => 'le champs prenom est requis',
+            'etudiant.genre.required' => 'le champs genre est requis',
+            'etudiant.etat_civil.required' => 'le champs etat civil est requis',
+            'etudiant.nationalite.required' => 'le champs nationalite est requis',
+            'etudiant.lieu_naiss.required' => 'le champs lieu de naissance est requis',
+            'etudiant.date_naiss.required' => 'le champs date de naissance est requis',
+            'etudiant.email.required' => 'le champs email est requis',
+            'etudiant.telephone.required' => 'le champs telephone est requis',
+            'etudiant.nom_tuteur' => 'le champs nom tuteur est requis',
+            'etudiant.tel_tuteur' => 'le champs telephone est requis',
+            'etudiant.nom_pere' => 'le champs nom pere  est requis',
+            'etudiant.nom_mere' => 'le champs nom mere est requis',
         ];
     }
 }

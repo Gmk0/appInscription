@@ -12,20 +12,30 @@
 <div>
 
   <div class="card-body bg-white pt-5">
-    <div>
-      <div class="form-group col-md-3">
-        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="search"
-          wire:model.debounce.800ms="search">
+    <div class=" ml-2 mb-4 d-flex justify-content-between">
+      <div class="">
+
+        <button type="button" wire:click="print()" class="btn btn-outline-primary"><i class="fa fa-print"></i></button>
+
+        <button class="btn btn-outline-primary" type="button" onClick="printReceipt()"><i
+            class="fa fa-print">Excel</i></button>
       </div>
+      <div class="row">
 
-      <div class="form-group col-md-3">
-        < <select class="form-control  @error('promotion.id_faculte') is-invalid @enderror"
-          wire:model.debounce.800ms="faculte">
-          <option selected>---Faculte-----</option>
-          @foreach($facultes as $row)
-          <option value="{{$row->id_faculte}}">{{$row->designation_faculte}}</option>
+        <div class="col-md-6">
 
-          @endforeach
+          <input type="text" class="form-control form-control-sm" wire:model.debounce.800ms="search"
+            placeholder=" search Name or Matricule">
+
+        </div>
+        <div class="col-md-6">
+
+          <select class="form-control form-control-sm  @error('promotion.id_faculte') is-invalid @enderror"
+            wire:model.debounce.800ms="byPromotion">
+            <option value="">---Faculte-----</option>
+            @foreach($facultes as $row)
+            <option value="{{$row->id_faculte}}">{{$row->designation_faculte}}</option>
+            @endforeach
           </select>
           @error('promotion.designation_promotion')
           <span class="invalid-feedback" role="alert">
@@ -33,96 +43,123 @@
           </span>
           @enderror
 
+        </div>
+
       </div>
-
-
     </div>
 
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-2">
 
-    <table id="" class="table table-bordered bg-gradient-white table-striped">
-      <thead>
-        <tr>
-          <th>action</th>
-          <th>N°</th>
-          <th>Matricule</th>
-          <th>Nom</th>
-          <th>Prenom</th>
+          <select class="form-control form-control-sm" title="" style="width: 80px;" wire:model="pageN">
 
-          <th>Telephone</th>
-          <th>Faculte</th>
-          <th>promotion</th>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
 
+        </div>
 
-          <th>Document</th>
-          <th>Statut</th>
-          <th>Paiement</th>
+        <div class="col-md-2">
+         
+        </div>
 
-        </tr>
-      </thead>
-      <tbody>
-        {{Form::hidden('',$increment =1)}}
-        @foreach ($etudiants as $etudiant )
-        <tr>
-          <td class="text-center">
-            <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye"
-                aria-hidden="true"></i></a>
-
-          </td>
-          <td>{{$increment}}</td>
-          <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
-          <td>{{$etudiant->etudiant->Nom}}</td>
-          <td>{{$etudiant->etudiant->Prenom}}</td>
-
-          <td>{{$etudiant->etudiant->Telephone}}</td>
-          <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
-          <td>{{$etudiant->promotion->designation_promotion}}</td>
+        <br>
 
 
-          @if(countDocument($etudiant->etudiant->matricule_etudiant))
-          <td><span class="badge badge-pill badge-success">Complet</span></td>
-          @else
-          <td><button class="btn btn-link" id="click" type="button"> <span
-                class="badge badge-pill badge-warning">Incomplet</span>
-            </button></td>
-          @endif
-          @if($etudiant->statut_etudiant==1)
-          <td><span class="badge badge-pill badge-success">Admis</span></td>
-          @else
-          <td><span class="badge badge-pill badge-warning">No Admis</span></td>
-          @endif
-
-          @if($etudiant->paiement )
-          <td><span class="badge badge-pill badge-success">Complet</span></td>
-          @else
-          <td><span class="badge badge-pill badge-warning">incomplet</span></td>
-          @endif
-
-        </tr>
-        {{Form::hidden('',$increment =$increment+1)}}
-        @endforeach
-
-      </tbody>
-      <tfoot>
-        <tr>
-          <th>action</th>
-          <th>N°</th>
-          <th>Matricule</th>
-          <th>Nom</th>
-          <th>Prenom</th>
-
-          <th>Telephone</th>
-          <th>Faculte</th>
-          <th>promotion</th>
 
 
-          <th>Document</th>
-          <th>Statut</th>
-          <th>Paiement</th>
 
 
-        </tr>
-      </tfoot>
-    </table>
+      </div>
+
+      <table id="" class="table table-bordered bg-gradient-white table-striped">
+        <thead>
+          <tr>
+            <th>action</th>
+            <th>N°</th>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+
+            <th>Telephone</th>
+            <th>Faculte</th>
+            <th>promotion</th>
+
+
+            <th>Document</th>
+            <th>Statut</th>
+            <th>Paiement</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {{Form::hidden('',$increment =1)}}
+          @foreach ($etudiants as $etudiant )
+          <tr>
+            <td class="text-center">
+              <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye"
+                  aria-hidden="true"></i></a>
+
+            </td>
+            <td>{{$increment}}</td>
+            <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
+            <td>{{$etudiant->etudiant->Nom}}</td>
+            <td>{{$etudiant->etudiant->Prenom}}</td>
+
+            <td>{{$etudiant->etudiant->Telephone}}</td>
+            <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
+            <td>{{$etudiant->promotion->designation_promotion}}</td>
+
+
+            @if(countDocument($etudiant->etudiant->matricule_etudiant))
+            <td><span class="badge badge-pill badge-success">Complet</span></td>
+            @else
+            <td><button class="btn btn-link" id="click" type="button"> <span
+                  class="badge badge-pill badge-warning">Incomplet</span>
+              </button></td>
+            @endif
+            @if($etudiant->statut_etudiant==1)
+            <td><span class="badge badge-pill badge-success">Admis</span></td>
+            @else
+            <td><span class="badge badge-pill badge-warning">No Admis</span></td>
+            @endif
+
+            @if($etudiant->paiement )
+            <td><span class="badge badge-pill badge-success">Complet</span></td>
+            @else
+            <td><span class="badge badge-pill badge-warning">incomplet</span></td>
+            @endif
+
+          </tr>
+          {{Form::hidden('',$increment =$increment+1)}}
+          @endforeach
+
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>action</th>
+            <th>N°</th>
+            <th>Matricule</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+
+            <th>Telephone</th>
+            <th>Faculte</th>
+            <th>promotion</th>
+
+
+            <th>Document</th>
+            <th>Statut</th>
+            <th>Paiement</th>
+
+
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
     {{$etudiants->links()}}
   </div>
 </div>

@@ -16,8 +16,9 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->id('id_promotion');
             $table->string('designation_promotion');
-            $table->foreignId('id_faculte');
-            $table->engine = "InnoDB";
+            $table->foreignId('id_faculte')->cascadeOnUpdate()
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

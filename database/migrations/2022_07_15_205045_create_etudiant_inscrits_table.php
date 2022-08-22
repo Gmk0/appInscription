@@ -22,10 +22,12 @@ class CreateEtudiantInscritsTable extends Migration
                 ->onDelete('cascade')
                 ->cascadeOnUpdate();
             $table->unsignedBigInteger('id_promotion');
-           // $table->integer('id_annee');
-            $table->foreign('id_promotion')->references('id_promotion')->on('promotions');
+            // $table->integer('id_annee');
+            $table->foreign('id_promotion')->references('id_promotion')->on('promotions')->cascadeOnUpdate()
+                ->onDelete('cascade');
 
-            $table->foreignId('id_annee')->references('id_annee')->on('annee_academiques');
+            $table->foreignId('id_annee')->references('id_annee')->on('annee_academiques')->cascadeOnUpdate()
+                ->onDelete('cascade');
 
             $table->string('statut_etudiant')->nullable()->default('0');
 

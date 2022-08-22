@@ -16,8 +16,18 @@ class EtudiantInscris extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    public $search = "";
+    public $search;
     public $faculte;
+    public $byPromotion = null;
+    public $filter = false;
+    public $pageN;
+    public $count;
+    public $etudiantCount = [
+        'philo' => "",
+        'Cs' => "",
+        'Th' => ""
+    ];
+    public $etudiant;
 
     public $currentPage = PAGELIST;
 
@@ -59,11 +69,16 @@ class EtudiantInscris extends Component
 
 
         return view('livewire.etudiant.etudiant-inscris', [
-            'etudiants' => etudiantInscrit::Where('matricule_etudiant', 'LIKE', "%{$this->search}%")
-                ->orWhere('id_promotion', $this->faculte)
-                ->orderBy('created_at', 'DESC')
-                ->paginate(10),
-            "facultes" => faculte::all(),
+            'facultes' => faculte::all(),
+
+
+            'etudiants' => etudiantInscrit::when($this->byPromotion, function ($query) {
+                $query->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+            })->orWhere('matricule_etudiant', 'Like', "%{$this->search}%")
+                ->paginate($this->pageN),
+
+
+
         ])->extends('layouts.admin')
             ->section('content');
     }

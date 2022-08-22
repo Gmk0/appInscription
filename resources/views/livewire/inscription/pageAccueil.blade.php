@@ -1,68 +1,124 @@
-<div class="container m-3">
+<div class="container-fluid">
 
-    <aside class="col-sm-3 no_mobile_menu bg-light p-3" role="complementary">
-        <div class="row">
-            <section id="block-uclcore-logo-of-site" class="bg-secondary bg-gradient p-3 text-white">
-                <div class="link_back_to_parent ">
-                    <a href="" title="Service des inscriptions" class="text-white text-decoration-none ">Service des
-                        inscriptions<i class="fa fa-home"></i></a>
+    <div class="row m-2 mt-4">
+        <div class="card ">
+
+            <div class="card-body">
+                <h4>Services D'inscription</h4>
+                <div class="row">
+                    <div class="col-5 col-sm-3">
+                        <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist"
+                            aria-orientation="vertical">
+                            <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home"
+                                role="tab" aria-controls="vert-tabs-home" aria-selected="false">Inscription</a>
+                            <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile"
+                                role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Modifier
+                                Inscription</a>
+                            <a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill"
+                                href="#vert-tabs-messages" role="tab" aria-controls="vert-tabs-messages"
+                                aria-selected="false">Inscription Special</a>
+                            <a class="nav-link " id="vert-tabs-settings-tab" data-toggle="pill"
+                                href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings"
+                                aria-selected="true">Reinscription</a>
+                        </div>
+                    </div>
+                    <div class="col-7 col-sm-9" style="min-height: 350px;">
+                        <div class="tab-content" id="vert-tabs-tabContent">
+                            <div class="tab-pane fade active show text-left fade" id="vert-tabs-home" role="tabpanel"
+                                aria-labelledby="vert-tabs-home-tab">
+                                <h3 class="text-center">Condition D'admission</h3>
+                                <div class="mb-3">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus
+                                    ullamcorper dui
+                                    molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat
+                                    commodo.
+                                    Etiam
+                                    odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque
+                                    tincidunt
+                                    nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique
+                                    senectus
+                                    et
+                                    netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit
+                                    suscipit.
+                                    Phasellus
+                                    porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae
+                                    lacus. Etiam
+                                    ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a
+                                    nibh cursus
+                                    pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at,
+                                    semper
+                                    vitae
+                                    lectus. Cras lacinia erat eget sapien porta consectetur.
+                                </div>
+                                <div class="form-check mb-6">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" wire:model="condition">
+                                        Accepter
+                                    </label>
+                                    <span class="text-danger">@error('condition') {{$message}}@enderror</span>
+                                    <button class="btn btn-outline-primary"
+                                        wire:click="goInscription">S'inscrire</button>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel"
+                                aria-labelledby="vert-tabs-profile-tab">
+                                Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus
+                                ut
+                                ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur
+                                adipiscing
+                                elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+                                Curae;
+                                Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere
+                                purus
+                                ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc.
+                                Nunc
+                                euismod pellentesque diam.
+                            </div>
+                            <div class="tab-pane fade" id="vert-tabs-messages" role="tabpanel"
+                                aria-labelledby="vert-tabs-messages-tab">
+                                Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus
+                                volutpat augue
+                                id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit
+                                sem, ac
+                                tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut
+                                velit
+                                condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus
+                                tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet
+                                sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus
+                                ipsum
+                                gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt
+                                eleifend
+                                ac ornare magna.
+                            </div>
+                            <div class="tab-pane fade" id="vert-tabs-settings" role="tabpanel"
+                                aria-labelledby="vert-tabs-settings-tab">
+                                Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
+                                turpis
+                                ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis
+                                vulputate.
+                                Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra.
+                                Donec
+                                interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at
+                                consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea
+                                dictumst.
+                                Praesent imperdiet accumsan ex sit amet facilisis.
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
-            <section id="block-uclcore-current-page-submenu" class="">
-                <div class="p-2 mt-4 bg-secondary ">
-                    <a href="" title="Retour à la page supérieure" class="text-decoration-none text-bold">Retour à la
-                        page supérieure<i class="fa fa-arrow-up"></i></a>
-                </div> 
 
-                <div class="row mt-4">
-                    <ul class="list-group">
-
-                        <li class="list-group-item list-group-item-secondary">
-                            <a href=""
-                                class="text-dark text-decoration-none">Calendrier des inscriptions</a>
-                        </li>
-
-                        <li class="list-group-item list-group-item-secondary">
-                            <a href="/fr/etudier/inscriptions/procedures-d-inscription-pour-etudiants-europeens.html"
-                                class="text-dark text-decoration-none">Inscription régulière pour étudiants ecclesiaste</a>
-                        </li>
-
-                       
-
-                        <li class="list-group-item list-group-item-secondary">
-                            <a href="/fr/etudier/inscriptions/inscriptions-particulieres.html"
-                                class="text-dark text-decoration-none">Inscriptions particulières</a>
-                        </li>
-
-                        <li class="list-group-item list-group-item-secondary">
-                            <a href="/fr/etudier/inscriptions/reinscriptions.html"
-                                class="text-dark text-decoration-none">Réinscription</a>
-                        </li>
-
-                       
-                                <li class="list-group-item list-group-item-secondary">
-                                    <a href="/fr/etudier/inscriptions/modifier-son-inscription-0.html"
-                                        class="second">Modifier son inscription</a>
-                                </li>
-                          
-
-                        <li class="p-3 list-group-item list-group-item-secondary">
-                            <a href="/fr/etudier/inscriptions/deja-inscrit-e-s-ti.html" class="text-dark text-decoration-none">Dejà
-                                inscrit·e·s?</a>
-                        </li>
-                    </ul>
-                </div>
-
-            </section>
+            </div>
+            <!-- /.card -->
         </div>
-    </aside>
+    </div>
 
 
 
 </div>
 
 <style>
-.list-group-item :hover{
-    color: yellow;
- }
+    .list-group-item :hover {
+        color: yellow;
+    }
 </style>

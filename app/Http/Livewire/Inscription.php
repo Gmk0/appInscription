@@ -22,27 +22,21 @@ class Inscription extends Component
     use WithFileUploads;
 
     //etudiant_element
-    public $nom;
-    public $Postnom;
-    public $prenom;
-    public $genre;
-    public $etat_civil;
-    public $telephone;
-    public $nationalite;
-    public $lieu_naiss;
-    public $date_naiss;
+
+    public $etudiant = [];
+
     public $adresse = [];
+    public $institut = [];
     public $institut_rel;
     public $sigle;
     public $etat_eclesial;
-    public $email;
-    public $nom_pere;
-    public $nom_mere;
+
+
     public $localisation_parent = [];
     public $photo;
+    public $condition;
     //tuteur
-    public $nom_tuteur;
-    public $tel_tuteur;
+
     public $addresse_tuteur = [];
     //etudes_faites
     public $diplomeEtat = [];
@@ -67,21 +61,23 @@ class Inscription extends Component
     public $upload_certificat;
     public $upload_diplome;
     public $upload_bulletin;
-    public $currentPage = PAGELIST;
+    public $currentPage;
     public $ecclesiaste = false;
+
 
     public function mount()
     {
         $this->currentStep = 1;
+        $this->currentPage = PAGEEDIT;
     }
     public function voirEclesiaste()
     {
-        
-        $this->ecclesiaste  =true;
+
+        $this->ecclesiaste  = true;
     }
     public function DesactiverEclesiaste()
     {
-        $this->ecclesiaste =false;
+        $this->ecclesiaste = false;
     }
 
     public function increaseStep()
@@ -102,37 +98,47 @@ class Inscription extends Component
             $this->currentStep = 1;
         }
     }
+    public function goInscription()
+    {
+        $this->validate([
+            'condition' => 'accepted'
+        ]);
+
+        $this->currentPage = PAGELIST;
+    }
+
 
     public function validateData()
     {
+        $message = helper::messages();
         if ($this->currentStep == 1) {
             $this->validate([
-                'nom' => 'required|string',
-                'Postnom' => 'required|string',
-                'prenom' => 'required|string',
-                'genre' => 'required|string',
-                'etat_civil' => 'required|string',
-                'nationalite' => 'required',
-                'lieu_naiss' => 'required',
-                'date_naiss' => 'required',
-                'email' => 'required|email|unique:etudiants',
-                'telephone' => 'required|numeric',
+                'etudiant.nom' => 'required|string',
+                'etudiant.postnom' => 'required|string',
+                'etudiant.prenom' => 'required|string',
+                'etudiant.genre' => 'required|string',
+                'etudiant.etat_civil' => 'required|string',
+                'etudiant.nationalite' => 'required',
+                'etudiant.lieu_naiss' => 'required',
+                'etudiant.date_naiss' => 'required',
+                'etudiant.email' => 'required|email|unique:etudiants',
+                'etudiant.telephone' => 'required|numeric',
                 'adresse.Commune' => 'required|string',
-            ]);
+            ], $message);
         } elseif ($this->currentStep == 2) {
             $this->validate([
-                'nom_pere' => 'required',
-                'nom_mere' => 'required',
+                'etudiant.nom_pere' => 'required',
+                'etudiant.nom_mere' => 'required',
                 'localisation_parent.Province' => 'required',
                 'localisation_parent.District' => 'required',
                 'localisation_parent.Commune' => 'required',
-                'nom_tuteur' => 'required',
-                'tel_tuteur' => 'required|min:10',
+                'etudiant.nom_tuteur' => 'required',
+                'etudiant.tel_tuteur' => 'required|min:10',
                 'addresse_tuteur.Numero' => 'required',
                 'addresse_tuteur.Avenue' => 'required',
                 'addresse_tuteur.Quartier' => 'required',
                 'addresse_tuteur.Commune' => 'required',
-            ]);
+            ], $message);
         } elseif ($this->currentStep == 3) {
 
             $this->validate([
@@ -144,7 +150,6 @@ class Inscription extends Component
                 'diplomeEtat.DateDu' => 'required',
 
             ]);
-          
         } elseif ($this->currentStep == 4) {
 
             $this->validate([
@@ -178,35 +183,35 @@ class Inscription extends Component
         }
 
         if (!empty($matricule)) {
-            $imageName = 'image'.time().$this->photo->getClientOriginalName();
+            $imageName = 'image' . time() . $this->photo->getClientOriginalName();
             $upload_image = $this->photo->storeAs('public/students_images', $imageName);
             if ($upload_image) {
                 $valueEtudiant = array(
-                    "matricule_etudiant" => $matricule, "Nom" => $this->nom, 'PostNom' => $this->Postnom, 'Prenom' => $this->prenom,
-                    'Genre' => $this->genre, 'email' => $this->email, 'etat_civil' => $this->etat_civil, 'nationalite' => $this->nationalite,
-                    'lieu_naiss' => $this->lieu_naiss,
-                    'date_naiss' => $this->date_naiss,
-                    'email' => $this->email,
-                    'telephone' => $this->telephone,
+                    "matricule_etudiant" => $matricule, "Nom" => $this->etudiant['nom'], 'PostNom' => $this->etudiant['prenom'], 'Prenom' => $this->etudiant['prenom'],
+                    'Genre' => $this->etudiant['genre'], 'email' => $this->etudiant['email'], 'etat_civil' => $this->etudiant['etat_civil'], 'nationalite' => $this->etudiant['nationalite'],
+                    'lieu_naiss' => $this->etudiant['lieu_naiss'],
+                    'date_naiss' => $this->etudiant['date_naiss'],
+
+                    'telephone' => $this->etudiant['telephone'],
                     'adresse_etudiant' => json_encode($this->adresse),
-                    'Nom_pere' => $this->nom_pere,
-                    'Nom_mere' => $this->nom_mere,
+                    'Nom_pere' => $this->etudiant['nom_pere'],
+                    'Nom_mere' => $this->etudiant['nom_mere'],
                     'localisation_parent' => json_encode($this->localisation_parent),
                     'Photo' => $imageName,
                     'created_at' => Carbon::now(),
                 );
                 if ($valueEtudiant) {
-                    $aptitude_physique ='aptPh'.time().$this->aptitude_physique->getClientOriginalName();
+                    $aptitude_physique = 'aptPh' . time() . $this->aptitude_physique->getClientOriginalName();
                     $this->upload_aptPh = $this->aptitude_physique->storeAs('public/students_doc', $aptitude_physique);
-                    $certificat_naiss = 'cert_Naiss'.time(). $this->certificat_naiss->getClientOriginalName();
+                    $certificat_naiss = 'cert_Naiss' . time() . $this->certificat_naiss->getClientOriginalName();
                     $this->upload_certificat = $this->certificat_naiss->storeAs('public/students_doc', $certificat_naiss);
-                    $diplome_etat ='diplome'.time(). $this->diplome_etat_doc->getClientOriginalName();
+                    $diplome_etat = 'diplome' . time() . $this->diplome_etat_doc->getClientOriginalName();
                     $this->upload_diplome = $this->diplome_etat_doc->storeAs('public/students_doc', $diplome_etat);
-                    $bulletin = 'bulletin'.time(). $this->bulletin->getClientOriginalName();
+                    $bulletin = 'bulletin' . time() . $this->bulletin->getClientOriginalName();
                     $this->upload_bulletin = $this->bulletin->storeAs('public/students_doc', $bulletin);
 
                     $valuesTuteur = array(
-                        "matricule_etudiant" => $matricule, "Nom_tuteur" => $this->nom_tuteur, "telephone_tuteur" => $this->tel_tuteur,
+                        "matricule_etudiant" => $matricule, "Nom_tuteur" => $this->etudiant['nom_tuteur'], "telephone_tuteur" => $this->etudiant['tel_tuteur'],
                         "adresse_tuteur" => json_encode($this->addresse_tuteur)
                     );
                     $valueDossier = array(
@@ -219,7 +224,7 @@ class Inscription extends Component
                     $etudesRealise = array(
                         "matricule_etudiant" => $matricule,
                         "Diplome_access" => json_encode($this->diplomeEtat),
-                        "Cursus_univeristaire" => json_encode($this->cursus_universitaire) 
+                        "Cursus_univeristaire" => json_encode($this->cursus_universitaire)
                     );
                     $admis_inscription = array(
                         "matricule_etudiant" => $matricule,
@@ -229,9 +234,9 @@ class Inscription extends Component
                     );
                     $etatReligieux = array(
                         "matricule_etudiant" => $matricule,
-                        "institut"=> $this->institut_rel,
-                        "sigle"=> $this->sigle,
-                        "etat"=> $this->etat_eclesial,
+                        "institut" => $this->institut_rel,
+                        "sigle" => $this->sigle,
+                        "etat" => $this->etat_eclesial,
                     );
 
                     if (!empty($admis_inscription) && !empty($valueEtudiant) && !empty($valueDossier)) {
@@ -239,11 +244,10 @@ class Inscription extends Component
                         dossierEtudiant::insert($valueDossier);
                         tuteuretudiant::insert($valuesTuteur);
                         etudeRealiser::insert($etudesRealise);
-                        if(!empty($this->institut_rel) && !empty($this->sigle)){
+                        if (!empty($this->institut_rel) && !empty($this->sigle)) {
                             etatEcclesial::insert($etatReligieux);
                         };
                         etudiantInscrit::create($admis_inscription);
-
                     } else {
                         return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
                     }
@@ -268,10 +272,11 @@ class Inscription extends Component
     public function updated($propertyName)
     {
         $data = Helper::valideData();
-
+        $messages = helper::messages();
         $this->validateOnly(
             $propertyName,
-            $data
+            $data,
+            $messages
         );
     }
 }

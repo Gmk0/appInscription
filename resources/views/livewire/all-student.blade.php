@@ -1,5 +1,6 @@
+@section('title','Liste Etudiant')
 <div>
-    <div cla class="row">
+    <div cla class="row p-2">
         <div class=" ml-2 mb-4 d-flex justify-content-between">
             <div class="">
 
@@ -53,7 +54,7 @@
 
                 </div>
             </div>
-            <table class="table table-bordered table-responsive table-striped bg-white">
+            <table class="table table-bordered table-striped bg-white">
                 <thead>
                     <tr>
                         <th>action</th>
@@ -141,7 +142,7 @@
         {{$etudiants->links()}}
 
     </div>
-    <div class="">
+    <div class="modal">
         <div id="print">
             @include('PDF.listeEtudiant')
         </div>

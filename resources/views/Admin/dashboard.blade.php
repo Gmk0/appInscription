@@ -1,10 +1,13 @@
 @extends('layouts.admin')
 @section('title','Tableau de Bord')
-    
+
 
 @section('content')
-<div class="p-2">
+<div class="p-1">
     @livewire('dash-board-admin')
+</div>
+<div>
+   
 </div>
 
 

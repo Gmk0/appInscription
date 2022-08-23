@@ -19,24 +19,23 @@ class EtudiantInscris extends Component
     public $search;
     public $faculte;
     public $byPromotion = null;
-    public $byPromotions;
     public $filter = false;
     public $pageN;
-    public $count;
-    public $order;
-    public $etudiantCount = [
-        'philo' => "",
-        'Cs' => "",
-        'Th' => ""
-    ];
-    public $etudiant;
+    public $Listeetudiants;
 
-    public $currentPage = PAGELIST;
+    public $order;
+    protected $queryString = [
+        'search' => ['expect' => ''],
+        'byPromotion' => ['expect' => '']
+    ];
+
 
 
     public function mount()
     {
         $this->order = "desc";
+        $this->Listeetudiants = etudiant::orderBy('nom','asc')
+        ->get();
     }
 
     public function statusChange($id)
@@ -57,9 +56,21 @@ class EtudiantInscris extends Component
 
 
 
-    public function PageEtudiant()
+    public function updating($name, $val)
     {
-        $this->currentPage = PAGELIST;
+        if (($name == 'search') || ($name == 'byPromotion')) {
+            $this->resetPage();
+        }
+    }
+    public function print()
+    {
+        $this->dispatchBrowserEvent('print');
+        $this->Listeetudiants = etudiant::when($this->byPromotion, function ($query) {
+            $query->whereHas('inscription', function ($q) {
+                $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+            });
+        })->orderBy('nom','asc')
+        ->get();
     }
 
     public function dumpDoc($name)
@@ -76,6 +87,18 @@ class EtudiantInscris extends Component
 
         return view('livewire.etudiant.etudiant-inscris', [
             'facultes' => faculte::all(),
+            'count' => etudiantInscrit::when($this->byPromotion, function ($query) {
+                $query->whereHas('promotion', function ($q) {
+                    $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+                });
+            })->get(),
+            'etudiantsListe' => etudiantInscrit::when($this->byPromotion, function ($query) {
+                $query->whereHas('promotion', function ($q) {
+                    $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+                });
+            })
+                ->get(),
+            'faculteName' => faculte::where('id_faculte', $this->byPromotion)->first(),
 
 
             'etudiants' => etudiantInscrit::when($this->byPromotion, function ($query) {

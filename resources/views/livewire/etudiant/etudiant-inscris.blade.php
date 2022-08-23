@@ -12,20 +12,7 @@
 <div>
 
   <div class="card-body bg-white pt-5">
-    <div class=" ml-2 mb-4 d-flex justify-content-between">
-      <div class="">
 
-        <button type="button" wire:click="print()" class="btn btn-outline-primary"><i class="fa fa-print"></i></button>
-
-        <button class="btn btn-outline-primary" type="button" onClick="printReceipt()"><i
-            class="fa fa-print">Excel</i></button>
-      </div>
-      <div class="row">
-
-
-
-      </div>
-    </div>
 
     <div class="card-body">
       <div class="row mb-3">
@@ -73,7 +60,21 @@
 
         </div>
         <div class="col-md-2 mt-3">
-          <label for="">Count</label>
+          <label for="">
+            @if(!empty($byPromotion))
+            {{$faculteName->designation_faculte}} :{{$count->count()}}
+            @else
+            Total : {{$count->count()}}
+            @endif
+          </label>
+        </div>
+        <div class="mb-4 d-flex justify-content-between">
+          <div class="">
+            <button type="button" wire:click="print()" class="btn btn-outline-primary"><i
+                class="fa fa-print"></i></button>
+            <button class="btn btn-outline-primary" type="button" onClick="printReceipt()"><i
+                class="fa fa-print">Excel</i></button>
+          </div>
         </div>
 
 
@@ -105,7 +106,7 @@
         </thead>
         <tbody>
           {{Form::hidden('',$increment =1)}}
-          @foreach ($etudiants as $etudiant )
+          @forelse ($etudiants as $etudiant )
           <tr>
             <td class="text-center">
               <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye"
@@ -143,7 +144,10 @@
 
           </tr>
           {{Form::hidden('',$increment =$increment+1)}}
-          @endforeach
+
+          @empty
+          <p class="text-danger">Etudiant non trouve</p>
+          @endforelse
 
         </tbody>
         <tfoot>
@@ -171,6 +175,12 @@
 
     {{$etudiants->links()}}
   </div>
+
+  <div class="modal">
+    <div id="print">
+      @include('PDF.listeEtudiantinscris')
+    </div>
+  </div>
 </div>
 
 <!-- /.card-body -->
@@ -178,14 +188,25 @@
 
 
 @push('custom-script')
-<script src="{{asset('js/responsive.bootstrap4.min.js')}}" type=""></script>
-<script src="{{asset('js/DataTable.responsive.min.js')}}" type=""></script>
-<script src="{{asset('js/pdfMake.js')}}" type=""></script>
-<script src="{{asset('js/vfs_fonts.js')}}" type=""></script>
-<script src="{{asset('js/buttons.html5.js')}}" type=""></script>
-<script src="{{asset('js/jszip.js')}}" type=""></script>
+
 
 <script>
+  window.addEventListener('print', event=> {
+  
+  
+  var data ='<input type="button" id="printPageButton" class="hidden-print"style="display:block ;width:100% ;border:none;background-color:#008B8B;color:#fff; padding:14px 28px;font-size:16px;cursor:pointer;text-align:center"value="IMPRIMER" onClick="window.print()" />';
+  data += document.getElementById('print').innerHTML;
+  myReceipt=window.open("", "myWin","left=200, top =200, width=1000, height =800");
+  myReceipt.screnX =0;
+  myReceipt.screnY = 0;
+  myReceipt.document.write(data);
+  myReceipt.document.title ="Liste";
+  myReceipt.focus();
+  setTimeout(()=>{
+  myReceipt.close();
+  },10000)
+  
+  });
   window.addEventListener('userAdmis', event=> {
 
 

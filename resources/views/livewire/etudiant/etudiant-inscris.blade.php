@@ -22,14 +22,42 @@
       </div>
       <div class="row">
 
-        <div class="col-md-6">
 
-          <input type="text" class="form-control form-control-sm" wire:model.debounce.800ms="search"
-            placeholder=" search Name or Matricule">
+
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-2">
+          <label for="">Show</label>
+          <select class="form-control form-control-sm" title="" style="width: 80px;" wire:model="pageN">
+
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </select>
 
         </div>
-        <div class="col-md-6">
 
+        <div class="col-md-2">
+          <label for="">Order</label>
+          <select class="form-control form-control-sm" title="" style="width: 80px;" wire:model="order">
+
+            <option value="asc">ascendant</option>
+            <option value="desc">descedant</option>
+
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label for="">Search</label>
+          <input type="text" class="form-control form-control-sm" wire:model.debounce.800ms="search"
+            placeholder="search Name or Matricule">
+
+        </div>
+        <div class="col-md-4">
+          <label for="">Faculte</label>
           <select class="form-control form-control-sm  @error('promotion.id_faculte') is-invalid @enderror"
             wire:model.debounce.800ms="byPromotion">
             <option value="">---Faculte-----</option>
@@ -44,28 +72,9 @@
           @enderror
 
         </div>
-
-      </div>
-    </div>
-
-    <div class="card-body">
-      <div class="row mb-3">
-        <div class="col-md-2">
-
-          <select class="form-control form-control-sm" title="" style="width: 80px;" wire:model="pageN">
-
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-
+        <div class="col-md-2 mt-3">
+          <label for="">Count</label>
         </div>
-
-        <div class="col-md-2">
-         
-        </div>
-
-        <br>
 
 
 

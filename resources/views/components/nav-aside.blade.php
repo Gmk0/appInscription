@@ -74,16 +74,11 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{route('users.admin')}}" class="nav-link ">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="far fa-user nav-icon"></i>
                         <p>Users</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Etudiant Inscris</p>
-                    </a>
-                </li>
+
 
             </ul>
         </li>

@@ -35,4 +35,15 @@ class etudiantInscrit extends Model
     {
         return $this->hasOne(paiementFrais::class, 'matricule_etudiant', 'matricule_etudiant');
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->whereHas('etudiant', function ($query) use ($term) {
+                $query->Where('nom', 'like', $term);
+            })
+                ->orwhere('matricule_etudiant', 'like', $term);
+        });
+    }
 }

@@ -19,9 +19,11 @@ class EtudiantInscris extends Component
     public $search;
     public $faculte;
     public $byPromotion = null;
+    public $byPromotions;
     public $filter = false;
     public $pageN;
     public $count;
+    public $order;
     public $etudiantCount = [
         'philo' => "",
         'Cs' => "",
@@ -32,6 +34,10 @@ class EtudiantInscris extends Component
     public $currentPage = PAGELIST;
 
 
+    public function mount()
+    {
+        $this->order = "desc";
+    }
 
     public function statusChange($id)
     {
@@ -73,9 +79,13 @@ class EtudiantInscris extends Component
 
 
             'etudiants' => etudiantInscrit::when($this->byPromotion, function ($query) {
-                $query->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
-            })->orWhere('matricule_etudiant', 'Like', "%{$this->search}%")
-                ->paginate($this->pageN),
+                $query->whereHas('promotion', function ($q) {
+                    $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+                });
+            })->search(trim($this->search))
+                ->orderBy('created_at', $this->order)
+                ->paginate($this->pageN)
+
 
 
 

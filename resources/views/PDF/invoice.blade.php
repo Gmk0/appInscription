@@ -17,7 +17,7 @@
         @foreach($invoices as $invoice )
         <div class="header">
             <div class="">
-                <div class=""> <img src="{{asset('images/logo2.jpg')}}" alt="Logo" width="">
+                <div class=""> <img src="{{asset('images/logo2.jpg')}}" alt="Logo" width="50">
                 </div>
                 <div>
                     <h5>Universite Saint Augustin De Kinshasa</h5>

@@ -100,7 +100,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('gestion_faculte.admin')}}" class="nav-link">
+                    <a href="{{route('users.rapport')}}" class="nav-link">
                         <i class="fa fa-graduation-cap nav-icon"></i>
                         <p>Rapport</p>
                     </a>

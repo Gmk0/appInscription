@@ -57,7 +57,7 @@
       <!-- small card -->
       <div class="small-box bg-danger">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{$paiement}}</h3>
 
           <p>Paiement Frais</p>
         </div>
@@ -69,7 +69,7 @@
         </a>
       </div>
     </div>
-  
-    
-  
+
+
+
   </div>

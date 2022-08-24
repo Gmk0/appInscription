@@ -89,9 +89,9 @@
                     <div class="form-group">
                         <label for="name" class="form-label">Adresse Mail<span>*</span></label>
                         <input type="etudiant.email"
-                            class="form-control form-control-sm @error('etudiant.email') is-invalid @enderror"
-                            placeholder="" wire:model="etudiant.email">
-                        <span class="text-danger">@error('etudiant.email') {{$message}}@enderror</span>
+                            class="form-control form-control-sm @error('email') is-invalid @enderror" placeholder=""
+                            wire:model="email">
+                        <span class="text-danger">@error('email') {{$message}}@enderror</span>
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -18,16 +18,16 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<x-navabar-Client />
+    <x-navabar-Client />
 
-@yield('content')
+    @yield('content')
 
 
-<x-footer-Client />
-<script src="{{mix('js/app.js')}}"></script>
-@yield('script')
-@stack('checkout')
-@livewireScripts
+    <x-footer-Client />
+    <script src="{{mix('js/app.js')}}"></script>
+    @yield('script')
+    @stack('checkout')
+    @livewireScripts
 
 </body>
 

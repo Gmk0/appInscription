@@ -155,11 +155,10 @@
                                                 @foreach ($facultes as $fac)
                                                 <option value="{{$fac->id_faculte}}">{{$fac->designation_faculte}}
                                                 </option>
-
                                                 @endforeach
 
                                             </select>
-                                            <span class="text-danger">@error('faculte') {{$message}}@enderror</span>
+                                            <span class=" text-danger">@error('faculte') {{$message}}@enderror</span>
                                         </div>
 
                                     </div>
@@ -245,6 +244,13 @@
                     @if($currentStep == 5)
                     <button type="submit" id="submitId" class="btn btn btn-primary"
                         wire:loading.attr="disabled">SOUMETTRE</button>
+                    <div wire:loading wire:target="register">
+                        <button type="button" class="btn btn-outline-primary">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Soumission
+                        </button>
+                    </div>
+
                     @endif
                 </div>
 

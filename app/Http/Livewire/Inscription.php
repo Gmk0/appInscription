@@ -30,7 +30,7 @@ class Inscription extends Component
     public $institut_rel;
     public $sigle;
     public $etat_eclesial;
-
+    public $email;
 
     public $localisation_parent = [];
     public $photo;
@@ -121,7 +121,7 @@ class Inscription extends Component
                 'etudiant.nationalite' => 'required',
                 'etudiant.lieu_naiss' => 'required',
                 'etudiant.date_naiss' => 'required',
-                'etudiant.email' => 'required|email|unique:etudiants',
+                'email' => 'required|email|unique:etudiants',
                 'etudiant.telephone' => 'required|numeric',
                 'adresse.Commune' => 'required|string',
             ], $message);
@@ -172,15 +172,8 @@ class Inscription extends Component
             'terms' => 'accepted'
         ]);
 
-        if ($this->faculte == 1) {
-            $matricule = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'PH');
-        } elseif ($this->faculte == 2) {
-            $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'TH');
-        } elseif ($this->faculte == 4) {
-            $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'SE');
-        } else {
-            $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'CS');
-        }
+        $matricule = $this->matricule();
+        dd($matricule);
 
         if (!empty($matricule)) {
             $imageName = 'image' . time() . $this->photo->getClientOriginalName();
@@ -188,7 +181,7 @@ class Inscription extends Component
             if ($upload_image) {
                 $valueEtudiant = array(
                     "matricule_etudiant" => $matricule, "Nom" => $this->etudiant['nom'], 'PostNom' => $this->etudiant['prenom'], 'Prenom' => $this->etudiant['prenom'],
-                    'Genre' => $this->etudiant['genre'], 'email' => $this->etudiant['email'], 'etat_civil' => $this->etudiant['etat_civil'], 'nationalite' => $this->etudiant['nationalite'],
+                    'Genre' => $this->etudiant['genre'], 'email' => $this->email, 'etat_civil' => $this->etudiant['etat_civil'], 'nationalite' => $this->etudiant['nationalite'],
                     'lieu_naiss' => $this->etudiant['lieu_naiss'],
                     'date_naiss' => $this->etudiant['date_naiss'],
 
@@ -278,5 +271,19 @@ class Inscription extends Component
             $data,
             $messages
         );
+    }
+    public function matricule()
+    {
+        $fac = faculte::where('id_faculte', $this->faculte)->first();
+        if ($fac->designation_faculte === "PHILOSOPHIE") {
+            $matricule = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'PH');
+        } elseif ($fac->designation_faculte === "THEOLOGIE") {
+            $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'TH');
+        } elseif ($fac->designation_faculte === "SCIENCE EDUCATION") {
+            $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'SE');
+        } else {
+            $matricule  = Helper::IDgenaratorStudent(new Etudiant, 'matricule_etudiant', 4, 'CS');
+        }
+        return $matricule;
     }
 }

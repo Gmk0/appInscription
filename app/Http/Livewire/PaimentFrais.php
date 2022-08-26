@@ -73,9 +73,9 @@ class PaimentFrais extends Component
                 $matricule = $this->etudiants->matricule_etudiant;
                 $data->matricule_etudiant = $matricule;
                 $data->id_payement = random_int(100000, 999999);
-                $data->client = $this->paiement['libelle'];
+                $data->client = $this->etudiants->Nom;
                 $data->montant = $this->paiement['montant'];
-                $data->libelle = "frais inscription";
+                $data->libelle = $this->paiement['libelle'];
                 $data->save();
                 if ($data) {
                     $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "La transaction a ete bien effecuer"]);

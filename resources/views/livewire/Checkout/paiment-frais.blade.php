@@ -75,8 +75,14 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="">LIBELLE</label>
-                                <input type="text" name="mibelle" id="libelle" class="form-control" placeholder=""
-                                    wire:model.defer="paiement.libelle">
+
+                                <select class="form-control" name="" wire:model.defer="paiement.libelle">
+                                    <option value="Frais inscription">Frais inscription</option>
+                                    <option value="enrolement">enrolement</option>
+                                    <option value="Releves de cotes">Releves de cotes</option>
+                                </select>
+
+
 
                                 <span class="text-danger">@error('paiement.libelle') {{$message}}@enderror</span>
                             </div>

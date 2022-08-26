@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -11,6 +11,8 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/load.scss')}}">
+    <script src="{{asset('js/alpine.min.js')}}" defer></script>
+    <script src="{{asset('js/apexcharts.min.js')}}" defer></script>
     <style>
         #content {
             visibility: hidden;

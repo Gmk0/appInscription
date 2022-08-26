@@ -173,7 +173,7 @@ class Inscription extends Component
         ]);
 
         $matricule = $this->matricule();
-        dd($matricule);
+        
 
         if (!empty($matricule)) {
             $imageName = 'image' . time() . $this->photo->getClientOriginalName();
@@ -250,7 +250,7 @@ class Inscription extends Component
             return redirect()->route('inscription')->with('status', "Error vos information n'ont pas ete soumis");
         }
 
-        $data = ['name' => $this->nom . '-' . $this->Postnom, 'email' => $this->email, 'matricule' => $matricule];
+        $data = ['name' => $this->etudiant['nom'] . '-' .  $this->etudiant['postnom'], 'email' => $this->email, 'matricule' => $matricule];
         return redirect()->route('registration_complet', $data);
     }
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('css/clientStyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/style2.css')}}">
     <script src="frontend/script/script.js" defer></script>
-
+    <script src="{{asset('js/alpine.min.js')}}" defer></script>
     @livewireStyles
     <title>Accueil</title>
 </head>

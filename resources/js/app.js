@@ -4,6 +4,7 @@ import "admin-lte/plugins/jquery/jquery";
 
 import "admin-lte/plugins/bootstrap/js/bootstrap.bundle";
 //import "admin-lte/dist/js/demo";
+import "alpinejs";
 
 window.Swal = require("sweetalert2");
 window.$ = require("jquery");

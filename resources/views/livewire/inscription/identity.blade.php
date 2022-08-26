@@ -131,47 +131,48 @@
             </div>
             <hr>
             <h4>Pour les ecclésiastiques </h4>
-            @if($ecclesiaste)
-            <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false"
-                wire:click="DesactiverEclesiaste()">Desactiver</button>
-            @else
-            <button type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false"
-                wire:click="voirEclesiaste()">ACTIVER</button>
-            @endif
-            @if($ecclesiaste)
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Institut Religieux</label>
-                        <input type="text" class="form-control form-control-sm" placeholder=""
-                            wire:model="institut_rel">
+            <div x-data="{open:false}">
 
+                <button x-on:click="open=!open" type="button" class="btn btn-secondary" data-toggle="button"
+                    aria-pressed="false">ACTIVER</button>
+
+
+                <div x-show.important="open" class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Institut Religieux</label>
+                            <input type="text" class="form-control form-control-sm" placeholder=""
+                                wire:model="institut_rel">
+
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Sigle</label>
-                        <input type="text" class="form-control form-control-sm " placeholder="" wire:model="sigle">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Sigle</label>
+                            <input type="text" class="form-control form-control-sm " placeholder="" wire:model="sigle">
 
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Etat eclesial</label>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Etat eclesial</label>
 
-                        <select class="form-control form-control-sm" name="" id="" wire:model="etat_eclesial">
-                            <option Selected>--Etat eclesial--</option>
-                            <option value="pretre">pretre</option>
-                            <option value="religieux">religieuse</option>
-                            <option value="soeur">Soeur</option>
-                        </select>
+                            <select class="form-control form-control-sm" name="" id="" wire:model="etat_eclesial">
+                                <option Selected>--Etat eclesial--</option>
+                                <option value="pretre">pretre</option>
+                                <option value="religieux">religieuse</option>
+                                <option value="soeur">Soeur</option>
+                            </select>
 
 
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-            @endif
+
+
+
 
         </div>
     </div>

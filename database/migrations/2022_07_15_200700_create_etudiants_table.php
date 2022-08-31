@@ -30,6 +30,9 @@ class CreateEtudiantsTable extends Migration
             $table->string('Nom_Pere');
             $table->string('Nom_mere');
             $table->string('Localisation_parent');
+            $table->string('diplome_access',500);
+            $table->string('tuteur',500);
+            
             $table->string('Photo')->nullable();
             $table->timestamps();
         });

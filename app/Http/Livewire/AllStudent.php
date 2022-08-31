@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\etudiant;
+use App\Models\etudiantInscrit;
 use App\Models\paiementFrais;
 use Livewire\withPagination;
 use App\Models\faculte;
@@ -47,12 +48,18 @@ class AllStudent extends Component
     {
         return view('livewire.all-student', [
             'facultes' => faculte::all(),
+            'count' => etudiantInscrit::when($this->byPromotion, function ($query) {
+                $query->whereHas('promotion', function ($q) {
+                    $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
+                });
+            })->get(),
             'etudiants' => etudiant::when($this->byPromotion, function ($query) {
                 $query->whereHas('inscription', function ($q) {
                     $q->where('id_promotion', 'LIKE', "%{$this->byPromotion}%");
                 });
             })->search(trim($this->search))
-                ->paginate($this->pageN)
+                ->paginate($this->pageN),
+            'faculteName' => faculte::where('id_faculte', $this->byPromotion)->first(),
 
 
 

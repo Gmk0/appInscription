@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <a href="{{route('Admin.dashboard')}}" class="brand-link text-bold text-decoration-none ">
-        <img src="{{asset('images/logo2.jpg')}}" alt="Usakin" class="brand-image elevation-3" style="opacity: .8">
+        <img src="{{asset('images/logo2.jpg')}}" alt="Usakin" class="img-thumbnail" width="60px" style="opacity: .8">
         <span class="brand-text font-weight-light">USAKIN</span>
     </a>
 
@@ -11,9 +11,14 @@
 
             <div class="info">
 
-                <a href="#" class="d-block brand-link text-decoration-none">{{Auth::user()->name}}
+                <nav class="nav justify-content-center">
+                    <a class="nav-link active" href="#">{{AUTH::user()->name}} - {{AUTH::user()->lastname}} <br>
+                        {{AUTH::user()->role}}
+                    </a>
 
-                </a>
+
+                </nav>
+
             </div>
         </div>
 

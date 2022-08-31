@@ -60,7 +60,7 @@
                                     class="form-text text-muted">{{$paiment->inscriptionCheck->promotion->faculte->designation_faculte}}</small>
                             </td>
                             <td>{{$paiment->libelle}}</td>
-                            <td>{{$paiment->id_payement}}</td>
+                            <td>{{$paiment->id_paiement}}</td>
                             <td>{{$paiment->montant}}</td>
                             <td>{{$paiment->created_at->diffforhumans()}}</td>
                             <td>

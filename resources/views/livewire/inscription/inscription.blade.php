@@ -88,8 +88,8 @@
                                         <div class="form-group">
                                             <label for="" class="form-label">Nom</label>
                                             <input type="text" class="form-control form-control-sm" placeholder=""
-                                                wire:model="etudiant.nom_tuteur">
-                                            <span class="text-danger">@error('etudiant.nom_tuteur')
+                                                wire:model="tuteur.nom_tuteur">
+                                            <span class="text-danger">@error('tuteur.nom_tuteur')
                                                 {{$message}}@enderror</span>
                                         </div>
                                     </div>
@@ -97,8 +97,8 @@
                                         <div class="form-group">
                                             <label for="" class="form-label">Telephone</label>
                                             <input type="text" class="form-control form-control-sm" placeholder=""
-                                                wire:model="etudiant.tel_tuteur">
-                                            <span class="text-danger">@error('etudiant.tel_tuteur')
+                                                wire:model="tuteur.tel_tuteur">
+                                            <span class="text-danger">@error('tuteur.tel_tuteur')
                                                 {{$message}}@enderror</span>
                                         </div>
                                     </div>
@@ -107,21 +107,21 @@
                                             <label for="name" class="form-label">Adresse</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control form-control-sm" placeholder="N"
-                                                    wire:model="addresse_tuteur.Numero">
+                                                    wire:model="tuteur.Numero">
                                                 <input type="text" class="form-control form-control-sm"
-                                                    placeholder="Avenue" wire:model="addresse_tuteur.Avenue">
+                                                    placeholder="Avenue" wire:model="tuteur.Avenue">
                                                 <input type="text" class="form-control form-control-sm"
-                                                    placeholder="Quartier" wire:model="addresse_tuteur.Quartier">
+                                                    placeholder="Quartier" wire:model="tuteur.Quartier">
                                                 <input type="text" class=" form-control form-control-sm"
-                                                    placeholder="Commune" wire:model="addresse_tuteur.Commune">
+                                                    placeholder="Commune" wire:model="tuteur.Commune">
                                             </div>
-                                            <span class="text-danger">@error('addresse_tuteur.Numero')
+                                            <span class="text-danger">@error('tuteur.Numero')
                                                 {{$message}}@enderror</span>
-                                            <span class="text-danger">@error('addresse_tuteur.Avenue')
+                                            <span class="text-danger">@error('tuteur.Avenue')
                                                 {{$message}}@enderror</span>
-                                            <span class="text-danger">@error('addresse_tuteur.Quartier')
+                                            <span class="text-danger">@error('tuteur.Quartier')
                                                 {{$message}}@enderror</span>
-                                            <span class="text-danger">@error('addresse_tuteur.Commune')
+                                            <span class="text-danger">@error('tuteur.Commune')
                                                 {{$message}}@enderror</span>
 
                                         </div>
@@ -243,7 +243,7 @@
 
                     @if($currentStep == 5)
                     <button type="submit" id="submitId" class="btn btn btn-primary"
-                        wire:loading.attr="disabled">SOUMETTRE</button>
+                        wire:loading.remove>SOUMETTRE</button>
                     <div wire:loading wire:target="register">
                         <button type="button" class="btn btn-outline-primary">
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>

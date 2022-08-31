@@ -19,10 +19,7 @@ class etudiant extends Model
     {
         return $this->hasOne(etudeRealiser::class, 'matricule_etudiant', 'matricule_etudiant');
     }
-    public function tuteurEtudiant()
-    {
-        return $this->hasOne(tuteurEtudiant::class, 'matricule_etudiant', 'matricule_etudiant');
-    }
+
     public function dossierEtudiant()
     {
         return $this->hasOne(dossierEtudiant::class, 'matricule_etudiant', 'matricule_etudiant');
@@ -50,6 +47,8 @@ class etudiant extends Model
 
     protected $casts = [
         "Localisation_parent" => "array",
-        "Adresse_etudiant" => "array"
+        "Adresse_etudiant" => "array",
+        "tuteur" => "array",
+        "diplome_access" => "array",
     ];
 }

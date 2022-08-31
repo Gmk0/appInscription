@@ -3,16 +3,16 @@
     <div class="col">
         <h4 class="text-bold">ETUDE SECONDAIRES</h4>
         <div class="row mb-3">
-            <div class="col-md-6"><label class="labels">Diplome d'acces a l'enseignement superieur et universitaire:  </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Diplome']}}"></span></div>
-            <div class="col-md-6"><label class="labels">Numero : </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Numero']}}"></span> </div>
-            <div class="col-md-3"><label class="labels">Section : </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Section']}}"></span></div>
-            <div class="col-md-3"><label class="labels">Option: </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Option']}}"></span></div>
-            <div class="col-md-3"><label class="labels">Mention :</label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Mention']}}"></span></div>
-            <div class="col-md-3"><label class="labels">Dedivvre a : </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['DelivreA']}}"></span></div>
-            <div class="col-md-3"><label class="labels">en date du :</label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['DateDu']}}"></span></div>
-            <div class="col-md-3"><label class="labels">Ecole: </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Ecole']}}"></span></div>
-            <div class="col-md-3"><label class="labels">code: </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Code']}}"></span></div>
-            <div class="col-md-3"><label class="labels"> province </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->etudesRealiser->Diplome_access['Province']}}"></span></div>
+            <div class="col-md-6"><label class="labels">Diplome d'acces a l'enseignement superieur et universitaire:  </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Diplome']}}"></span></div>
+            <div class="col-md-6"><label class="labels">Numero : </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Numero']}}"></span> </div>
+            <div class="col-md-3"><label class="labels">Section : </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Section']}}"></span></div>
+            <div class="col-md-3"><label class="labels">Option: </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Option']}}"></span></div>
+            <div class="col-md-3"><label class="labels">Mention :</label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Mention']}}"></span></div>
+            <div class="col-md-3"><label class="labels">Dedivvre a : </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['DelivreA']}}"></span></div>
+            <div class="col-md-3"><label class="labels">en date du :</label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['DateDu']}}"></span></div>
+            <div class="col-md-3"><label class="labels">Ecole: </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Ecole']}}"></span></div>
+            <div class="col-md-3"><label class="labels">code: </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Code']}}"></span></div>
+            <div class="col-md-3"><label class="labels"> province </label><span><input type="text" class="form-control form-control-sm wide-font" placeholder="enter phone number" value="{{$etudiant->etudiant->diplome_access['Province']}}"></span></div>
 
         </div>
     </div>
@@ -43,7 +43,7 @@
             <tr style="width:50px;">
                 <td>
                     <div class="input-pretend">
-                        <input class="span4" type="text" placeholder="" value="{{$etudiant->etudiant->etudesRealiser->Cursus_universitaire['anneeAc']}}">
+                        <input class="span4" type="text" placeholder="" value="{{$etudiant->etudiant->dursus_universitaire['anneeAc']}}">
                     </div>
                 </td>
                 <td>

@@ -18,9 +18,9 @@ use Livewire\Component;
 
 class PaiementViews extends Component
 {
-    public $types = ['frais inscription', 'Releves de cotes', 'enrolement', 'travel', 'other'];
+    public $types = ['Frais inscription', 'Releves de cotes', 'enrolement', 'travel', 'other'];
     public $colors = [
-        'frais inscription' => '#f6ad55',
+        'Frais inscription' => '#f6ad55',
         'enrolement' => '#66DA26',
         'Releves de cotes' => '#90cdf4',
         'travel' => 'cbd5e0',
@@ -55,7 +55,7 @@ class PaiementViews extends Component
 
         $data_paiement = paiementFrais::select(DB::raw('DATE_FORMAT(created_at, "%d") as date'), DB::raw('count(DATE_FORMAT(created_at, "%d %m %y")) as value'))
             ->groupBy('date')
-            ->where('libelle', 'frais inscription')
+            ->where('libelle', 'Frais inscription')
             ->get();
 
         $dates = [];

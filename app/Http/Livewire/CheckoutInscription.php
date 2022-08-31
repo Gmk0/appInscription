@@ -47,13 +47,14 @@ class CheckoutInscription extends Component
         $data = new paiementFrais;
         $data->matricule_etudiant = $this->matricule;
 
-        $data->id_payement = $this->intent;
+        $data->id_paiement = $this->intent;
         $data->client = $this->client;
         $data->montant = $this->amount;
         $data->libelle = "frais inscription";
+        $data->mode_paiement = "credit card";
         $data->save();
-        $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "utilisateur a ete modifier avec success"]);
-        return redirect()->route('accueil');
+        $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "la transaction a ete bien effectuer"]);
+        return redirect()->route('accueil.student')->with('status', "le paiment a reussie votre inscription est en cours de traitement, vous recevrez un messsage de confirmation dans votre boite mail");
     }
     public function test()
     {

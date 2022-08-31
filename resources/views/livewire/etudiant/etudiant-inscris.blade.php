@@ -1,11 +1,7 @@
 @section('title','ETUDIANT INSCRIS')
 @section('css')
 <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
-<style>
 
-
-
-</style>
 @endsection
 
 
@@ -39,14 +35,14 @@
 
         <div class="col-md-4">
           <label for="">Search</label>
-          <input type="text" class="form-control form-control-sm" wire:model.debounce.800ms="search"
+          <input type="text" class="form-control form-control-sm" wire:model.debounce.500ms="search"
             placeholder="search Name or Matricule">
 
         </div>
         <div class="col-md-4">
           <label for="">Faculte</label>
           <select class="form-control form-control-sm  @error('promotion.id_faculte') is-invalid @enderror"
-            wire:model.debounce.800ms="byPromotion">
+            wire:model="byPromotion">
             <option value="">---Faculte-----</option>
             @foreach($facultes as $row)
             <option value="{{$row->id_faculte}}">{{$row->designation_faculte}}</option>
@@ -76,101 +72,104 @@
                 class="fa fa-print">Excel</i></button>
           </div>
         </div>
-
-
-
-
-
-
       </div>
 
-      <table id="" class="table table-bordered bg-gradient-white table-striped">
-        <thead>
-          <tr>
-            <th>action</th>
-            <th>N°</th>
-            <th>Matricule</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-
-            <th>Telephone</th>
-            <th>Faculte</th>
-            <th>promotion</th>
+      <div wire:loading>
+        <div class="spinner-border float-right" role="status">
+          <span class="sr-only">loading</span>
+        </div>
+      </div>
 
 
-            <th>Document</th>
-            <th>Statut</th>
-            <th>Paiement</th>
+      <div class="table-responsive">
+        <table class="table bg-gradient-white table-striped">
+          <thead>
+            <tr>
+              <th>action</th>
+              <th>N°</th>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          {{Form::hidden('',$increment =1)}}
-          @forelse ($etudiants as $etudiant )
-          <tr>
-            <td class="text-center">
-              <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye"
-                  aria-hidden="true"></i></a>
-
-            </td>
-            <td>{{$increment}}</td>
-            <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
-            <td>{{$etudiant->etudiant->Nom}}</td>
-            <td>{{$etudiant->etudiant->Prenom}}</td>
-
-            <td>{{$etudiant->etudiant->Telephone}}</td>
-            <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
-            <td>{{$etudiant->promotion->designation_promotion}}</td>
+              <th>Telephone</th>
+              <th>Faculte</th>
+              <th>promotion</th>
 
 
-            @if(countDocument($etudiant->etudiant->matricule_etudiant))
-            <td><span class="badge badge-pill badge-success">Complet</span></td>
-            @else
-            <td><button class="btn btn-link" id="click" type="button"> <span
-                  class="badge badge-pill badge-warning">Incomplet</span>
-              </button></td>
-            @endif
-            @if($etudiant->statut_etudiant==1)
-            <td><span class="badge badge-pill badge-success">Admis</span></td>
-            @else
-            <td><span class="badge badge-pill badge-warning">No Admis</span></td>
-            @endif
+              <th>Document</th>
+              <th>Statut</th>
+              <th>Paiement</th>
 
-            @if($etudiant->paiement )
-            <td><span class="badge badge-pill badge-success">Complet</span></td>
-            @else
-            <td><span class="badge badge-pill badge-warning">incomplet</span></td>
-            @endif
+            </tr>
+          </thead>
+          <tbody>
+            {{Form::hidden('',$increment =1)}}
+            @forelse ($etudiants as $etudiant )
+            <tr>
+              <td class="text-center">
+                <a class="btn btn-link" href="{{route('FindEtudiant',[$etudiant->id_inscrit])}}"><i class="fa fa-eye"
+                    aria-hidden="true"></i></a>
 
-          </tr>
-          {{Form::hidden('',$increment =$increment+1)}}
+              </td>
+              <td>{{$increment}}</td>
+              <td>{{$etudiant->etudiant->matricule_etudiant}}</td>
+              <td>{{$etudiant->etudiant->Nom}}</td>
+              <td>{{$etudiant->etudiant->Prenom}}</td>
 
-          @empty
-          <p class="text-danger">Etudiant non trouve</p>
-          @endforelse
-
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>action</th>
-            <th>N°</th>
-            <th>Matricule</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-
-            <th>Telephone</th>
-            <th>Faculte</th>
-            <th>promotion</th>
+              <td>{{$etudiant->etudiant->Telephone}}</td>
+              <td>{{$etudiant->promotion->faculte->designation_faculte}}</td>
+              <td>{{$etudiant->promotion->designation_promotion}}</td>
 
 
-            <th>Document</th>
-            <th>Statut</th>
-            <th>Paiement</th>
+              @if(countDocument($etudiant->etudiant->matricule_etudiant))
+              <td><span class="badge badge-pill badge-success">Complet</span></td>
+              @else
+              <td><button class="btn btn-link" id="click" type="button"> <span
+                    class="badge badge-pill badge-warning">Incomplet</span>
+                </button></td>
+              @endif
+              @if($etudiant->statut_etudiant==1)
+              <td><span class="badge badge-pill badge-success">Admis</span></td>
+              @else
+              <td><span class="badge badge-pill badge-warning">No Admis</span></td>
+              @endif
+
+              @if($etudiant->paiement )
+              <td><span class="badge badge-pill badge-success">Complet</span></td>
+              @else
+              <td><span class="badge badge-pill badge-warning">incomplet</span></td>
+              @endif
+
+            </tr>
+            {{Form::hidden('',$increment =$increment+1)}}
+
+            @empty
+            <p class="text-danger">Etudiant non trouve</p>
+            @endforelse
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>action</th>
+              <th>N°</th>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+
+              <th>Telephone</th>
+              <th>Faculte</th>
+              <th>promotion</th>
 
 
-          </tr>
-        </tfoot>
-      </table>
+              <th>Document</th>
+              <th>Statut</th>
+              <th>Paiement</th>
+
+
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
 
     {{$etudiants->links()}}

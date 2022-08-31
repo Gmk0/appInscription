@@ -6,9 +6,10 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">NOM <span>*</span></label>
-                        <input type="text" class="form-control form-control-sm @error('nom') is-invalid @enderror"
+                        <input type="text"
+                            class="form-control form-control-sm @error('etudiant.nom') is-invalid @enderror"
                             placeholder="" wire:model="etudiant.nom">
-                        <span class="text-danger">@error('nom') {{$message}}@enderror</span>
+                        <span class="text-danger">@error('etudiant.nom') {{$message}}@enderror</span>
                     </div>
                 </div>
                 <div class="col-md-6">

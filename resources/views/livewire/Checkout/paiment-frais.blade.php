@@ -20,7 +20,7 @@
                             </div>
 
                             <div wire:loading.remove wire:target="findStudent">
-                                <input class="btn btn-outline-primary" type="submit">
+                                <button type="submit" class="btn btn-outline-primary">FIND</button>
                             </div>
                             <div wire:loading wire:target="findStudent">
                                 <button type="button" class="btn btn-outline-primary">
@@ -77,6 +77,7 @@
                                 <label for="">LIBELLE</label>
 
                                 <select class="form-control" name="" wire:model.defer="paiement.libelle">
+                                    <option selected>-- motif --</option>
                                     <option value="Frais inscription">Frais inscription</option>
                                     <option value="enrolement">enrolement</option>
                                     <option value="Releves de cotes">Releves de cotes</option>
@@ -89,9 +90,10 @@
 
                             <div wire:loading.remove wire:target="paiement">
 
-                                <button type="submit" class="btn btn-primary" @if($etudiants==null) disabled
+                                <button type="submit" class="btn btn-outline-primary" @if($etudiants==null) disabled
                                     @endif>Paiment</button>
-                                <button type="button" class="btn btn-warning" wire:click="clear()">ANNULER</button>
+                                <button type="button" class="btn btn-outline-warning"
+                                    wire:click="clear()">ANNULER</button>
                             </div>
                             <div wire:loading wire:target="paiement">
                                 <button type="button" class="btn btn-outline-primary">
@@ -113,55 +115,85 @@
 
 
         <br>
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="far fa-chart-bar"></i>
+                    PAIEMENT
+                </h3>
 
-        <div class="card-body bg-white pt-5">
-            <div>
-                <div class="form-group col-md-3">
-                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="search"
-                        wire:model.debounce.800ms="search">
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
-            <table class="table isfullwidth has-text-grey" id="example1">
-                <thead>
-                    <tr>
-                        <th>N</th>
-                        <th>Matricule</th>
-                        <th>Nom</th>
-                        <th>bordereau</th>
-                        <th>Montant</th>
-                        <th>created</th>
-                        <th>action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($paimentListe as $paiment)
-                    <tr>
-                        <td scope="row">{{$paiment->id}}</td>
-                        <td>
-                            {{$paiment->matricule_etudiant}} <br>
-                            <small id="helpId"
-                                class="form-text text-muted">{{$paiment->inscriptionCheck->promotion->faculte->designation_faculte}}</small>
-                        </td>
-                        <td>{{$paiment->libelle}}</td>
-                        <td>{{$paiment->id_payement}}</td>
-                        <td>{{$paiment->montant}}</td>
-                        <td>{{$paiment->created_at->diffforhumans()}}</td>
-                        <td>
-                            <button class="btn btn-outline-primary" data-toggle="modal" data-target="#modal-promotion"
-                                wire:click="editPaye({{$paiment->id}})">edit</button>
+            <div class="card-body">
+                <div class="bg-white pt-5">
+                    <div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                                placeholder="search" wire:model.debounce.800ms="search">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table " id="example1">
+                            <thead>
+                                <tr>
+                                    <th>N</th>
+                                    <th>Matricule</th>
+                                    <th>Nom</th>
+                                    <th>bordereau</th>
+                                    <th>Montant</th>
+                                    <th>created</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($paimentListe as $paiment)
+                                <tr>
+                                    <td scope="row">{{$paiment->id}}</td>
+                                    <td>
+                                        {{$paiment->matricule_etudiant}} <br>
+                                        <small id="helpId"
+                                            class="form-text text-muted">{{$paiment->inscriptionCheck->promotion->faculte->designation_faculte}}</small>
+                                    </td>
+                                    <td>{{$paiment->libelle}}</td>
+                                    <td>{{$paiment->id_payement}}</td>
+                                    <td>{{$paiment->montant}}</td>
+                                    <td>{{$paiment->created_at->diffforhumans()}}</td>
+                                    <td>
+                                        <button class="btn btn-outline-primary" data-toggle="modal"
+                                            data-target="#modal-promotion"
+                                            wire:click="editPaye({{$paiment->id}})">edit</button>
 
-                            <button type="button" wire:click="print('{{$paiment->matricule_etudiant}}')"
-                                class="btn btn-outline-primary"><i class="fa fa-print"></i></button>
-                        </td>
-                    </tr>
-                    @endforeach
+                                        <button type="button" wire:click="print('{{$paiment->matricule_etudiant}}')"
+                                            class="btn btn-outline-primary"><i class="fa fa-print"></i></button>
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                </tbody>
+                            </tbody>
 
-            </table>
+                        </table>
+                    </div>
 
+
+                </div>
+
+                <div class="p-2">
+                    {{$paimentListe->links()}}
+                </div>
+            </div>
+
+
+
+            <!-- /.card-body-->
         </div>
-        {{$paimentListe->links()}}
+
 
     </div>
 

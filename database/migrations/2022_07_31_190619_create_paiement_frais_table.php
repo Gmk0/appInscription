@@ -21,11 +21,11 @@ class CreatePaiementFraisTable extends Migration
                 ->on('etudiant_inscrits')
                 ->onDelete('cascade')
                 ->cascadeOnUpdate();
-            $table->string('id_payement');
+            $table->string('id_paiement');
             $table->string('client');
             $table->string('montant');
             $table->string('libelle');
-
+            $table->string('mode_paiement');
             $table->timestamps();
         });
     }

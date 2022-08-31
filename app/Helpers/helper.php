@@ -47,12 +47,12 @@ class helper
             'localisation_parent.province' => 'required',
             'localisation_parent.district' => 'required',
             'localisation_parent.commune' => 'required',
-            'etudiant.nom_tuteur' => 'required',
-            'etudiant.tel_tuteur' => 'required',
-            'addresse_tuteur.Numero' => 'required',
-            'addresse_tuteur.Avenue' => 'required',
-            'addresse_tuteur.Quartier' => 'required',
-            'addresse_tuteur.Commune' => 'required',
+            'tuteur.nom_tuteur' => 'required',
+            'tuteur.tel_tuteur' => 'required',
+            'tuteur.Numero' => 'required',
+            'tuteur.Avenue' => 'required',
+            'tuteur.Quartier' => 'required',
+            'tuteur.Commune' => 'required',
             'diplomeEtat.Diplome' => 'required|min:10',
             'diplomeEtat.Numero' => 'required',
             'diplomeEtat.Mention' => 'required',
@@ -88,6 +88,38 @@ class helper
             'etudiant.tel_tuteur' => 'le champs telephone est requis',
             'etudiant.nom_pere' => 'le champs nom pere  est requis',
             'etudiant.nom_mere' => 'le champs nom mere est requis',
+            'localisation_parent.province.required' => 'le champs province  est requis',
+            'localisation_parent.district.required' =>
+            'le champs district est requis',
+            'localisation_parent.commune.required' => 'le champs commune est requis',
+            'tuteur.nom_tuteur.required' =>
+            'le champs nom tuteur est requis',
+            'tuteur.tel_tuteur.required' =>
+            'le champs telephone  est requis',
+            'tuteur.Numero.required' =>
+            'le champs numero est requis',
+            'tuteur.Avenue.required'
+            => 'le champs avenue tuteur est requis',
+            'tuteur.Quartier.required' =>
+            'le champs Quartier est requis',
+            'tuteur.Commune.required' =>
+            'le champs commune est requis',
+            'diplomeEtat.Diplome.required' =>
+            'le champs diplome  est requis',
+            'diplomeEtat.Numero.required' =>
+            'le champs numero de diplome est requis',
+            'diplomeEtat.Mention.required'
+            => 'le champs mention est requis',
+            'diplomeEtat.Section.required'
+            => 'le champs Section est requis',
+            'diplomeEtat.DelivreA.required' =>
+            'le champs Delivere A  est requis',
+            'diplomeEtat.DateDu.required' =>
+            'le champs Date du est requis',
+            'promotion.required' =>
+            'le champs promotion est requis',
+            'faculte.required' =>
+            'le champs faculte est requis',
         ];
     }
 }

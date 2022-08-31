@@ -37,7 +37,7 @@ class Inscription extends Component
     public $condition;
     //tuteur
 
-    public $addresse_tuteur = [];
+    public $tuteur = [];
     //etudes_faites
     public $diplomeEtat = [];
     public $cursus_universitaire = [];
@@ -132,12 +132,12 @@ class Inscription extends Component
                 'localisation_parent.Province' => 'required',
                 'localisation_parent.District' => 'required',
                 'localisation_parent.Commune' => 'required',
-                'etudiant.nom_tuteur' => 'required',
-                'etudiant.tel_tuteur' => 'required|min:10',
-                'addresse_tuteur.Numero' => 'required',
-                'addresse_tuteur.Avenue' => 'required',
-                'addresse_tuteur.Quartier' => 'required',
-                'addresse_tuteur.Commune' => 'required',
+                'tuteur.nom_tuteur' => 'required',
+                'tuteur.tel_tuteur' => 'required|min:10',
+                'tuteur.Numero' => 'required',
+                'tuteur.Avenue' => 'required',
+                'tuteur.Quartier' => 'required',
+                'tuteur.Commune' => 'required',
             ], $message);
         } elseif ($this->currentStep == 3) {
 
@@ -173,7 +173,7 @@ class Inscription extends Component
         ]);
 
         $matricule = $this->matricule();
-        
+
 
         if (!empty($matricule)) {
             $imageName = 'image' . time() . $this->photo->getClientOriginalName();
@@ -190,6 +190,8 @@ class Inscription extends Component
                     'Nom_pere' => $this->etudiant['nom_pere'],
                     'Nom_mere' => $this->etudiant['nom_mere'],
                     'localisation_parent' => json_encode($this->localisation_parent),
+                    'tuteur' => json_encode($this->tuteur),
+                    'Diplome_access' => json_encode($this->diplomeEtat),
                     'Photo' => $imageName,
                     'created_at' => Carbon::now(),
                 );
@@ -203,21 +205,12 @@ class Inscription extends Component
                     $bulletin = 'bulletin' . time() . $this->bulletin->getClientOriginalName();
                     $this->upload_bulletin = $this->bulletin->storeAs('public/students_doc', $bulletin);
 
-                    $valuesTuteur = array(
-                        "matricule_etudiant" => $matricule, "Nom_tuteur" => $this->etudiant['nom_tuteur'], "telephone_tuteur" => $this->etudiant['tel_tuteur'],
-                        "adresse_tuteur" => json_encode($this->addresse_tuteur)
-                    );
                     $valueDossier = array(
                         "matricule_etudiant" => $matricule,
                         "aptitude_physique" => $aptitude_physique,
                         "certificat_naiss" => $certificat_naiss,
                         "diplome_etat" => $diplome_etat,
                         "bulletin" => $bulletin
-                    );
-                    $etudesRealise = array(
-                        "matricule_etudiant" => $matricule,
-                        "Diplome_access" => json_encode($this->diplomeEtat),
-                        "Cursus_univeristaire" => json_encode($this->cursus_universitaire)
                     );
                     $admis_inscription = array(
                         "matricule_etudiant" => $matricule,
@@ -235,8 +228,6 @@ class Inscription extends Component
                     if (!empty($admis_inscription) && !empty($valueEtudiant) && !empty($valueDossier)) {
                         etudiant::insert($valueEtudiant);
                         dossierEtudiant::insert($valueDossier);
-                        tuteuretudiant::insert($valuesTuteur);
-                        etudeRealiser::insert($etudesRealise);
                         if (!empty($this->institut_rel) && !empty($this->sigle)) {
                             etatEcclesial::insert($etatReligieux);
                         };

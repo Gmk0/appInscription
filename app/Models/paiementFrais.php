@@ -11,10 +11,11 @@ class paiementFrais extends Model
 
     protected $fillable = [
         'matricule_etudiant',
-        'id_payement',
+        'id_paiement',
         'client',
         'montant',
-        'libelle'
+        'libelle',
+        'mode_paiement'
     ];
 
     public function inscriptionCheck()

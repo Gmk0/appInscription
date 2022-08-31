@@ -5,7 +5,7 @@
 
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" value="frais inscription" wire:model="types">
+                    <input type="checkbox" class="form-check-input" value="Frais inscription" wire:model="types">
                     Frais inscription
                 </label>
             </div>

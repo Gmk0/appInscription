@@ -72,10 +72,11 @@ class PaimentFrais extends Component
                 $data = new paiementFrais;
                 $matricule = $this->etudiants->matricule_etudiant;
                 $data->matricule_etudiant = $matricule;
-                $data->id_payement = random_int(100000, 999999);
+                $data->id_paiement = random_int(100000, 999999);
                 $data->client = $this->etudiants->Nom;
                 $data->montant = $this->paiement['montant'];
                 $data->libelle = $this->paiement['libelle'];
+                $data->mode_paiement = 'comptant argent';
                 $data->save();
                 if ($data) {
                     $this->dispatchBrowserEvent('showSuccessMessage', ["message" => "La transaction a ete bien effecuer"]);

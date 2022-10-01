@@ -64,7 +64,7 @@
 
         <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-user-alt"></i>
                 <p>
                     Management
                     <i class="right fas fa-angle-left"></i>
@@ -85,7 +85,7 @@
 
         <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-school"></i>
+                <i class="nav-icon fas fa-money-check-alt"></i>
                 <p>
                     Paiement
                     <i class="right fas fa-angle-left"></i>
@@ -115,9 +115,9 @@
 
         <li class="nav-item">
             <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-school"></i>
+                <i class="nav-icon fas fa-tools"></i>
                 <p>
-                    Settings
+                    Parametres
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>

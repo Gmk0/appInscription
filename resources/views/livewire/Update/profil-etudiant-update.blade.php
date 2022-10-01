@@ -1,25 +1,26 @@
 <div class="container">
     @if($etudiants == null)
-    <div class="">
+    <div class="rounded" id="box-inscription">
         <form wire:submit.prevent="findStudent">
             <div class="row p-5">
-                <div class="form-group ">
+                <div class="form-group">
                     <label for="">MATRICULE</label>
-                    <input type="text" class="form-control @error('matricule') is-invalid @enderror" name="" id="" aria-describedby="" value="3500/PH22" placeholder="" wire:model="matricule">
-              
+                    <input type="text" class="form-control @error('matricule') is-invalid @enderror" name="" id=""
+                        aria-describedby="" value="3500/PH22" placeholder="" wire:model.defer="matricule">
+
                     <span class="text-danger">@error('matricule') {{$message}}@enderror</span>
-                  </div>
-    
-                  <div>
-                      <input class ="btn btn-outline-primary"type="submit">
-                  </div>
+                </div>
+
+                <div>
+                    <input class="btn btn-outline-primary" type="submit">
+                </div>
             </div>
-            
+
         </form>
     </div>
- @else
+    @else
     @include('livewire.update.update')
-@endif
+    @endif
 </div>
 @section('script')
 <script>
@@ -54,7 +55,3 @@ Swal.fire({
     });
 </script>
 @endsection
-
-    
-
-

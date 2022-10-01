@@ -6,8 +6,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">NOM <span>*</span></label>
-                        <input type="text"
-                            class="form-control form-control-sm @error('etudiant.nom') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('etudiant.nom')  @enderror"
                             placeholder="" wire:model="etudiant.nom">
                         <span class="text-danger">@error('etudiant.nom') {{$message}}@enderror</span>
                     </div>
@@ -15,7 +14,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">POST-NOM<span>*</span></label>
-                        <input type="text" class="form-control form-control-sm @error('Postnom') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('Postnom')  @enderror"
                             placeholder="" wire:model="etudiant.postnom">
                         <span class="text-danger">@error('etudiant.postnom') {{$message}}@enderror</span>
                     </div>
@@ -23,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">PRENOM<span>*</span></label>
-                        <input type="text" class="form-control form-control-sm @error('prenom') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('prenom')  @enderror"
                             placeholder="" wire:model="etudiant.prenom">
                         <span class="text-danger">@error('etudiant.prenom') {{$message}}@enderror</span>
                     </div>
@@ -32,8 +31,8 @@
                     <div class="form-group">
 
                         <label for="" class="form-label">GENRE<span>*</span></label>
-                        <select class="form-control form-control-sm @error('etudiant.genre') is-invalid @enderror"
-                            name="" id="" wire:model="etudiant.genre">
+                        <select class="form-control form-control-sm @error('etudiant.genre')  @enderror" name="" id=""
+                            wire:model="etudiant.genre">
                             <option Selected>--Gender--</option>
                             <option value="male">Male</option>
                             <option value="Female">Female</option>
@@ -47,7 +46,7 @@
                     <div class="form-group">
 
                         <label for="" class="form-label">ETAT CIVIL<span>*</span></label>
-                        <select class="form-control form-control-sm @error('etudiant.etat_civil') is-invalid @enderror"
+                        <select class="form-control form-control-sm @error('etudiant.etat_civil')  @enderror"
                             wire:model="etudiant.etat_civil">
                             <option Selected>--Etat Civil--</option>
                             <option value="Celibataire">Celibataire</option>
@@ -61,7 +60,7 @@
                     <div class="form-group">
                         <label for="name" class="form-label">Nationalite<span>*</span></label>
                         <input type="text"
-                            class="form-control form-control-sm @error('etudiant.nationalite') is-invalid @enderror"
+                            class="form-control form-control-sm @error('etudiant.nationalite')  @enderror"
                             placeholder="" wire:model="etudiant.nationalite">
                         <span class="text-danger">@error('etudiant.nationalite') {{$message}}@enderror</span>
                     </div>
@@ -69,8 +68,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">Lieu De Naissance<span>*</span></label>
-                        <input type="text"
-                            class="form-control form-control-sm @error('etudiant.lieu_naiss') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('etudiant.lieu_naiss')  @enderror"
                             placeholder="" wire:model="etudiant.lieu_naiss">
                         <span class="text-danger">@error('etudiant.lieu_naiss') {{$message}}@enderror</span>
                     </div>
@@ -78,8 +76,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">Date Naissance<span>*</span></label>
-                        <input type="date"
-                            class="form-control form-control-sm @error('etudiant.date_naiss') is-invalid @enderror"
+                        <input type="date" class="form-control form-control-sm @error('etudiant.date_naiss')  @enderror"
                             placeholder="" wire:model="etudiant.date_naiss">
                         <span class="text-danger">@error('etudiant.date_naiss') {{$message}}@enderror</span>
                     </div>
@@ -89,17 +86,15 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">Adresse Mail<span>*</span></label>
-                        <input type="etudiant.email"
-                            class="form-control form-control-sm @error('email') is-invalid @enderror" placeholder=""
-                            wire:model="email">
+                        <input type="etudiant.email" class="form-control form-control-sm @error('email')  @enderror"
+                            placeholder="" wire:model="email">
                         <span class="text-danger">@error('email') {{$message}}@enderror</span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name" class="form-label">Telephone<span>*</span></label>
-                        <input type="text"
-                            class="form-control form-control-sm @error('etudiant.telephone') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('etudiant.telephone')  @enderror"
                             placeholder="" wire:model="etudiant.telephone">
                         <span class="text-danger">@error('etudiant.telephone') {{$message}}@enderror</span>
                     </div>
@@ -110,17 +105,13 @@
                     <label for="name" class="form-label">Adresse<span>*</span></label>
                     <div class="input-group">
 
-                        <input type="text"
-                            class="form-control form-control-sm @error('adresse.Numero') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('adresse.Numero')  @enderror"
                             placeholder="N" wire:model="adresse.Numero">
-                        <input type="text"
-                            class="form-control form-control-sm @error('adresse.Avenue') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('adresse.Avenue')  @enderror"
                             placeholder="Avenue" wire:model="adresse.Avenue">
-                        <input type="text"
-                            class="form-control form-control-sm @error('adresse.Quartier') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('adresse.Quartier')  @enderror"
                             placeholder="Quartier" wire:model="adresse.Quartier">
-                        <input type="text"
-                            class=" form-control form-control-sm @error('adresse.Commune') is-invalid @enderror"
+                        <input type="text" class=" form-control form-control-sm @error('adresse.Commune')  @enderror"
                             placeholder="Commune" wire:model="adresse.Commune">
 
                     </div>

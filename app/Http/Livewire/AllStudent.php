@@ -25,7 +25,10 @@ class AllStudent extends Component
     protected $paginationTheme = 'bootstrap';
 
 
-
+    protected $queryString = [
+        'search' => ['expect' => ''],
+        'byPromotion' => ['expect' => '']
+    ];
 
     public function mount()
     {

@@ -1,4 +1,4 @@
-@section('title','ETUDIANT INSCRIS')
+@section('title','ETUDIANTS INSCRITS')
 @section('css')
 <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
 
@@ -67,7 +67,7 @@
         <div class="mb-4 d-flex justify-content-between">
           <div class="">
             <button type="button" wire:click="print()" class="btn btn-outline-primary"><i
-                class="fa fa-print"></i></button>
+                class="fa fa-print"></i>PDF</button>
             <button class="btn btn-outline-primary" type="button" onClick="printReceipt()"><i
                 class="fa fa-print">Excel</i></button>
           </div>

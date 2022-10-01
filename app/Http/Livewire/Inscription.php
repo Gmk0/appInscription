@@ -180,7 +180,7 @@ class Inscription extends Component
             $upload_image = $this->photo->storeAs('public/students_images', $imageName);
             if ($upload_image) {
                 $valueEtudiant = array(
-                    "matricule_etudiant" => $matricule, "Nom" => $this->etudiant['nom'], 'PostNom' => $this->etudiant['prenom'], 'Prenom' => $this->etudiant['prenom'],
+                    "matricule_etudiant" => $matricule, "Nom" => $this->etudiant['nom'], 'PostNom' => $this->etudiant['postnom'], 'Prenom' => $this->etudiant['prenom'],
                     'Genre' => $this->etudiant['genre'], 'email' => $this->email, 'etat_civil' => $this->etudiant['etat_civil'], 'nationalite' => $this->etudiant['nationalite'],
                     'lieu_naiss' => $this->etudiant['lieu_naiss'],
                     'date_naiss' => $this->etudiant['date_naiss'],

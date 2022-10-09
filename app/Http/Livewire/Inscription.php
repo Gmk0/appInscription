@@ -10,7 +10,7 @@ use App\Models\etudiant;
 use App\Models\etudiantInscrit;
 use App\Models\faculte;
 use App\Models\promotion;
-use App\Models\tuteurEtudiant;
+
 use App\Models\etatEcclesial;
 use Carbon\Carbon;
 use Livewire\Component;
